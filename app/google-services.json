@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "909512729247",
+    "firebase_url": "https://is4401-finalyearproject.firebaseio.com",
+    "project_id": "is4401-finalyearproject",
+    "storage_bucket": "is4401-finalyearproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909512729247:android:ac7a45300425cccc8ef8aa",
+        "android_client_info": {
+          "package_name": "com.michelle_condon.is4401_finalyearproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909512729247-6sfdpuej7vfck8botrkho07n6r8l2fkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9317GuXh_qx1KXN9dW39Av5tPRoqakUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909512729247-6sfdpuej7vfck8botrkho07n6r8l2fkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909512729247:android:0d9a1706174f4b7c8ef8aa",
+        "android_client_info": {
+          "package_name": "com.michelle_condon.is4401_finalyearproject_v10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909512729247-6sfdpuej7vfck8botrkho07n6r8l2fkd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9317GuXh_qx1KXN9dW39Av5tPRoqakUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909512729247-6sfdpuej7vfck8botrkho07n6r8l2fkd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
