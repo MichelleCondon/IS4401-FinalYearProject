@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+    private TextView abcText;
     private TextView register;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        abcText = (TextView) findViewById(R.id.abcText) ;
+        abcText.setOnClickListener(this);
 
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
@@ -54,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.signIn:
                 userLogin();
 
+                break;
+
+            case R.id.abcText:
+                startActivity(new Intent(this, ClockIn_Screen.class));
                 break;
         }
     }
