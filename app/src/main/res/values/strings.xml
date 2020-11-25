@@ -22,4 +22,5 @@
     <string name="password_textbox"></string>
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="employee_id">Employee ID</string>
+    <string name="userEmail">Email</string>
 </resources>
