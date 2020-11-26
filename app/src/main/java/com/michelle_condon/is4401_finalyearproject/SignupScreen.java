@@ -40,8 +40,8 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
 
         editTextFullName = (EditText) findViewById(R.id.fullName);
         editTextAge = (EditText) findViewById(R.id.age);
-        editTextEmail = (EditText) findViewById(R.id.email);
-        editTextPassword= (EditText) findViewById(R.id.password);
+        editTextEmail = (EditText) findViewById(R.id.txtemail);
+        editTextPassword= (EditText) findViewById(R.id.txtPassword);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }

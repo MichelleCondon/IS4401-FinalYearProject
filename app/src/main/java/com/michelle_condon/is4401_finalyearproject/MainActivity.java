@@ -1,5 +1,6 @@
 package com.michelle_condon.is4401_finalyearproject;
 
+//Import Statements
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -9,97 +10,101 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView abcText;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    //Declaring Variables
     private TextView register;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
-
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        abcText = (TextView) findViewById(R.id.abcText) ;
-        abcText.setOnClickListener(this);
-
+        //Assigning values by resource Id's - Register button
         register = (TextView) findViewById(R.id.register);
+        //Listening for the users button click for register
         register.setOnClickListener(this);
 
+        //Assigning values by resource Id's
         signIn = (Button) findViewById(R.id.signIn);
+        //Listening for the users button click for register
         signIn.setOnClickListener(this);
 
-        editTextEmail = (EditText) findViewById(R.id.email);
-        editTextPassword = (EditText) findViewById(R.id.password);
+        //Assigning values by resource Id's - Login page email and password text fields
+        editTextEmail = (EditText) findViewById(R.id.txtemail);
+        editTextPassword = (EditText) findViewById(R.id.txtPassword);
 
+        //Assigning values by resource Id's - Progress base
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        //Java switch statement
+        switch (v.getId()) {
+            //Register Button
             case R.id.register:
                 startActivity(new Intent(this, SignupScreen.class));
                 break;
-
+            //Sign in button
             case R.id.signIn:
                 userLogin();
-
-                break;
-
-            case R.id.abcText:
-                startActivity(new Intent(this, ClockIn_Screen.class));
                 break;
         }
     }
 
     private void userLogin() {
+        //Email and password strings
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
-
-        if(email.isEmpty()){
+        //Validation
+        //Ensuring Email field is filled
+        if (email.isEmpty()) {
             editTextEmail.setError("Email is required");
             editTextEmail.requestFocus();
             return;
         }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Email is required");
+        //Ensuring email address is valid
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Email is Incorrect, Please CHeck your Credentials");
             editTextEmail.requestFocus();
             return;
         }
-        if(password.isEmpty()){
+        //Ensuring password field is filled
+        if (password.isEmpty()) {
             editTextPassword.setError("Password is required");
             editTextPassword.requestFocus();
             return;
         }
-        if(password.length() < 6){
-            editTextPassword.setError("Password is required > 6");
+        //Ensuring the password is longer than 6 characters
+        if (password.length() < 6) {
+            editTextPassword.setError("Password should be greater than 6 characters");
             editTextPassword.requestFocus();
             return;
         }
 
-
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        //Authenticating sign in to Firebase using email and password parameters
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                //If the sign is a success
+                if (task.isSuccessful()) {
                     startActivity(new Intent(MainActivity.this, MainMenu.class));
 
-                }else{
-                    Toast.makeText(MainActivity.this, "Failed to login!", Toast.LENGTH_LONG).show();
+                } else {
+                    //If the sign in fails
+                    Toast.makeText(MainActivity.this, "Login Failed Please Check Your Credentials!", Toast.LENGTH_LONG).show();
                 }
             }
         });
