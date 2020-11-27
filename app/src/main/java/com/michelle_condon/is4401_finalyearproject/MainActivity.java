@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEmail = (EditText) findViewById(R.id.txtemail);
         editTextPassword = (EditText) findViewById(R.id.txtPassword);
 
-        //Assigning values by resource Id's - Progress base
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         mAuth = FirebaseAuth.getInstance();
     }
     //End(2)

@@ -26,7 +26,7 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private TextView registerUser;
     private TextView editTextFullName, editTextEmployeeId, editTextEmail, editTextPassword;
-    private ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         editTextEmployeeId = (EditText) findViewById(R.id.EmployeeId); //EmployeeId
         editTextEmail = (EditText) findViewById(R.id.txtemail); //Email
         editTextPassword = (EditText) findViewById(R.id.txtPassword); //Password
-        progressBar = (ProgressBar) findViewById(R.id.progressBar); //Progress Bar
+
     }
 
     @Override
@@ -76,37 +76,37 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         }
         //Ensuring the employee id is filled
         if (employeeId.isEmpty()) {
-            editTextEmployeeId.setError("Age Required");
+            editTextEmployeeId.setError("EmployeeID is Required");
             editTextEmployeeId.requestFocus();
             return;
         }
         //Ensuring the email field is filled
         if (email.isEmpty()) {
-            editTextEmail.setError("Email required");
+            editTextEmail.setError("Email Address is Required");
             editTextEmail.requestFocus();
             return;
         }
         //Ensuring a valid email is entered
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Email required");
+            editTextEmail.setError("Valid Email Address is Required");
             editTextEmail.requestFocus();
             return;
         }
         //Ensuring a password is provided
         if (password.isEmpty()) {
-            editTextPassword.setError("Password required");
+            editTextPassword.setError("Password is Required");
             editTextPassword.requestFocus();
             return;
         }
         //Ensuring the password provided is bigger than 6 characters
         if (password.length() < 6) {
-            editTextPassword.setError("Password greater than 6 characters required");
+            editTextPassword.setError("Password greater than 6 characters Required");
             editTextPassword.requestFocus();
             return;
         }
 
 
-        progressBar.setVisibility(View.VISIBLE);
+
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -124,18 +124,18 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
                                         //Successful Registration
                                         Toast.makeText(SignupScreen.this, "Successfully registered", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(SignupScreen.this, MainActivity.class));
-                                        progressBar.setVisibility(View.GONE);
+
                                     } else {
                                         //Failure to register
                                         Toast.makeText(SignupScreen.this, "Failed to register", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
+
                                     }
                                 }
                             });
                         } else {
                             //Failure to register
                             Toast.makeText(SignupScreen.this, "Failed to register", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
+
                         }
                         //End (1)
                         //End (2)

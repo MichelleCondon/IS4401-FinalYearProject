@@ -11,16 +11,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.Executor;
 
 public class ClockIn_Screen extends AppCompatActivity {
-    //Code below is based on the Youtube video "Biometric Authentication| Android Studio| Java", Atif Pervaiz,	https://www.youtube.com/watch?v=yPcxZWSszh8 (1)
+    //Code below is based on the Youtube video "Biometric Authentication|Android Studio|Java", Atif Pervaiz,	https://www.youtube.com/watch?v=yPcxZWSszh8 (1)
     //UI Views
     private TextView authStatusTv;
     private Button authenticate, endShift, startBreak, endBreak;
     private Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
+    Date date= new Date();
+    String timeStamp = new SimpleDateFormat("HH.mm.ss").format(new Date());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +57,7 @@ public class ClockIn_Screen extends AppCompatActivity {
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 //authentication succeed, continue tasks that require auth
-                authStatusTv.setText("Authenticate Succeeded!");
+                authStatusTv.setText("Authentication Succeeded at: " + timeStamp);
                 Toast.makeText(ClockIn_Screen.this, "Authentication Succeeded!", Toast.LENGTH_SHORT).show();
             }
 
@@ -68,7 +74,7 @@ public class ClockIn_Screen extends AppCompatActivity {
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Biometric Authentication")
                 .setSubtitle("Login using fingerprint authentication")
-                .setNegativeButtonText("Login with Password Instead")
+                .setNegativeButtonText("Login with Password")
                 .build();
         //handle authentication
         authenticate.setOnClickListener(new View.OnClickListener() {
