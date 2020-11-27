@@ -1,17 +1,17 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 public class User {
-
-    public String fullname, age, email;
+    //Global Variables
+    public String fullname, employeeId, email;
 
     public User(){
 
     }
 
-    public User(String email, String age, String fullname){
+    public User(String email, String employeeId, String fullname){
         this.email = email;
         this.fullname = fullname;
-        this.age = age;
+        this.employeeId= employeeId;
 
     }
 

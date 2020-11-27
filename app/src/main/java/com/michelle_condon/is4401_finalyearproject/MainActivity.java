@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    //Code below is based on the Youtube Video Login and Registration Android App Tutorial using Firebase Authentication - Login, CodeWithMazn, https://www.youtube.com/watch?v=KB2BIm_m1Os&t=336s (1)
+    //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
     //Declaring Variables
     private TextView register;
     private EditText editTextEmail, editTextPassword;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
     }
+    //End(2)
 
     @Override
     public void onClick(View v) {
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         //Ensuring email address is valid
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Email is Incorrect, Please CHeck your Credentials");
+            editTextEmail.setError("Email is Incorrect, Please Check your Credentials");
             editTextEmail.requestFocus();
             return;
         }
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editTextPassword.requestFocus();
             return;
         }
-
+        //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
         //Authenticating sign in to Firebase using email and password parameters
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -106,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //If the sign in fails
                     Toast.makeText(MainActivity.this, "Login Failed Please Check Your Credentials!", Toast.LENGTH_LONG).show();
                 }
+                //End (1)
+                //End (2)
             }
         });
 

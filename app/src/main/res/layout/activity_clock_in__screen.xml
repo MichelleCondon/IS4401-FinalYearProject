@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ClockIn_Screen">
 
-    <Button
-        android:id="@+id/authenticate"
+    <TextView
+        android:id="@+id/employeeApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:text="Clock In"
+        android:layout_marginTop="76dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Employee App"
+        android:textColor="#0C0C0C"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,10 +23,58 @@
         android:id="@+id/authStatusTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="TextView"
+        android:layout_marginTop="140dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Please Choose an Option Below:"
+        android:textColor="#0B0A0A"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/startBreak"
+        android:layout_width="127dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="276dp"
+        android:text="Start of Break"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/authenticate"
+        android:layout_width="129dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="152dp"
+        android:text="Start of Shift"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employeeApp" />
+
+    <Button
+        android:id="@+id/endBreak"
+        android:layout_width="127dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="276dp"
+        android:text="End of Break"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/endShift"
+        android:layout_width="130dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="152dp"
+        android:text="End of Shift"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employeeApp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
