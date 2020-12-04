@@ -24,6 +24,11 @@ https://github.com/,
 https://docs.github.com/en/free-pro-team@latest/github/site-policy/github-terms-of-service#the-github-terms-of-service,
 N/A
 
+Firebase Android SDK,
+Apache License 2.0,
+https://firebase.google.com/,
+https://github.com/firebase/firebase-android-sdk/blob/master/LICENSE,
+N/A
 ----------------------------------------------
 
 MODIFIED THIRD PARTY FILES

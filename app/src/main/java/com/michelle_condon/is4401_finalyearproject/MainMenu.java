@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
     //Declaring Variables
-    private TextView clockin;
+    private TextView clockin, backstock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +22,21 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         clockin = (TextView) findViewById(R.id.clockIn);
         //Listening for the users button click for register
         clockin.setOnClickListener(this);
+
+        //Assigning values by resource Id's - ClockIn/Out button
+        backstock = (TextView) findViewById(R.id.backstock);
+        //Listening for the users button click for register
+        backstock.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         //Java switch statement
         switch (v.getId()) {
-            //Register Button
+            //Clock In/Out button
             case R.id.clockIn:
                 startActivity(new Intent(this, ClockIn_Screen.class));
                 break;
+
     }
 }}
