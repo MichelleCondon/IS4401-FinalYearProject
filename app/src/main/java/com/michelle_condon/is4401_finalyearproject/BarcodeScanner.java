@@ -35,12 +35,19 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
 
     private static final int REQUEST_CAMERA =1;
     private ZXingScannerView scannerView;
+    public static String scanResult;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
+
+
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(checkPermission()){
@@ -51,6 +58,7 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
         }
 
     }
+
 
     private boolean checkPermission(){
         return(ContextCompat.checkSelfPermission(BarcodeScanner.this, CAMERA) == PackageManager.PERMISSION_GRANTED);
@@ -121,25 +129,27 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
                 .create()
                 .show();
     }
+
+
     @Override
     public void handleResult(Result result) {
-    final String scanREsult = result.getText();
+        scanResult = result.getText();
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Scan Result");
-    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+    builder.setPositiveButton("Add to Inventory", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Intent i = new Intent(BarcodeScanner.this, AddItems.class);
+            startActivity(i);
+        }
+    });
+    builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             scannerView.resumeCameraPreview(BarcodeScanner.this);
         }
     });
-    builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(scanREsult));
-            startActivity(intent);
-        }
-    });
-    builder.setMessage(scanREsult);
+    builder.setMessage(scanResult);
     AlertDialog alert = builder.create();
     alert.show();
     }

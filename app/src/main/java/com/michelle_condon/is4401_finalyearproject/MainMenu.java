@@ -37,6 +37,9 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
             case R.id.clockIn:
                 startActivity(new Intent(this, ClockIn_Screen.class));
                 break;
+            case R.id.backstock:
+                startActivity(new Intent(this, ViewItems.class));
+                break;
 
     }
 }}
