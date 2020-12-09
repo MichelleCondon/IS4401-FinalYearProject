@@ -17,8 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ItemLayout"></activity>
-        <activity android:name=".ViewItems" />
+        <activity android:name=".DisplayItems"></activity>
         <activity android:name=".AddItems" />
         <activity android:name=".BarcodeScanner" />
         <activity android:name=".ClockIn_Screen" />

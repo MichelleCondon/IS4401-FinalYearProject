@@ -18,16 +18,20 @@ import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.scanRes
 
 
 public class AddItems extends AppCompatActivity {
-EditText txtName;
-TextView barcodeRef;
-Button btnSave;
-DatabaseReference reff;
-Items item;
+    EditText txtName, txtDescription, txtPrice, txtQuantity;
+    TextView barcodeRef;
+    Button btnSave;
+    DatabaseReference reff;
+    Items item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
         txtName = (EditText)findViewById(R.id.txtProductName);
+        txtPrice = (EditText)findViewById(R.id.txtPrice);
+        txtQuantity = (EditText)findViewById(R.id.txtQuantity);
+        barcodeRef = (TextView) findViewById(R.id.barcodeRef);
+        txtDescription = (EditText)findViewById(R.id.txtDescription);
         btnSave=(Button)findViewById(R.id.btnSave);
         barcodeRef = (TextView)findViewById(R.id.barcodeRef);
 
@@ -38,13 +42,16 @@ Items item;
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            item.setName(txtName.getText().toString().trim());
-            reff.push().setValue(item);
+                item.setName(txtName.getText().toString().trim());
+                item.setDescription(txtDescription.getText().toString().trim());
+                item.setBarcode(barcodeRef.getText().toString().trim());
+                item.setPrice(txtPrice.getText().toString().trim());
+                item.setQuantity(txtQuantity.getText().toString().trim());
+                reff.push().setValue(item);
                 Toast.makeText(AddItems.this,"Data saved", Toast.LENGTH_LONG).show();
             }
         });
 
 
-            }
-        }
-
+    }
+}

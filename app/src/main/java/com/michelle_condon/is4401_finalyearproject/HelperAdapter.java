@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class HelperAdapter extends RecyclerView.Adapter {
@@ -20,16 +22,20 @@ public class HelperAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_item_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
         ViewHolderClass viewHolderClass = new ViewHolderClass(view);
         return viewHolderClass;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolderClass viewHolderClass = (ViewHolderClass)holder;
-        FetchData fetchData = fetchDataList.get(position);
+
+        ViewHolderClass viewHolderClass=(ViewHolderClass)holder;
+        FetchData fetchData=fetchDataList.get(position);
         viewHolderClass.name.setText(fetchData.getName());
+        viewHolderClass.description.setText(fetchData.getDescription());
+        viewHolderClass.price.setText(fetchData.getPrice());
+        viewHolderClass.quantity.setText(fetchData.getQuantity());
 
     }
 
@@ -38,14 +44,16 @@ public class HelperAdapter extends RecyclerView.Adapter {
         return fetchDataList.size();
     }
 
-    public class ViewHolderClass extends RecyclerView.ViewHolder{
-        TextView name;
+    public static class ViewHolderClass extends RecyclerView.ViewHolder{
+        TextView name, description, price, quantity;
 
         public ViewHolderClass(@NonNull View itemView){
             super(itemView);
-            name=itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.name);
+            description = itemView.findViewById(R.id.description);
+            price = itemView.findViewById(R.id.price);
+            quantity = itemView.findViewById(R.id.quantity);
+
         }
     }
 }
-
-

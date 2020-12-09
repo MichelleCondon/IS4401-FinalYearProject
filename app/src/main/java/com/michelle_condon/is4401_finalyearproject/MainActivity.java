@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             //Sign in button
             case R.id.test:
-                startActivity(new Intent(this, BarcodeScanner.class));
+                startActivity(new Intent(this, DisplayItems.class));
                 break;
 
         }

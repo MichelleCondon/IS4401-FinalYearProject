@@ -24,4 +24,11 @@
     <string name="employee_id">Employee ID</string>
     <string name="userEmail">Email</string>
     <string name="lblBarcodeScannerCode">Barcode Number:</string>
+    <string name="lblTitle">Add Product to Inventory</string>
+    <string name="lblProductName">Product Name:</string>
+    <string name="txtProductName">Product Name</string>
+    <string name="lblProductDescription">Product Description:</string>
+    <string name="txtProductDescription">Description</string>
+    <string name="txtProductPrice">Price</string>
+    <string name="btnSave">Add to Inventory</string>
 </resources>
