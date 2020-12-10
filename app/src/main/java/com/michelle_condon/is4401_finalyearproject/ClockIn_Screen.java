@@ -3,8 +3,12 @@ package com.michelle_condon.is4401_finalyearproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +24,7 @@ public class ClockIn_Screen extends AppCompatActivity {
     //Code below is based on the Youtube video "Biometric Authentication|Android Studio|Java", Atif Pervaiz,	https://www.youtube.com/watch?v=yPcxZWSszh8 (1)
     //UI Views
     private TextView authStatusTv;
-    private Button authenticate, endShift, startBreak, endBreak;
+    public Button authenticate, endShift, startBreak, endBreak;
     private Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
@@ -33,6 +37,7 @@ public class ClockIn_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in__screen);
 
+
         //initialise buttons and text
         authStatusTv = findViewById(R.id.authStatusTv);
         authenticate = findViewById(R.id.authenticate);
@@ -41,6 +46,7 @@ public class ClockIn_Screen extends AppCompatActivity {
         startBreak = findViewById(R.id.startBreak);
 
 
+        authenticate.setEnabled(false);
         //Code below is based on the website Developers, Android Developers, https://developer.android.com/training/sign-in/biometric-auth (2)
         //initialise biometrics
         executor = ContextCompat.getMainExecutor(this);

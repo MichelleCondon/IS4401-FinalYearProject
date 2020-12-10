@@ -31,4 +31,5 @@
     <string name="txtProductDescription">Description</string>
     <string name="txtProductPrice">Price</string>
     <string name="btnSave">Add to Inventory</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
