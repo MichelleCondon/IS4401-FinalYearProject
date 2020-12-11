@@ -10,7 +10,7 @@
         android:id="@+id/clockIn"
         android:layout_width="131dp"
         android:layout_height="80dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="60dp"
         android:text="Clock In/Out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:layout_width="131dp"
         android:layout_height="84dp"
         android:layout_marginTop="52dp"
-        android:text="View Backstock"
+        android:text="View Inventory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
@@ -53,14 +53,14 @@
 
     <Button
         android:id="@+id/btnAddItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="134dp"
+        android:layout_height="76dp"
         android:layout_marginStart="157dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="166dp"
-        android:text="Add Item"
+        android:text="Add Product"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backstock" />
 </androidx.constraintlayout.widget.ConstraintLayout>

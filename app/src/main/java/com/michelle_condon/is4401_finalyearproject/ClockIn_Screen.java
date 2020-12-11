@@ -46,7 +46,6 @@ public class ClockIn_Screen extends AppCompatActivity {
         startBreak = findViewById(R.id.startBreak);
 
 
-        authenticate.setEnabled(false);
         //Code below is based on the website Developers, Android Developers, https://developer.android.com/training/sign-in/biometric-auth (2)
         //initialise biometrics
         executor = ContextCompat.getMainExecutor(this);

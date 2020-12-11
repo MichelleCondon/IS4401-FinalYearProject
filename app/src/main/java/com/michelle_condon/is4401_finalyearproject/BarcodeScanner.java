@@ -1,95 +1,80 @@
 package com.michelle_condon.is4401_finalyearproject;
 
-import androidx.annotation.NonNull;
+//Import Statements
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ActivityChooserView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.DiscretePathEffect;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.SparseArray;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.zxing.Result;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-
 import static android.Manifest.permission.CAMERA;
 
 public class BarcodeScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
+    //Declaring Variables
     private static final int REQUEST_CAMERA =1;
     private ZXingScannerView scannerView;
     public static String scanResult;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Implementing ZXing ScannerView
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
 
 
-
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(checkPermission()){
-                Toast.makeText(BarcodeScanner.this, "Permission is granted!", Toast.LENGTH_LONG).show();
-            } else{
-                requestPermissions();
-            }
+        //If statement calls the checkPermission() method to check the status of permission access to the camera
+        //If permission has not been granted the requestPermission() method is called
+        if(checkPermission()){
+            Toast.makeText(BarcodeScanner.this, "Permission is granted!", Toast.LENGTH_LONG).show();
+        } else{
+            requestPermissions();
         }
 
     }
 
-
+//Check the permission access rights to the device's camera
     private boolean checkPermission(){
         return(ContextCompat.checkSelfPermission(BarcodeScanner.this, CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 
+    //Request permission for access rights to the devices camera
     private void requestPermissions(){
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
     }
 
+    //The result of the permission request - granted or not granted
     public void onRequestPermissionsResult(int requestCode, String permission[], int grantResults[]){
         switch(requestCode){
             case REQUEST_CAMERA:
                 if(grantResults.length > 0){
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    //Camera permission has been granted
                     if(cameraAccepted){
-                        Toast.makeText(BarcodeScanner.this, "Permission Granted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(BarcodeScanner.this, "Permission To Access The Camera Has Been Granted", Toast.LENGTH_LONG).show();
                     }
+                    //Permission to access the camera is denied
                     else{
-                        Toast.makeText(BarcodeScanner.this, "Permission Not Granted", Toast.LENGTH_LONG).show();
-                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                            if(shouldShowRequestPermissionRationale(CAMERA)){
-                                displayALertMessage("You need to allow access for both permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int i) {
-                                                requestPermissions(new String[]{CAMERA}, REQUEST_CAMERA);
-
-                                            }
-                                        });
-                                return;
-                            }
+                        Toast.makeText(BarcodeScanner.this, "Permission To Access The Camera Has Not Been Granted", Toast.LENGTH_LONG).show();
+                        //Prompting the user to grant permission for access to the camera
+                        if(shouldShowRequestPermissionRationale(CAMERA)){
+                            displayAlertMessage("You need to allow access for both permissions",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int i) {
+                                            requestPermissions(new String[]{CAMERA}, REQUEST_CAMERA);
+                                        }
+                                    });
+                            return;
                         }
                     }
                 }
@@ -97,32 +82,34 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
         }
     }
 
+    //Camera for barcode scanner resumes
     @Override
     public void onResume(){
         super.onResume();
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(checkPermission()){
-                if(scannerView == null){
-                    scannerView = new ZXingScannerView(this);
-                    setContentView(scannerView);
-                }
-                scannerView.setResultHandler(this);
-                scannerView.startCamera();
-            } else{
-                requestPermissions();
+//Checks permission status of camera access
+        if(checkPermission()){
+            if(scannerView == null){
+                scannerView = new ZXingScannerView(this);
+                setContentView(scannerView);
             }
+            scannerView.setResultHandler(this);
+            scannerView.startCamera();
+        } else{
+            requestPermissions();
         }
     }
 
+    //Destroying the event by stopping the camera
     @Override
     public void onDestroy() {
         super.onDestroy();
         scannerView.stopCamera();
     }
 
-    public void displayALertMessage(String message, DialogInterface.OnClickListener listener){
+    public void displayAlertMessage(String message, DialogInterface.OnClickListener listener){
         new AlertDialog.Builder(BarcodeScanner.this)
+
+                //Details of the alert message to be displayed
                 .setMessage(message)
                 .setPositiveButton("Ok", listener)
                 .setNegativeButton("Cancel!", null)
@@ -130,7 +117,7 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
                 .show();
     }
 
-
+    //Method handles the result of the permissions
     @Override
     public void handleResult(Result result) {
         scanResult = result.getText();

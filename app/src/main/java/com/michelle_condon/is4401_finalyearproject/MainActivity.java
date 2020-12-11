@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Declaring Variables
     private TextView register;
     private EditText editTextEmail, editTextPassword;
-    private Button signIn, test;
+    private Button signIn;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
 
@@ -42,10 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Listening for the users button click for register
         signIn.setOnClickListener(this);
 
-        //Assigning values by resource Id's
-        test = (Button) findViewById(R.id.test);
-        //Listening for the users button click for register
-        test.setOnClickListener(this);
 
 
         //Assigning values by resource Id's - Login page email and password text fields
@@ -69,11 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.signIn:
                 userLogin();
                 break;
-            //Sign in button
-            case R.id.test:
-                startActivity(new Intent(this, MapsActivity.class));
-                break;
-
         }
     }
 

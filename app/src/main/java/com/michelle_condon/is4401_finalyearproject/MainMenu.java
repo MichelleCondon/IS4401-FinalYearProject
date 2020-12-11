@@ -42,7 +42,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()) {
             //Clock In/Out button
             case R.id.clockIn:
-                startActivity(new Intent(this, ClockIn_Screen.class));
+                startActivity(new Intent(this, MapsActivity.class));
                 break;
            case R.id.backstock:
                 startActivity(new Intent(this, DisplayItems.class));

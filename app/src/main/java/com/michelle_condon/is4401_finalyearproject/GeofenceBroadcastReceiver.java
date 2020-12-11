@@ -39,17 +39,21 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         }
        // Location location = geofencingEvent.getTriggeringLocation();
         int transitionType = geofencingEvent.getGeofenceTransition();
-        
-        switch(transitionType){
-            case Geofence.GEOFENCE_TRANSITION_ENTER:
-                Toast.makeText(context, "GEOFENCE_TRANSITION_ENTER", Toast.LENGTH_SHORT).show();
+
+
+        if (transitionType == 1){
+                Toast.makeText(context, "Please Clock For Your Shift", Toast.LENGTH_SHORT).show();
                 notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_ENTER", "", MapsActivity.class);
-            case Geofence.GEOFENCE_TRANSITION_DWELL:
+            Intent i = new Intent(context,ClockIn_Screen.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
+        }
+            else if (transitionType == 4){
                 Toast.makeText(context, "GEOFENCE_TRANSITION_DWELL", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_DWELL", "", MapsActivity.class);
-            case Geofence.GEOFENCE_TRANSITION_EXIT:
+                notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_DWELL", "", MapsActivity.class); }
+            else if (transitionType ==2){
                 Toast.makeText(context, "GEOFENCE_TRANSITION_EXIT", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_EXIT\"", "", MapsActivity.class);
+                notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_EXIT", "", MapsActivity.class);
         }
     }
 }
