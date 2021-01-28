@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">IS4401-FinalYearProject</string>
+    <string name="companyLogo">Company Logo</string>
+    <string name="login">Login</string>
+    <string name="txtEmailAddress">Email Address</string>
+    <string name="txtPassword">Password</string>
+
+
+    <string name="col1">Name</string>
+    <string name="col2">Age</string>
+    <string name="col3">Surname</string>
+    <string name="row1Name"></string>
+    <string name="row1Age">22</string>
+    <string name="row1Surname">Condon</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -18,8 +30,7 @@
     <string name="signup_title_text">Sign Up</string>
     <string name="first_name_text">First Name:</string>
     <string name="first_name_textbox"></string>
-    <string name="email_textBox"></string>
-    <string name="password_textbox"></string>
+
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="employee_id">Employee ID</string>
     <string name="userEmail">Email</string>

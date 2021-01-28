@@ -29,6 +29,18 @@ Apache License 2.0,
 https://firebase.google.com/,
 https://github.com/firebase/firebase-android-sdk/blob/master/LICENSE,
 N/A
+
+ZXing Barcode Image Processing Library
+Google Open Source
+https://opensource.google/projects/zxing
+https://github.com/zxing/zxing/blob/master/LICENSE
+N/A The library is not built into the project it is referenced and pointed to in the AndroidManifest.xml
+
+Google Maps API
+Google Maps Platform
+https://developers.google.com/maps/documentation/android-sdk/v3-client-migration
+https://cloud.google.com/maps-platform/terms
+N/A The library is not built into the project it is referenced and pointed to in the AndroidManifest.xml
 ----------------------------------------------
 
 MODIFIED THIRD PARTY FILES

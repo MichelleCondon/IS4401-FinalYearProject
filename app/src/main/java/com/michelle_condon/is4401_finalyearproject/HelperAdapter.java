@@ -8,12 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class HelperAdapter extends RecyclerView.Adapter {
 
+    //List Item
     List<FetchData> fetchDataList;
 
     public HelperAdapter(List<FetchData> fetchDataList){
@@ -22,6 +21,7 @@ public class HelperAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Inflating the item_layout.xml to output the data into the view holder within the recycler view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
         ViewHolderClass viewHolderClass = new ViewHolderClass(view);
         return viewHolderClass;
@@ -29,7 +29,6 @@ public class HelperAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         ViewHolderClass viewHolderClass=(ViewHolderClass)holder;
         FetchData fetchData=fetchDataList.get(position);
         viewHolderClass.name.setText(fetchData.getName());
@@ -41,14 +40,17 @@ public class HelperAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
+        //Returns the size of the fetchData List
         return fetchDataList.size();
     }
 
     public static class ViewHolderClass extends RecyclerView.ViewHolder{
+        //Declaring variables
         TextView name, description, price, quantity;
 
         public ViewHolderClass(@NonNull View itemView){
             super(itemView);
+            //Assigning values to the variables by resource Id's
             name = itemView.findViewById(R.id.name);
             description = itemView.findViewById(R.id.description);
             price = itemView.findViewById(R.id.price);

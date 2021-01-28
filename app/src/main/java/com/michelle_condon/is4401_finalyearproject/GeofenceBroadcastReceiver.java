@@ -40,20 +40,19 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
        // Location location = geofencingEvent.getTriggeringLocation();
         int transitionType = geofencingEvent.getGeofenceTransition();
 
-
-        if (transitionType == 1){
-                Toast.makeText(context, "Please Clock For Your Shift", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_ENTER", "", MapsActivity.class);
-            Intent i = new Intent(context,ClockIn_Screen.class);
+        //If statements fr when a user enters, dwells or exits the geofence
+        if (transitionType == 1) {
+            Toast.makeText(context, "Please Clock For Your Shift", Toast.LENGTH_SHORT).show();
+            notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_ENTER", "", MapsActivity.class);
+            Intent i = new Intent(context, ClockIn_Screen.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
-        }
-            else if (transitionType == 4){
-                Toast.makeText(context, "GEOFENCE_TRANSITION_DWELL", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_DWELL", "", MapsActivity.class); }
-            else if (transitionType ==2){
-                Toast.makeText(context, "GEOFENCE_TRANSITION_EXIT", Toast.LENGTH_SHORT).show();
-                notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_EXIT", "", MapsActivity.class);
+        } else if (transitionType == 4) {
+            Toast.makeText(context, "GEOFENCE_TRANSITION_DWELL", Toast.LENGTH_SHORT).show();
+            notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_DWELL", "", MapsActivity.class);
+        } else if (transitionType == 2) {
+            Toast.makeText(context, "GEOFENCE_TRANSITION_EXIT", Toast.LENGTH_SHORT).show();
+            notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_EXIT", "", MapsActivity.class);
         }
     }
 }
