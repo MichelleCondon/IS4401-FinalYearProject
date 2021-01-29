@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">IS4401-FinalYearProject</string>
     <string name="companyLogo">Company Logo</string>
-    <string name="login">Login</string>
+    <string name="lblLogin">Login</string>
     <string name="txtEmailAddress">Email Address</string>
     <string name="txtPassword">Password</string>
-
+    <string name="btnLogin">Login</string>
+    <string name="lblRegister">New here? Register Now</string>
 
     <string name="col1">Name</string>
     <string name="col2">Age</string>
@@ -24,7 +25,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="employee_app_text">Employee App</string>
     <string name="welcome_back_text">Welcome Back! Login Below:</string>
-    <string name="login_button">Log In</string>
+
     <string name="signup_text">New Here? Sign Up Below:</string>
     <string name="signup_button">Sign Up</string>
     <string name="signup_title_text">Sign Up</string>
