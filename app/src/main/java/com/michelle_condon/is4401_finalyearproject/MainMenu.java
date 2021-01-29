@@ -13,7 +13,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
     //Declaring Variables
     private TextView clockin, backstock, productCheck;
-    private Button btnAddItem, view;
+    private Button btnAddItem, view, btnCreateList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,11 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         btnAddItem = (Button) findViewById(R.id.btnAddItem);
         //Listening for the users button click for register
         btnAddItem.setOnClickListener(this);
+
+        //Assigning values by resource Id's
+        btnCreateList = (Button) findViewById(R.id.btnCreateList);
+        //Listening for the users button click for register
+        btnCreateList.setOnClickListener(this);
 
         //Assigning values by resource Id's
         view = (Button) findViewById(R.id.view);
@@ -65,6 +70,9 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
                 break;
             case R.id.btnProductCheck:
                 startActivity(new Intent(this, ProductCheck.class));
+                break;
+            case R.id.btnCreateList:
+                startActivity(new Intent(this, VirtualList.class));
                 break;
 
     }

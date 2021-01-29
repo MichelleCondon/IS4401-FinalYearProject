@@ -19,7 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
+//https://www.youtube.com/watch?v=g74E5DpUT-Q
 
 public class ProductCheck extends AppCompatActivity {
 
