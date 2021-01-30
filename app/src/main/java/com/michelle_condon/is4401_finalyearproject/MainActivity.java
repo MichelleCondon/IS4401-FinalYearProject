@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Assigning values to variables with resource Id's - Register TextView
         register = (TextView) findViewById(R.id.lblRegister);
-        //Listening for the users text view click for register
+        //Listening for the text view click for register
         register.setOnClickListener(this);
 
         //Assigning values to variables with resource Id's - Login Button
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         signIn.setOnClickListener(this);
 
         //Assigning values to variables with resource Id's - email and password text boxes
-        txtEmail = (EditText) findViewById(R.id.txtemail);
+        txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
 
         //Entry point of Firebase authentication

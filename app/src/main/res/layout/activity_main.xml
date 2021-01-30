@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/txtemail"
+        android:id="@+id/txtEmail"
         android:layout_width="257dp"
         android:layout_height="46dp"
         android:layout_marginBottom="12dp"
@@ -89,7 +89,7 @@
         android:text="@string/lblLogin"
         android:textColor="#070707"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtemail"
+        app:layout_constraintBottom_toTopOf="@+id/txtEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent" />

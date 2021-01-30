@@ -6,6 +6,13 @@
     <string name="txtPassword">Password</string>
     <string name="btnLogin">Login</string>
     <string name="lblRegister">New here? Register Now</string>
+    <string name="lblSignUp">Register</string>
+    <string name="txtFullName">Full Name</string>
+    <string name="txtEmployeeId">Employee ID</string>
+    <string name="btnRegister">Register</string>
+
+
+
 
     <string name="col1">Name</string>
     <string name="col2">Age</string>
@@ -14,10 +21,6 @@
     <string name="row1Age">22</string>
     <string name="row1Surname">Condon</string>
     <string name="title_activity_register">RegisterActivity</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
@@ -25,13 +28,8 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="employee_app_text">Employee App</string>
     <string name="welcome_back_text">Welcome Back! Login Below:</string>
-
-    <string name="signup_text">New Here? Sign Up Below:</string>
-    <string name="signup_button">Sign Up</string>
-    <string name="signup_title_text">Sign Up</string>
     <string name="first_name_text">First Name:</string>
     <string name="first_name_textbox"></string>
-
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="employee_id">Employee ID</string>
     <string name="userEmail">Email</string>
@@ -44,4 +42,5 @@
     <string name="txtProductPrice">Price</string>
     <string name="btnSave">Add to Inventory</string>
     <string name="title_activity_maps">Map</string>
+
 </resources>

@@ -1,6 +1,5 @@
 package com.michelle_condon.is4401_finalyearproject;
 
-//Import Statements
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,125 +22,137 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupScreen extends AppCompatActivity implements View.OnClickListener {
     //Code below is based on the Youtube video "Login and Registration Android App Tutorial Using Firebase Authentication - Create User", CodeWithMazn,	https://www.youtube.com/watch?v=Z-RE1QuUWPg (1)
+
     //Declaring Variables
     private FirebaseAuth mAuth;
-    private TextView registerUser;
-    private TextView editTextFullName, editTextEmployeeId, editTextEmail, editTextPassword;
+    private Button registerUser;
+    private TextView txtFullName, txtEmployeeId, txtEmail, txtPassword;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
+
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
+
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
         //End (2)
 
-        //Assigning values by resource Id - register
-        registerUser = (Button) findViewById(R.id.registerUser);
-        //Listening for the users button click - register
+        //Assigning values to variables with resource Id's - Register button
+        registerUser = (Button) findViewById(R.id.btnRegister);
+        //Listening for the button click for register
         registerUser.setOnClickListener(this);
 
         //Assigning Values by resourceId
-        editTextFullName = (EditText) findViewById(R.id.fullName); //Full Name
-        editTextEmployeeId = (EditText) findViewById(R.id.EmployeeId); //EmployeeId
-        editTextEmail = (EditText) findViewById(R.id.txtemail); //Email
-        editTextPassword = (EditText) findViewById(R.id.txtPassword); //Password
+        txtFullName = (EditText) findViewById(R.id.txtFullName);
+        txtEmployeeId = (EditText) findViewById(R.id.txtEmployeeId);
+        txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
 
     }
 
+    //OnClick Method
     @Override
     public void onClick(View v) {
-        //Java Switch case statement
+        //Switch case statement
         switch (v.getId()) {
-            //Registration button
-            case R.id.registerUser:
+            //Calls the registerUser method whe the register button is clicked
+            case R.id.btnRegister:
                 registerUser();
                 break;
         }
     }
 
+    //RegisterUser Method
     private void registerUser() {
-        //Getting text from the below textboxes
-        final String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-        final String fullName = editTextFullName.getText().toString().trim();
-        final String employeeId = editTextEmployeeId.getText().toString().trim();
+        //Assigning values from text boxes to variables - 'Final' means the value can only be assigned once
+        final String email = txtEmail.getText().toString().trim();
+        String password = txtPassword.getText().toString().trim();
+        final String fullName = txtFullName.getText().toString().trim();
+        final String employeeId = txtEmployeeId.getText().toString().trim();
 
+        //Validation
         //Ensuring the name field is filled
         if (fullName.isEmpty()) {
-            editTextFullName.setError("Full name required");
-            editTextFullName.requestFocus();
+            txtFullName.setError("Full name is required");
+            txtFullName.requestFocus();
             return;
         }
         //Ensuring the employee id is filled
         if (employeeId.isEmpty()) {
-            editTextEmployeeId.setError("EmployeeID is Required");
-            editTextEmployeeId.requestFocus();
+            txtEmployeeId.setError("EmployeeID is Required");
+            txtEmployeeId.requestFocus();
             return;
         }
-        //Ensuring the email field is filled
+        //Ensuring the email address field is filled
         if (email.isEmpty()) {
-            editTextEmail.setError("Email Address is Required");
-            editTextEmail.requestFocus();
+            txtEmail.setError("Email Address is Required");
+            txtEmail.requestFocus();
             return;
         }
         //Ensuring a valid email is entered
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Valid Email Address is Required");
-            editTextEmail.requestFocus();
+            txtEmail.setError("Invalid Email Address, Please Check Credentials");
+            txtEmail.requestFocus();
             return;
         }
-        //Ensuring a password is provided
+        //Ensuring the password field is filled
         if (password.isEmpty()) {
-            editTextPassword.setError("Password is Required");
-            editTextPassword.requestFocus();
+            txtPassword.setError("Password is Required");
+            txtPassword.requestFocus();
             return;
         }
-        //Ensuring the password provided is bigger than 6 characters
+        //Ensuring the password provided is longer than 6 characters
         if (password.length() < 6) {
-            editTextPassword.setError("Password greater than 6 characters Required");
-            editTextPassword.requestFocus();
+            txtPassword.setError("A Password Longer than 6 Characters is Required");
+            txtPassword.requestFocus();
             return;
         }
 
 
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
+
+        //Create user with email and password in Firebase
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        //If registration is successful a new user is created
                         if (task.isSuccessful()) {
-                            User user = new User(fullName, employeeId, email);
+                            User user = new User(email, employeeId, fullName);
 
+                            //Access Firebase path "Users" to save information to
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                    //If registration is successful a new user is created
                                     if (task.isSuccessful()) {
-                                        //Successful Registration
+                                        //Success Toast appears and the login activity opens
                                         Toast.makeText(SignupScreen.this, "Successfully registered", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(SignupScreen.this, MainActivity.class));
 
                                     } else {
-                                        //Failure to register
+                                        //Failure toast appears
                                         Toast.makeText(SignupScreen.this, "Failed to register", Toast.LENGTH_LONG).show();
 
                                     }
                                 }
                             });
                         } else {
-                            //Failure to register
+                            //Failure toast appears
                             Toast.makeText(SignupScreen.this, "Failed to register", Toast.LENGTH_LONG).show();
 
                         }
-                        //End (1)
-                        //End (2)
+
                     }
                 });
     }
 }
+//End (1)
+//End (2)
 
 
