@@ -4,78 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainMenu">
 
     <Button
-        android:id="@+id/backstock"
-        android:layout_width="131dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="52dp"
-        android:text="View Inventory"
+        android:id="@+id/btnView"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="48dp"
+        android:drawableStart="@drawable/ic_baseline_table_view_24"
+        android:text="@string/btnView"
+        app:layout_constraintBottom_toTopOf="@+id/btnInventory"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-    <Button
-        android:id="@+id/view"
-        android:layout_width="129dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="36dp"
-        android:text="View Schedule"
-        app:layout_constraintBottom_toTopOf="@+id/backstock"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="sans-serif-black"
-        android:text="Main Menu"
+        android:text="@string/lblMenu"
         android:textColor="#070707"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnAddItem"
-        android:layout_width="134dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="157dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="166dp"
-        android:text="Add Product"
+        android:id="@+id/btnInventory"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="56dp"
+        android:drawableStart="@drawable/ic_baseline_article_24"
+        android:text="@string/btnInventory"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreateList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.366"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backstock" />
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnCreateList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:text="Create List"
+        android:id="@+id/btnAdd"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="236dp"
+        android:layout_marginBottom="56dp"
+        android:drawableStart="@drawable/ic_baseline_add_24"
+        android:text="@string/btnAdd"
+        app:layout_constraintBottom_toTopOf="@+id/btnProductCheck"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddItem" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnClock"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="48dp"
+        android:drawableStart="@drawable/ic_baseline_fingerprint_24"
+        android:text="@string/btnClock"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
+        app:layout_constraintEnd_toStartOf="@+id/btnView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnProductCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="226dp"
-        android:text="Price Check"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="236dp"
+        android:layout_marginBottom="192dp"
+        android:drawableStart="@drawable/ic_baseline_search2_24"
+        android:text="@string/btnProductCheck"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateList" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnCreateList"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="192dp"
+        android:drawableStart="@drawable/ic_baseline_edit_24"
+        android:text="@string/btnCreateList"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,14 @@
     <string name="txtFullName">Full Name</string>
     <string name="txtEmployeeId">Employee ID</string>
     <string name="btnRegister">Register</string>
+    <string name="btnInventory">View Inventory</string>
+    <string name="btnClock">Clock In/Out</string>
+    <string name="btnView">View Schedule</string>
+    <string name="btnAdd">Add Product</string>
+    <string name="btnProductCheck">Product Check</string>
+    <string name="btnCreateList">Create List</string>
+    <string name="lblMenu">Menu</string>
+
 
 
 
