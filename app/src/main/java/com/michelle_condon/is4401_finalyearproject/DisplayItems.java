@@ -25,6 +25,7 @@ public class DisplayItems extends AppCompatActivity {
     HelperAdapter helperAdapter;
     DatabaseReference databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,9 @@ public class DisplayItems extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+
+
     }
     //End
 

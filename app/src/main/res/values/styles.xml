@@ -2,9 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#3A82C9</item>
     </style>
 
     <!--Code below is based on the Youtube video "Welcome Screen (Splash Page) Android Studio | Beginner's Guide", Ben O'Brien,	https://www.youtube.com/watch?v=9O1lI0BRCCE -->

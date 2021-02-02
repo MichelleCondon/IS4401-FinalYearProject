@@ -58,9 +58,9 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         //Java switch statement
         switch (v.getId()) {
             //Clock In/Out button
-            //case R.id.btnClock:
-                //startActivity(new Intent(this, EmployeeSchedule.class));
-                //break;
+            case R.id.btnClock:
+                startActivity(new Intent(this, ClockIn_Screen.class));
+                break;
             //View inventory button
             case R.id.btnInventory:
                 startActivity(new Intent(this, DisplayItems.class));

@@ -20,6 +20,16 @@
     <string name="btnAddToList">Add To List</string>
     <string name="txtListItem">Type a Product Name</string>
     <string name="lblProductList">Products Needed</string>
+    <string name="lblInventory">Inventory</string>
+    <string name="lblClockInOptions">Please Choose an Option Below:</string>
+    <string name="btnStartShift">Start of Shift</string>
+    <string name="btnEndShift">End of Shift</string>
+    <string name="btnStartBreak">Start of Break</string>
+    <string name="btnEndBreak">End of Break</string>
+    <string name="lblStartShift">test</string>
+    <string name="lblEndShift">test</string>
+    <string name="lblStartBreak">test</string>
+    <string name="lblEndBreak">test</string>
 
 
     <string name="col1">Name</string>
