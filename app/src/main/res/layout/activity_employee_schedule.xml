@@ -6,92 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".EmployeeSchedule">
 
-    <TableLayout
+
+    <AutoCompleteTextView
+        android:id="@+id/txtSearchEmployee"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:layout_margin="40dp">
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:background="@color/colorGreen"/>
 
-        <!--Table Heading-->
-        <TableRow
-            android:background="@color/colorGreen">
+    <ListView
+        android:id="@+id/listDataEmployee"
+        android:layout_width="408dp"
+        android:layout_height="532dp"
+        android:layout_below="@+id/txtSearchEmployee"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/col1"
-                android:textColor="@android:color/white"
-                android:padding="10sp"
-                android:textSize="14sp"
-                android:layout_weight="4"
-                android:layout_gravity="center_horizontal"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/col2"
-                android:textColor="@android:color/white"
-                android:padding="10sp"
-                android:textSize="14sp"
-                android:layout_weight="2"
-                android:layout_gravity="center_horizontal"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/col3"
-                android:textColor="@android:color/white"
-                android:padding="10sp"
-                android:textSize="14sp"
-                android:layout_weight="4"
-                android:layout_gravity="center_horizontal"/>
-
-        </TableRow>
-
-<!--Table Data-->
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TestName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="4"
-                android:padding="10sp"
-                android:text="@string/row1Name"
-                android:textColor="@android:color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/row1Age"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="2"
-                android:padding="10sp"
-                android:text="@string/row1Age"
-                android:textColor="@android:color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/row1Surname"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="4"
-                android:padding="10sp"
-                android:text="@string/row1Surname"
-                android:textColor="@android:color/black"
-                android:textSize="12sp" />
-        </TableRow>
-
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/btnLoad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 
 </RelativeLayout>

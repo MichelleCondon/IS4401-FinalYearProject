@@ -23,22 +23,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!-- Splash Screen used as the launcher activity-->
-        <activity android:name=".SplashScreen" android:theme="@style/AppTheme1">
+        <!-- Splash Screen used as the launcher activity -->
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/AppTheme1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".VirtualList" />
         <activity android:name=".ProductCheck" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".EmployeeSchedule" />
 
         <receiver
@@ -66,8 +63,6 @@
         <activity android:name=".ClockIn_Screen" />
         <activity android:name=".MainMenu" />
         <activity android:name=".SignupScreen" />
-
-
     </application>
 
 </manifest>
