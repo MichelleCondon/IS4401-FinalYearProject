@@ -2,6 +2,7 @@ package com.michelle_condon.is4401_finalyearproject;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
     //Declaring Variables
     private FirebaseAuth mAuth;
     private Button registerUser;
-    private TextView txtFullName, txtEmployeeId, txtEmail, txtPassword;
+    private EditText txtFullName, txtEmployeeId, txtEmail, txtPassword, txtPhoneNumber, txtPosition;
 
 
     @Override
@@ -34,8 +35,13 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
 
-        //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
+        //Removed any wording in the action bar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("");
+        }
 
+        //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
         //End (2)
@@ -50,6 +56,8 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         txtEmployeeId = (EditText) findViewById(R.id.txtEmployeeId);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
+        txtPosition = (EditText) findViewById(R.id.txtPosition);
+        txtPhoneNumber = (EditText) findViewById(R.id.txtPhone);
 
     }
 
@@ -69,9 +77,11 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
     private void registerUser() {
         //Assigning values from text boxes to variables - 'Final' means the value can only be assigned once
         final String email = txtEmail.getText().toString().trim();
-        String password = txtPassword.getText().toString().trim();
+        final String password = txtPassword.getText().toString().trim();
         final String fullName = txtFullName.getText().toString().trim();
         final String employeeId = txtEmployeeId.getText().toString().trim();
+        final String position = txtPosition.getText().toString().trim();
+        final Integer phoneNumber = Integer.parseInt(txtPhoneNumber.getText().toString().trim());
 
         //Validation
         //Ensuring the name field is filled
@@ -113,7 +123,6 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
 
 
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
-
         //Create user with email and password in Firebase
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -121,7 +130,7 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //If registration is successful a new user is created
                         if (task.isSuccessful()) {
-                            User user = new User(email, employeeId, fullName);
+                            User user = new User(email, employeeId, fullName, password, position, phoneNumber);
 
                             //Access Firebase path "Users" to save information to
                             FirebaseDatabase.getInstance().getReference("Users")
@@ -132,19 +141,19 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
                                     //If registration is successful a new user is created
                                     if (task.isSuccessful()) {
                                         //Success Toast appears and the login activity opens
-                                        Toast.makeText(SignupScreen.this, "Successfully registered", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SignupScreen.this, "Successfully Registered", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(SignupScreen.this, MainActivity.class));
 
                                     } else {
                                         //Failure toast appears
-                                        Toast.makeText(SignupScreen.this, "Failed to register", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SignupScreen.this, "Failed to Register", Toast.LENGTH_LONG).show();
 
                                     }
                                 }
                             });
                         } else {
                             //Failure toast appears
-                            Toast.makeText(SignupScreen.this, "Failed to register", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignupScreen.this, "Failed to Register", Toast.LENGTH_LONG).show();
 
                         }
 

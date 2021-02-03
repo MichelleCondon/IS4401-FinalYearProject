@@ -30,6 +30,8 @@
     <string name="lblEndShift">test</string>
     <string name="lblStartBreak">test</string>
     <string name="lblEndBreak">test</string>
+    <string name="txtPosition">Position</string>
+    <string name="txtPhone">Phone Number</string>
 
 
     <string name="col1">Name</string>
