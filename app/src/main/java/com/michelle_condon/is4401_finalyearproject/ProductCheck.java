@@ -1,6 +1,7 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -31,6 +32,12 @@ private AutoCompleteTextView txtSearch;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_check);
+
+        //Removed any wording in the action bar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("");
+        }
 
 mref= FirebaseDatabase.getInstance().getReference("Items");
 listdata = (ListView)findViewById(R.id.listData);
