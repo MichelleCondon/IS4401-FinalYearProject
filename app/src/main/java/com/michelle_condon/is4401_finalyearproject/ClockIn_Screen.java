@@ -113,7 +113,8 @@ public class ClockIn_Screen extends AppCompatActivity {
                 .build();
 
 
-        //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
+        //When the button is clicked bring up the authentication prompt and the second authenticate button
+        // while setting the text of the labels for insertion into Firebase
         btnStartShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +177,8 @@ public class ClockIn_Screen extends AppCompatActivity {
         btnAuthenticate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
+                //Setting the value of each variable to whatever value is derived from the system timestamp
+                // and the name the employee enters
                 timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
                 timesheets.setIn(txtStartShift.getText().toString().trim());
                 timesheets.setBreak("0");

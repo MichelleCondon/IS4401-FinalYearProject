@@ -49,8 +49,8 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
             Toast.makeText(context, "GEOFENCE_TRANSITION_DWELL", Toast.LENGTH_SHORT).show();
             notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_DWELL", "", MapsActivity.class);
         } else if (transitionType == 2) {
-            Toast.makeText(context, "GEOFENCE_TRANSITION_EXIT", Toast.LENGTH_SHORT).show();
-            notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_EXIT", "", MapsActivity.class);
+            Toast.makeText(context, "Have you clocked out from your shift?", Toast.LENGTH_SHORT).show();
+            notificationHelper.sendHighPriorityNotification("Exited Work Premises", "Have you clocked out?", MapsActivity.class);
         }
     }
 }

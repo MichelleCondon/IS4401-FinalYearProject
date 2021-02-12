@@ -80,7 +80,7 @@ public class ProductCheck extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String name = txtSearch.getText().toString();
-                    searchUser(name);
+                    searchProduct(name);
                 }
             });
         } else {
@@ -89,7 +89,7 @@ public class ProductCheck extends AppCompatActivity {
     }
 
     //Searching for an employee based off their name from Firebase
-    private void searchUser(String name) {
+    private void searchProduct(String name) {
         Query query = mref.orderByChild("name").equalTo(name);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -53,7 +53,8 @@ public class NotificationHelper extends ContextWrapper {
     public void sendHighPriorityNotification(String title, String body, Class activityName) {
 
         Intent intent = new Intent(this, activityName);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 267, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 267, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         //Building a notification
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)

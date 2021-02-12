@@ -52,7 +52,7 @@ public class ExistingListItems extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    //Calling FetchData class to utilise the getters within the class
+                    //Calling VList class to utilise the getters within the class
                     VList data = ds.getValue(VList.class);
                     vLists.add(data);
                 }
