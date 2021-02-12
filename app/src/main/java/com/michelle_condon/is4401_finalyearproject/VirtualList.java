@@ -21,6 +21,10 @@ import java.util.ArrayList;
 
 public class VirtualList extends AppCompatActivity implements View.OnClickListener {
 
+    //Code below is based on a YouTube Video, by Ben O'Brien, https://www.youtube.com/channel/UCIMduWsoyJxVuDbZ3TPhzew
+    //Code below to insert data into Firebase is based on a YouTube Video, by EducaTree, https://www.youtube.com/watch?v=iy6WexahCdY&t=328
+
+    //Declare Variables
     private ArrayList<String> items;
     private ArrayAdapter<String> itemsAdapter;
     private ListView listView;
@@ -29,7 +33,6 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
     DatabaseReference reff;
     VList list;
 
-    //https://www.youtube.com/channel/UCIMduWsoyJxVuDbZ3TPhzew
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
             actionBar.setTitle("");
         }
 
+        //Assign values by resource id
         listView = findViewById(R.id.listView);
         btnAddList = findViewById(R.id.btnAddList);
         txtListName = findViewById(R.id.txtListName);
@@ -49,10 +53,12 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
 
 
         list = new VList();
+        //Initialise connection to Firebase
         reff = FirebaseDatabase.getInstance().getReference().child("List");
         btnAddList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Setting the value of each variable to whatever the user enters on the form
                 list.setProducts(txtListName.getText().toString().trim());
                 reff.push().setValue(list);
                 Toast.makeText(VirtualList.this, "Data saved", Toast.LENGTH_LONG).show();
@@ -70,6 +76,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    //View listener if user holds on screen the product is deleted from the screen
     private void setUpListViewListener() {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -84,6 +91,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
         });
     }
 
+    //Adding item to list on screen
     private void addItem(View view) {
         EditText input = findViewById(R.id.txtListName);
         String itemText = input.getText().toString();
@@ -97,7 +105,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
 
     }
 
-
+    //Button functionality
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -108,3 +116,5 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
         }
     }
 }
+//End
+//End

@@ -19,6 +19,7 @@ import java.util.List;
 
 public class ExistingListItems extends AppCompatActivity {
 
+    //Code below ia based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
 
     //Declare Variables
     List<VList> vLists;
@@ -32,7 +33,7 @@ public class ExistingListItems extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_existing_list_items);
 
-        //Removed any wording in the action bar
+        //Removed any words from within the action bar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("");
@@ -66,6 +67,6 @@ public class ExistingListItems extends AppCompatActivity {
         });
 
 
-
     }
-    }
+}
+//End

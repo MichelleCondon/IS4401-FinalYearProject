@@ -1,5 +1,7 @@
 package com.michelle_condon.is4401_finalyearproject;
 
+//Code below is based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
+
 public class User {
     //Declaration of global variables
     public String fullname, employeeId, email, password, position;
@@ -18,3 +20,4 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 }
+//End

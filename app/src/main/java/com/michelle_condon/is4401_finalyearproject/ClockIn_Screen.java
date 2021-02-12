@@ -28,15 +28,13 @@ public class ClockIn_Screen extends AppCompatActivity {
     private TextView lblOptions, txtStartShift;
     private TextView txtEndShift, txtBreak, txtEndBreak;
     private EditText txtEmployeeName;
-    DatabaseReference reff;
-    Timesheets timesheets;
     public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak, btnAuthenticate1, btnAuthenticate2, btnAuthenticate3, btnAuthenticate4;
     public Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
-    Date date= new Date();
+    DatabaseReference reff;
+    Timesheets timesheets;
     String timeStamp = new SimpleDateFormat("HH.mm.ss").format(new Date());
-
 
 
     @Override
@@ -44,13 +42,13 @@ public class ClockIn_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in__screen);
 
-        //Start of dynamic title code---------------------
+        //Removes any text from the action bar
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-        {
+        if (actionBar != null) {
             //Setting a dynamic title at runtime. Here, it displays the current time.
             actionBar.setTitle("");
         }
+
         //initialise buttons and text
         lblOptions = findViewById(R.id.lblOptions);
         btnStartShift = findViewById(R.id.btnStartShift);
@@ -61,7 +59,6 @@ public class ClockIn_Screen extends AppCompatActivity {
         btnAuthenticate2 = findViewById(R.id.btnAuthenticate2);
         btnAuthenticate3 = findViewById(R.id.btnAuthenticate3);
         btnAuthenticate4 = findViewById(R.id.btnAuthenticate4);
-        //txtClockInEmployeeId = findViewById(R.id.txtClockInEmployeeId);
         txtStartShift = findViewById(R.id.txtStartShift);
         txtEndShift = findViewById(R.id.txtEndShift);
         txtBreak = findViewById(R.id.txtBreak);
@@ -88,7 +85,7 @@ public class ClockIn_Screen extends AppCompatActivity {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                //authentication succeed, continue tasks that require auth
+                //authentication succeed, continue tasks that require authentication
                 lblOptions.setText("Authentication Succeeded at: " + timeStamp);
                 txtEmployeeName.setVisibility(View.VISIBLE);
                 Toast.makeText(ClockIn_Screen.this, "Authentication Succeeded!", Toast.LENGTH_SHORT).show();
@@ -114,7 +111,9 @@ public class ClockIn_Screen extends AppCompatActivity {
                 .setSubtitle("Login using fingerprint authentication")
                 .setNegativeButtonText(" ")
                 .build();
-        //handle authentication
+
+
+        //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
         btnStartShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +127,7 @@ public class ClockIn_Screen extends AppCompatActivity {
 
             }
         });
+        //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
         btnEndShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,9 +139,9 @@ public class ClockIn_Screen extends AppCompatActivity {
                 txtEndBreak.setText("0");
 
 
-
             }
         });
+        //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
         btnStartBreak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +154,7 @@ public class ClockIn_Screen extends AppCompatActivity {
 
             }
         });
+        //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
         btnEndBreak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,21 +166,17 @@ public class ClockIn_Screen extends AppCompatActivity {
                 txtStartShift.setText("0");
 
 
-
             }
         });
 
-
-
-
-
+//Code below to insert data into Firebase is based on a YouTube Video, by EducaTree, https://www.youtube.com/watch?v=iy6WexahCdY&t=328 (3)
         timesheets = new Timesheets();
         //Accessing data from Firebase
         reff = FirebaseDatabase.getInstance().getReference().child("Timesheet");
         btnAuthenticate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Setting the value of each variable to whatever the user enters on the form
+                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
                 timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
                 timesheets.setIn(txtStartShift.getText().toString().trim());
                 timesheets.setBreak("0");
@@ -193,7 +190,7 @@ public class ClockIn_Screen extends AppCompatActivity {
         btnAuthenticate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Setting the value of each variable to whatever the user enters on the form
+                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
                 timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
                 timesheets.setIn("0");
                 timesheets.setBreak("0");
@@ -207,7 +204,7 @@ public class ClockIn_Screen extends AppCompatActivity {
         btnAuthenticate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Setting the value of each variable to whatever the user enters on the form
+                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
                 timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
                 timesheets.setIn("0");
                 timesheets.setBreak(txtBreak.getText().toString().trim());
@@ -221,7 +218,7 @@ public class ClockIn_Screen extends AppCompatActivity {
         btnAuthenticate4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Setting the value of each variable to whatever the user enters on the form
+                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
                 timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
                 timesheets.setIn("0");
                 timesheets.setBreak("0");
@@ -233,5 +230,6 @@ public class ClockIn_Screen extends AppCompatActivity {
         });
         //End (1)
         //End (2)
+        //End (3)
     }
 }

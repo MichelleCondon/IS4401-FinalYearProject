@@ -24,11 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class EmployeeSchedule extends AppCompatActivity {
 
-    DatabaseReference mref;
+    //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, https://www.youtube.com/watch?v=g74E5DpUT-Q
+
+    //Declaring Variables
     private AutoCompleteTextView txtSearchEmployee;
+    DatabaseReference mref;
     RecyclerView recyclerView;
     List<FetchEmployees> fetchEmployees;
     EmployeeAdapter employeeAdapter;
@@ -39,19 +41,22 @@ public class EmployeeSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_schedule);
 
-        //Removed any wording in the action bar
+        //Removed any wording from the action bar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("");
         }
 
-        mref= FirebaseDatabase.getInstance().getReference("EmployeeRoster");
+        //Initialise access to firebase
+        mref = FirebaseDatabase.getInstance().getReference("EmployeeRoster");
+
+        //Assigning values by resourceId
         recyclerView = findViewById(R.id.recyclerView1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchEmployees = new ArrayList<>();
-        txtSearchEmployee = (AutoCompleteTextView)findViewById(R.id.txtSearchEmployee);
+        txtSearchEmployee = (AutoCompleteTextView) findViewById(R.id.txtSearchEmployee);
 
-        ValueEventListener event=new ValueEventListener() {
+        ValueEventListener event = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 populateSearch(snapshot);
@@ -66,14 +71,16 @@ public class EmployeeSchedule extends AppCompatActivity {
 
     }
 
-    private void populateSearch(DataSnapshot snapshot){
+    //Populating the search field based off Firebase data
+    private void populateSearch(DataSnapshot snapshot) {
         ArrayList<String> employeeSearch = new ArrayList<>();
-        if(snapshot.exists()){
-            for(DataSnapshot ds:snapshot.getChildren()){
-                String search =ds.child("employeeName").getValue(String.class);
+        if (snapshot.exists()) {
+            for (DataSnapshot ds : snapshot.getChildren()) {
+                String search = ds.child("employeeName").getValue(String.class);
                 employeeSearch.add(search);
             }
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,employeeSearch);
+            //Displaying results in a simple list item format
+            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, employeeSearch);
             txtSearchEmployee.setAdapter(adapter);
             txtSearchEmployee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -82,13 +89,14 @@ public class EmployeeSchedule extends AppCompatActivity {
                     searchEmployee(search);
                 }
             });
-        }else{
-            Log.d("EmployeeRoster","No data found");
+        } else {
+            Log.d("EmployeeRoster", "No data found");
         }
     }
 
+    //Searching for an employee based off their name from Firebase
     private void searchEmployee(String search) {
-        Query query= mref.orderByChild("employeeName").equalTo(search);
+        Query query = mref.orderByChild("employeeName").equalTo(search);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -109,3 +117,4 @@ public class EmployeeSchedule extends AppCompatActivity {
         });
     }
 }
+//End

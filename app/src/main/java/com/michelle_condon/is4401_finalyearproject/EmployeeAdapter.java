@@ -10,27 +10,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class EmployeeAdapter extends RecyclerView.Adapter{
+public class EmployeeAdapter extends RecyclerView.Adapter {
 
-    //List Item
+    //Code below to display data in view holders from Firebase based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
+
+    //List Employees
     List<FetchEmployees> fetchEmployeesList;
 
-    public EmployeeAdapter(List<FetchEmployees> fetchEmployeesList){
+    public EmployeeAdapter(List<FetchEmployees> fetchEmployeesList) {
         this.fetchEmployeesList = fetchEmployeesList;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //Inflating the item_layout.xml to output the data into the view holder within the recycler view
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout2,parent,false);
+        //Inflating the item_layout2.xml to output the data into the view holder within the recycler view
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout2, parent, false);
         ViewHolderClass viewHolderClass = new ViewHolderClass(view);
         return viewHolderClass;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolderClass viewHolderClass =(ViewHolderClass)holder;
-        FetchEmployees fetchEmployees=fetchEmployeesList.get(position);
+        ViewHolderClass viewHolderClass = (ViewHolderClass) holder;
+        //Setting the hours for every day of the week by pulling the data from Firebase using getters
+        FetchEmployees fetchEmployees = fetchEmployeesList.get(position);
         viewHolderClass.monday.setText(fetchEmployees.getMonday());
         viewHolderClass.tuesday.setText(fetchEmployees.getTuesday());
         viewHolderClass.wednesday.setText(fetchEmployees.getWednesday());
@@ -45,11 +49,11 @@ public class EmployeeAdapter extends RecyclerView.Adapter{
         return fetchEmployeesList.size();
     }
 
-    public static class ViewHolderClass extends RecyclerView.ViewHolder{
+    public static class ViewHolderClass extends RecyclerView.ViewHolder {
         //Declaring variables
         TextView monday, tuesday, wednesday, thursday, friday;
 
-        public ViewHolderClass(@NonNull View itemView){
+        public ViewHolderClass(@NonNull View itemView) {
             super(itemView);
             //Assigning values to the variables by resource Id's
             monday = itemView.findViewById(R.id.monday);
@@ -61,5 +65,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter{
         }
     }
 }
+//End
 
 

@@ -21,6 +21,8 @@ import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.scanRes
 
 
 public class AddItems extends AppCompatActivity {
+    //Code below to insert data into Firebase is based on a YouTube Video, by EducaTree, https://www.youtube.com/watch?v=iy6WexahCdY&t=328
+
     //Declare Variables
     EditText txtName, txtDescription, txtPrice, txtQuantity;
     TextView barcodeRef;
@@ -41,13 +43,13 @@ public class AddItems extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.search_btn);
         barcodeRef = (TextView) findViewById(R.id.barcodeRef);
 
-        //Removed any wording in the action bar
+        //Removed any wording from within the action bar
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("");
         }
 
-        //Setting the text of the barcode text view with the scanned value
+        //Setting the text of the barcode text view with the scanned value from the barcode scanner
         barcodeRef.setText(scanResult);
 
         item = new Items();
@@ -67,7 +69,7 @@ public class AddItems extends AppCompatActivity {
                 Toast.makeText(AddItems.this, "Data saved", Toast.LENGTH_LONG).show();
             }
         });
-
+        //End
 
     }
 }

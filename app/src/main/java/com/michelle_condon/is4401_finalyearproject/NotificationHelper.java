@@ -18,6 +18,8 @@ import java.util.Random;
 
 public class NotificationHelper extends ContextWrapper {
 
+    //Code below is based on the Youtube Video "Geofencing | The ultimate tutorial | Create and monitor geofences", yoursTruly, https://www.youtube.com/watch?v=nmAtMqljH9M
+
     //Declaring TAG
     private static final String TAG = "NotificationHelper";
 
@@ -56,7 +58,7 @@ public class NotificationHelper extends ContextWrapper {
         //Building a notification
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(title)
-               .setContentText(body)
+                .setContentText(body)
                 .setSmallIcon(R.mipmap.ic_company_logo_foreground)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setStyle(new NotificationCompat.BigTextStyle().setSummaryText("Work Alert").setBigContentTitle(title).bigText(body))
@@ -69,3 +71,5 @@ public class NotificationHelper extends ContextWrapper {
 
     }
 }
+
+//End

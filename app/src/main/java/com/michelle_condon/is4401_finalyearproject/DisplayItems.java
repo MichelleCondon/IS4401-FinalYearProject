@@ -65,7 +65,6 @@ public class DisplayItems extends AppCompatActivity {
         });
 
 
-
     }
     //End
 

@@ -3,6 +3,8 @@ package com.michelle_condon.is4401_finalyearproject;
 
 public class Timesheets {
 
+    //Code below is based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
+
     private String employeeName;
     private String In;
     private String Break;
@@ -63,3 +65,4 @@ public class Timesheets {
 
     }
 }
+//End

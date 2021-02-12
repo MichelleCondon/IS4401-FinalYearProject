@@ -22,10 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-//https://www.youtube.com/watch?v=g74E5DpUT-Q
 
 public class ProductCheck extends AppCompatActivity {
 
+    //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, https://www.youtube.com/watch?v=g74E5DpUT-Q
+
+    //Declare Variables
     DatabaseReference mref;
     List<FetchData> fetchData;
     RecyclerView recyclerView;
@@ -64,6 +66,7 @@ public class ProductCheck extends AppCompatActivity {
 
     }
 
+    //Populating the search field based off Firebase data
     private void populateSearch(DataSnapshot snapshot) {
         ArrayList<String> names = new ArrayList<>();
         if (snapshot.exists()) {
@@ -85,6 +88,7 @@ public class ProductCheck extends AppCompatActivity {
         }
     }
 
+    //Searching for an employee based off their name from Firebase
     private void searchUser(String name) {
         Query query = mref.orderByChild("name").equalTo(name);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -108,3 +112,4 @@ public class ProductCheck extends AppCompatActivity {
         });
     }
 }
+//End

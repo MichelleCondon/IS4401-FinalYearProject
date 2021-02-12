@@ -1,10 +1,12 @@
 
 package com.michelle_condon.is4401_finalyearproject;
 
+//Code below is based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
+
 public class Items {
 
     private String name;
-    private  String description;
+    private String description;
     private String barcode;
     private String price;
     private String quantity;
@@ -58,7 +60,8 @@ public class Items {
         this.quantity = quantity;
     }
 
-    public Items(){
+    public Items() {
 
     }
 }
+//End

@@ -3,7 +3,6 @@ package com.michelle_condon.is4401_finalyearproject;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,35 +11,34 @@ import com.google.android.gms.location.GeofencingEvent;
 
 import java.util.List;
 
-
-
 public class GeofenceBroadcastReceiver extends BroadcastReceiver {
 
+    //Code below is based on the Youtube Video "Geofencing | The ultimate tutorial | Create and monitor geofences", yoursTruly, https://www.youtube.com/watch?v=nmAtMqljH9M
+
+    //Declare Variables
     private static final String TAG = "GeofenceBraodcastReceiv";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-       // Toast.makeText(context, "Geofence trigered...", Toast.LENGTH_SHORT).show();
-
         NotificationHelper notificationHelper = new NotificationHelper(context);
 
         GeofencingEvent geofencingEvent = GeofencingEvent.fromIntent(intent);
 
-        if(geofencingEvent.hasError()){
+        if (geofencingEvent.hasError()) {
             Log.d(TAG, "onReceive: Errr receiving geofence event...");
             return;
         }
 
         List<Geofence> geofenceList = geofencingEvent.getTriggeringGeofences();
-        for(Geofence geofence: geofenceList){
+        for (Geofence geofence : geofenceList) {
             Log.d(TAG, "onReceive: " + geofence.getRequestId());
         }
-       // Location location = geofencingEvent.getTriggeringLocation();
+        // Location location = geofencingEvent.getTriggeringLocation();
         int transitionType = geofencingEvent.getGeofenceTransition();
 
-        //If statements fr when a user enters, dwells or exits the geofence
+        //If statements for when a user enters, dwells or exits the geofence
         if (transitionType == 1) {
             Toast.makeText(context, "Please Clock For Your Shift", Toast.LENGTH_SHORT).show();
             notificationHelper.sendHighPriorityNotification("Work Premises Entered", "Please Clock In/Out Immediately", MapsActivity.class);
@@ -56,3 +54,4 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         }
     }
 }
+//End
