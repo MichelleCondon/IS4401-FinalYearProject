@@ -11,25 +11,25 @@
         android:id="@+id/btnView"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="47dp"
+        android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_table_view_24"
         android:text="@string/btnView"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnInventory"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/lblMenu"
         android:textColor="#070707"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,26 +37,28 @@
         android:id="@+id/btnInventory"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="46dp"
+        android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_article_24"
         android:text="@string/btnInventory"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnCreateList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="236dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="45dp"
+        android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_add_24"
         android:text="@string/btnAdd"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnProductCheck"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/btnInventory"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -66,37 +68,42 @@
         android:layout_marginStart="35dp"
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="48dp"
+        android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_fingerprint_24"
         android:text="@string/btnClock"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnAdd"
         app:layout_constraintEnd_toStartOf="@+id/btnView"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnProductCheck"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="236dp"
-        android:layout_marginBottom="192dp"
-        android:drawableStart="@drawable/ic_baseline_search2_24"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="209dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_search_24"
         android:text="@string/btnProductCheck"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/btnCreateList"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnCreateList"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="208dp"
+        android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_edit_24"
         android:text="@string/btnCreateList"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintHorizontal_bias="0.852"
         app:layout_constraintStart_toStartOf="parent" />
 
 

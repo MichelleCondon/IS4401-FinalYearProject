@@ -43,7 +43,7 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
         //If statements fr when a user enters, dwells or exits the geofence
         if (transitionType == 1) {
             Toast.makeText(context, "Please Clock For Your Shift", Toast.LENGTH_SHORT).show();
-            notificationHelper.sendHighPriorityNotification("GEOFENCE_TRANSITION_ENTER", "", MapsActivity.class);
+            notificationHelper.sendHighPriorityNotification("Work Premises Entered", "Please Clock In/Out Immediately", MapsActivity.class);
             Intent i = new Intent(context, ClockIn_Screen.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);

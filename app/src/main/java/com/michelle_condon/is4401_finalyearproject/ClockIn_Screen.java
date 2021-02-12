@@ -9,8 +9,12 @@ import androidx.core.content.ContextCompat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,13 +25,17 @@ public class ClockIn_Screen extends AppCompatActivity {
     //Code below is based on the Youtube video "Biometric Authentication|Android Studio|Java", Atif Pervaiz, https://www.youtube.com/watch?v=yPcxZWSszh8 (1)
 
     //Declare Variables
-    private TextView lblOptions;
-    public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak;
+    private TextView lblOptions, txtStartShift;
+    private TextView txtEndShift, txtBreak, txtEndBreak;
+    private EditText txtEmployeeName;
+    DatabaseReference reff;
+    Timesheets timesheets;
+    public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak, btnAuthenticate1, btnAuthenticate2, btnAuthenticate3, btnAuthenticate4;
     public Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
     Date date= new Date();
-    String timeStamp = new SimpleDateFormat("HH.MM.SS").format(new Date());
+    String timeStamp = new SimpleDateFormat("HH.mm.ss").format(new Date());
 
 
 
@@ -49,6 +57,16 @@ public class ClockIn_Screen extends AppCompatActivity {
         btnEndShift = findViewById(R.id.btnEndShift);
         btnEndBreak = findViewById(R.id.btnEndBreak);
         btnStartBreak = findViewById(R.id.btnStartBreak);
+        btnAuthenticate1 = findViewById(R.id.btnAuthenticate1);
+        btnAuthenticate2 = findViewById(R.id.btnAuthenticate2);
+        btnAuthenticate3 = findViewById(R.id.btnAuthenticate3);
+        btnAuthenticate4 = findViewById(R.id.btnAuthenticate4);
+        //txtClockInEmployeeId = findViewById(R.id.txtClockInEmployeeId);
+        txtStartShift = findViewById(R.id.txtStartShift);
+        txtEndShift = findViewById(R.id.txtEndShift);
+        txtBreak = findViewById(R.id.txtBreak);
+        txtEndBreak = findViewById(R.id.txtEndBreak);
+        txtEmployeeName = findViewById(R.id.txtEmployeeName);
 
 
         //Code below is based on the website Developers, Android Developers, https://developer.android.com/training/sign-in/biometric-auth (2)
@@ -60,7 +78,11 @@ public class ClockIn_Screen extends AppCompatActivity {
                 super.onAuthenticationError(errorCode, errString);
                 //error authenticating
                 lblOptions.setText("Authentication Error: " + errString);
-                Toast.makeText(ClockIn_Screen.this, "Authentication Error", Toast.LENGTH_SHORT).show();
+                btnAuthenticate1.setVisibility(View.INVISIBLE);
+                btnAuthenticate2.setVisibility(View.INVISIBLE);
+                btnAuthenticate3.setVisibility(View.INVISIBLE);
+                btnAuthenticate4.setVisibility(View.INVISIBLE);
+                Toast.makeText(ClockIn_Screen.this, "Authentication Error, Please contact your manager", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -68,15 +90,21 @@ public class ClockIn_Screen extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 //authentication succeed, continue tasks that require auth
                 lblOptions.setText("Authentication Succeeded at: " + timeStamp);
+                txtEmployeeName.setVisibility(View.VISIBLE);
                 Toast.makeText(ClockIn_Screen.this, "Authentication Succeeded!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
+
             public void onAuthenticationFailed() {
                 //Failure with authentication
                 super.onAuthenticationFailed();
                 lblOptions.setText("Authentication Failed!");
-                Toast.makeText(ClockIn_Screen.this, "Authentication Failed!", Toast.LENGTH_SHORT).show();
+                btnAuthenticate1.setVisibility(View.INVISIBLE);
+                btnAuthenticate2.setVisibility(View.INVISIBLE);
+                btnAuthenticate3.setVisibility(View.INVISIBLE);
+                btnAuthenticate4.setVisibility(View.INVISIBLE);
+                Toast.makeText(ClockIn_Screen.this, "Authentication Failed, Please contact your manager", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -84,32 +112,123 @@ public class ClockIn_Screen extends AppCompatActivity {
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Biometric Authentication")
                 .setSubtitle("Login using fingerprint authentication")
-                .setNegativeButtonText("Login with Password")
+                .setNegativeButtonText(" ")
                 .build();
         //handle authentication
         btnStartShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 biometricPrompt.authenticate((promptInfo));
+                btnAuthenticate1.setVisibility(View.VISIBLE);
+                txtStartShift.setText(timeStamp);
+                txtEndShift.setText("0");
+                txtBreak.setText("0");
+                txtEndBreak.setText("0");
+
+
             }
         });
         btnEndShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 biometricPrompt.authenticate((promptInfo));
+                btnAuthenticate2.setVisibility(View.VISIBLE);
+                txtEndShift.setText(timeStamp);
+                txtStartShift.setText("0");
+                txtBreak.setText("0");
+                txtEndBreak.setText("0");
+
+
+
             }
         });
         btnStartBreak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 biometricPrompt.authenticate((promptInfo));
+                btnAuthenticate3.setVisibility(View.VISIBLE);
+                txtBreak.setText(timeStamp);
+                txtEndShift.setText("0");
+                txtStartShift.setText("0");
+                txtEndBreak.setText("0");
+
             }
         });
         btnEndBreak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 biometricPrompt.authenticate((promptInfo));
+                btnAuthenticate4.setVisibility(View.VISIBLE);
+                txtEndBreak.setText(timeStamp);
+                txtEndShift.setText("0");
+                txtBreak.setText("0");
+                txtStartShift.setText("0");
+
+
+
+            }
+        });
+
+
+
+
+
+        timesheets = new Timesheets();
+        //Accessing data from Firebase
+        reff = FirebaseDatabase.getInstance().getReference().child("Timesheet");
+        btnAuthenticate1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Setting the value of each variable to whatever the user enters on the form
+                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
+                timesheets.setIn(txtStartShift.getText().toString().trim());
+                timesheets.setBreak("0");
+                timesheets.setEndBreak("0");
+                timesheets.setOut("0");
+                reff.push().setValue(timesheets);
+                Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btnAuthenticate2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Setting the value of each variable to whatever the user enters on the form
+                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
+                timesheets.setIn("0");
+                timesheets.setBreak("0");
+                timesheets.setEndBreak("0");
+                timesheets.setOut(txtEndShift.getText().toString().trim());
+                reff.push().setValue(timesheets);
+                Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btnAuthenticate3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Setting the value of each variable to whatever the user enters on the form
+                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
+                timesheets.setIn("0");
+                timesheets.setBreak(txtBreak.getText().toString().trim());
+                timesheets.setEndBreak("0");
+                timesheets.setOut("0");
+                reff.push().setValue(timesheets);
+                Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btnAuthenticate4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Setting the value of each variable to whatever the user enters on the form
+                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
+                timesheets.setIn("0");
+                timesheets.setBreak("0");
+                timesheets.setEndBreak(txtEndBreak.getText().toString().trim());
+                timesheets.setOut("0");
+                reff.push().setValue(timesheets);
+                Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
             }
         });
         //End (1)

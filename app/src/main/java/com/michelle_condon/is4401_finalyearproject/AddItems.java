@@ -2,6 +2,7 @@ package com.michelle_condon.is4401_finalyearproject;
 
 //Import Statements
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -39,6 +40,12 @@ public class AddItems extends AppCompatActivity {
         txtDescription = (EditText) findViewById(R.id.txtDescription);
         btnSave = (Button) findViewById(R.id.search_btn);
         barcodeRef = (TextView) findViewById(R.id.barcodeRef);
+
+        //Removed any wording in the action bar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("");
+        }
 
         //Setting the text of the barcode text view with the scanned value
         barcodeRef.setText(scanResult);

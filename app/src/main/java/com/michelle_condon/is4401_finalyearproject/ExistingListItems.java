@@ -17,19 +17,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayItems extends AppCompatActivity {
-    //Code below ia based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
+public class ExistingListItems extends AppCompatActivity {
+
+
     //Declare Variables
-    List<FetchData> fetchData;
-    RecyclerView recyclerView;
-    HelperAdapter helperAdapter;
+    List<VList> vLists;
+    RecyclerView recyclerView1;
+    ListAdapter listAdapter;
     DatabaseReference databaseReference;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_items);
+        setContentView(R.layout.activity_existing_list_items);
 
         //Removed any wording in the action bar
         ActionBar actionBar = getSupportActionBar();
@@ -39,24 +40,24 @@ public class DisplayItems extends AppCompatActivity {
 
 
         //Assigning the recycler view by resource id
-        recyclerView = findViewById(R.id.recyclerView1);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        fetchData = new ArrayList<>();
+        recyclerView1 = findViewById(R.id.recyclerView1);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(this));
+        vLists = new ArrayList<>();
 
         //Pulling data from Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("Items");
+        databaseReference = FirebaseDatabase.getInstance().getReference("List");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     //Calling FetchData class to utilise the getters within the class
-                    FetchData data = ds.getValue(FetchData.class);
-                    fetchData.add(data);
+                    VList data = ds.getValue(VList.class);
+                    vLists.add(data);
                 }
                 //Calls the helper adapter class to manage the layout of the displayed items using a view holder class
-                helperAdapter = new HelperAdapter(fetchData);
-                recyclerView.setAdapter(helperAdapter);
+                listAdapter = new ListAdapter(vLists);
+                recyclerView1.setAdapter(listAdapter);
             }
 
             @Override
@@ -67,6 +68,4 @@ public class DisplayItems extends AppCompatActivity {
 
 
     }
-    //End
-
-}
+    }

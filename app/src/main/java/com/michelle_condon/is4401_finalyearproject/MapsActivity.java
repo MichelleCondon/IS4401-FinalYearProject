@@ -28,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback { //GoogleMap.OnMapLongClickListener {
 
     //Declaring Variables
     private static final String TAG = "MapsActivity";
@@ -70,10 +70,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in my home location and move the camera
-        LatLng home = new LatLng(-52.293160, -8.186429);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(home, 16));
+        LatLng home = new LatLng(52.293749925188365, -8.186357672424657);
+        //mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(home, 2));
         enableUserLocation();
-        mMap.setOnMapLongClickListener(this);
+        mMap.clear();
+        addMarker(home);
+        addCircle(home, GEOFENCE_RADIUS);
+        addGeofence(home, GEOFENCE_RADIUS);
+        //mMap.setOnMapLongClickListener(this);
 
     }
 
@@ -126,36 +131,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    //When a user long clicks on the map the method to add the geofence is called
-    @Override
-    public void onMapLongClick(LatLng latLng) {
 
-        if (Build.VERSION.SDK_INT >= 29) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                tryAddingGeofence(latLng);
-            } else {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
-                        .ACCESS_BACKGROUND_LOCATION)) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission
-                            .ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_ACCESS_REQUEST_CODE);
-                } else {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission
-                            .ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_ACCESS_REQUEST_CODE);
-                }
-            }
-        } else {
-            tryAddingGeofence(latLng);
-        }
-    }
+
+
+    //When a user long clicks on the map the method to add the geofence is called
+    //@Override
+    //public void onMapLongClick(LatLng latLng) {
+
+       // if (Build.VERSION.SDK_INT >= 29) {
+         //   if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
+           //         PackageManager.PERMISSION_GRANTED) {
+            //    tryAddingGeofence(latLng);
+           // } else {
+             //   if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
+                 //       .ACCESS_BACKGROUND_LOCATION)) {
+                 //   ActivityCompat.requestPermissions(this, new String[]{Manifest.permission
+                //            .ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_ACCESS_REQUEST_CODE);
+              //  } else {
+                //    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission
+                 //           .ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_ACCESS_REQUEST_CODE);
+             //   }
+           // }
+       // } else {
+      ///      tryAddingGeofence(latLng);
+       // }
+   // }
 
     //Method to add the geofence invoked by a user long clicking the map
-    private void tryAddingGeofence(LatLng latLng) {
-        mMap.clear();
-        addMarker(latLng);
-        addCircle(latLng, GEOFENCE_RADIUS);
-        addGeofence(latLng, GEOFENCE_RADIUS);
-    }
+   // private void tryAddingGeofence(LatLng latLng) {
+      //  mMap.clear();
+       // addMarker(latLng);
+        //addCircle(latLng, GEOFENCE_RADIUS);
+       // addGeofence(latLng, GEOFENCE_RADIUS);
+    //}/
 
     //Method to add the geofence
     private void addGeofence(LatLng latLng, float radius) {

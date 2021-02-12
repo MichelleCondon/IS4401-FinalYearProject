@@ -8,20 +8,6 @@
     tools:context=".VirtualList">
 
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="379dp"
-        android:layout_height="562dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" >
-
-    </ListView>
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -40,25 +26,54 @@
 
     <EditText
         android:id="@+id/txtListName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="266dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/edit_text_border"
         android:ems="10"
+        android:hint="Product"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="2dp"
-        android:layout_height="0dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="85dp" />
+        android:id="@+id/btnAddList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/rounded_corners"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtListName" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="375dp"
+        android:layout_height="523dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnViewList"
+        android:layout_width="387dp"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_corners"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:text="View Existing List Items"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

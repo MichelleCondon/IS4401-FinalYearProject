@@ -33,6 +33,12 @@
     <string name="txtPosition">Position</string>
     <string name="txtPhone">Phone Number</string>
     <string name="lblProductSearch">Product Search</string>
+    <string name="lblAddtoInventory">Add To Inventory</string>
+    <string name="txtProductName">Product Name</string>
+    <string name="txtProductDescription">Description</string>
+    <string name="txtProductPrice">Price</string>
+    <string name="txtProductQuantity">Quantity</string>
+    <string name="btnAddToInventory">Add Product</string>
 
 
     <string name="col1">Name</string>
@@ -57,10 +63,9 @@
     <string name="lblBarcodeScannerCode">Barcode Number:</string>
     <string name="lblTitle">Add Product to Inventory</string>
     <string name="lblProductName">Product Name:</string>
-    <string name="txtProductName">Product Name</string>
+
     <string name="lblProductDescription">Product Description:</string>
-    <string name="txtProductDescription">Description</string>
-    <string name="txtProductPrice">Price</string>
+
     <string name="btnSave">Add to Inventory</string>
     <string name="title_activity_maps">Map</string>
 

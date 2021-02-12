@@ -1,5 +1,6 @@
 package com.michelle_condon.is4401_finalyearproject;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,6 +20,11 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        //Removed any wording in the action bar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("");
+        }
         //Buttons on the menu
 
         //Assigning values by resource Id's - ClockIn/Out button
@@ -59,7 +65,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             //Clock In/Out button
             case R.id.btnClock:
-                startActivity(new Intent(this, ClockIn_Screen.class));
+                startActivity(new Intent(this, MapsActivity.class));
                 break;
             //View inventory button
             case R.id.btnInventory:

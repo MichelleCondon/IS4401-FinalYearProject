@@ -31,7 +31,7 @@ public class NotificationHelper extends ContextWrapper {
 
     //Declaring Variables
     private String CHANNEL_NAME = "High priority channel";
-    private String CHANNEL_ID = "com.example.notifications" + CHANNEL_NAME;
+    private String CHANNEL_ID = "Dealz Mitchelstown Notification";
 
     //Ensures the device is running the necessary version
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -40,7 +40,7 @@ public class NotificationHelper extends ContextWrapper {
         NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
         notificationChannel.enableLights(true);
         notificationChannel.enableVibration(true);
-        notificationChannel.setDescription("this is the description of the channel.");
+        notificationChannel.setDescription("New Work Notification");
         notificationChannel.setLightColor(Color.RED);
         notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -55,9 +55,9 @@ public class NotificationHelper extends ContextWrapper {
 
         //Building a notification
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-//                .setContentTitle(title)
-//                .setContentText(body)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle(title)
+               .setContentText(body)
+                .setSmallIcon(R.mipmap.ic_company_logo_foreground)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setStyle(new NotificationCompat.BigTextStyle().setSummaryText("Work Alert").setBigContentTitle(title).bigText(body))
                 .setContentIntent(pendingIntent)
