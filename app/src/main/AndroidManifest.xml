@@ -23,8 +23,11 @@
         android:label="Solution Trail"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExistingListItems"></activity>
-        <!-- Splash Screen used as the launcher activity -->
+        <activity android:name=".UpdateProducts"></activity>
+        <activity android:name=".AddSchedule" />
+        <activity android:name=".ManagementEditEmployee" />
+        <activity android:name=".ManagementMainMenu" />
+        <activity android:name=".ExistingListItems" /> <!-- Splash Screen used as the launcher activity -->
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppTheme1">

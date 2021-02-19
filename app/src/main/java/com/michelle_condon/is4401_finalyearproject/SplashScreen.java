@@ -14,6 +14,7 @@ import android.widget.ImageView;
 public class SplashScreen extends AppCompatActivity {
 
     //Code below is based on the Youtube video "Welcome Screen (Splash Page) Android Studio|Beginner's Guide", Ben O'Brien, https://www.youtube.com/watch?v=9O1lI0BRCCE
+    //Logo was generated on https://hatchful.shopify.com/
     private static int SPLASH_SCREEN_TIMEOUT = 2000;
 
     @Override

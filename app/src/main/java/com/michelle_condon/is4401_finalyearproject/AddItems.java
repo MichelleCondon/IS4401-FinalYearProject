@@ -35,12 +35,12 @@ public class AddItems extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
         //Assigning values by resource ID
-        txtName = (EditText) findViewById(R.id.txtProductName);
-        txtPrice = (EditText) findViewById(R.id.txtPrice);
-        txtQuantity = (EditText) findViewById(R.id.txtQuantity);
+        txtName = (EditText) findViewById(R.id.txtMonday);
+        txtPrice = (EditText) findViewById(R.id.txtWednesday);
+        txtQuantity = (EditText) findViewById(R.id.txtThursday);
         barcodeRef = (TextView) findViewById(R.id.barcodeRef);
-        txtDescription = (EditText) findViewById(R.id.txtDescription);
-        btnSave = (Button) findViewById(R.id.search_btn);
+        txtDescription = (EditText) findViewById(R.id.txtTuesday);
+        btnSave = (Button) findViewById(R.id.btnAddToSchedule);
         barcodeRef = (TextView) findViewById(R.id.barcodeRef);
 
         //Removed any wording from within the action bar

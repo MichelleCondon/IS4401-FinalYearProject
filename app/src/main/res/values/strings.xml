@@ -13,11 +13,16 @@
     <string name="btnInventory">View Inventory</string>
     <string name="btnClock">Clock In/Out</string>
     <string name="btnView">View Schedule</string>
+    <string name="lblEditEmployee">Edit Employee</string>
+    <string name="lblEmployeeSearch">Please search for an employee name below:</string>
     <string name="btnAdd">Add Product</string>
+    <string name="btnAddEmployee">Add Employee</string>
     <string name="btnProductCheck">Product Check</string>
     <string name="btnCreateList">Create List</string>
     <string name="lblMenu">Menu</string>
+    <string name="lblMgtMenu">Management Menu</string>
     <string name="btnAddToList">Add To List</string>
+    <string name="btnEditEmployee">Edit Employee</string>
     <string name="txtListItem">Type a Product Name</string>
     <string name="lblProductList">Products Needed</string>
     <string name="lblInventory">Inventory</string>
@@ -35,18 +40,25 @@
     <string name="lblProductSearch">Product Search</string>
     <string name="lblAddtoInventory">Add To Inventory</string>
     <string name="txtProductName">Product Name</string>
+    <string name="lblProductName">Product Name:</string>
+    <string name="lblQuantity">Quantity:</string>
+    <string name="lblPrice">Price:</string>
+    <string name="lblDescription">Description:</string>
     <string name="txtProductDescription">Description</string>
     <string name="txtProductPrice">Price</string>
     <string name="txtProductQuantity">Quantity</string>
     <string name="btnAddToInventory">Add Product</string>
+    <string name="btnAddSchedule">Add New Schedule</string>
+    <string name="lblAddSchedule">Add New Schedule</string>
+    <string name="hintMonday">Monday Hours</string>
+    <string name="hintTuesday">Tuesday Hours</string>
+    <string name="hintWednesday">Wednesday Hours</string>
+    <string name="hintThursday">Thursday Hours</string>
+    <string name="hintFriday">Friday Hours</string>
+    <string name="txtEmployeeNameS">Employee Name</string>
+    <string name="btnAddHours">Add Hours</string>
 
 
-    <string name="col1">Name</string>
-    <string name="col2">Age</string>
-    <string name="col3">Surname</string>
-    <string name="row1Name"></string>
-    <string name="row1Age">22</string>
-    <string name="row1Surname">Condon</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -62,7 +74,7 @@
     <string name="userEmail">Email</string>
     <string name="lblBarcodeScannerCode">Barcode Number:</string>
     <string name="lblTitle">Add Product to Inventory</string>
-    <string name="lblProductName">Product Name:</string>
+
 
     <string name="lblProductDescription">Product Description:</string>
 

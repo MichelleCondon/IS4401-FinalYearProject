@@ -2,7 +2,6 @@ package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,21 +9,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainMenu extends AppCompatActivity implements View.OnClickListener {
+public class ManagementMainMenu extends AppCompatActivity implements View.OnClickListener {
 
     //Declaring Variables
     private TextView clockin, inventory, productCheck;
-    private Button btnAddItem, view, btnCreateList;
-    private Toolbar toolbar;
+    private Button btnAddEmployee, view, btnCreateList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_management_main_menu);
 
-
-
-
+        //Removed any wording in the action bar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("");
+        }
         //Buttons on the menu
 
         //Assigning values by resource Id's - ClockIn/Out button
@@ -33,9 +33,9 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         clockin.setOnClickListener(this);
 
         //Assigning values by resource Id's - Add Product button
-        btnAddItem = (Button) findViewById(R.id.btnAddEmployee);
+        btnAddEmployee = (Button) findViewById(R.id.btnAddEmployee);
         //Listening for the users button click for add product
-        btnAddItem.setOnClickListener(this);
+        btnAddEmployee.setOnClickListener(this);
 
         //Assigning values by resource Id's - Create List button
         btnCreateList = (Button) findViewById(R.id.btnCreateList);
@@ -65,15 +65,15 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             //Clock In/Out button
             case R.id.btnAddSchedule:
-                startActivity(new Intent(this, MapsActivity.class));
+                startActivity(new Intent(this, AddSchedule.class));
                 break;
             //View inventory button
             case R.id.btnEditEmployee:
-                startActivity(new Intent(this, DisplayItems.class));
+                startActivity(new Intent(this, ManagementEditEmployee.class));
                 break;
             //Add product button
             case R.id.btnAddEmployee:
-                startActivity(new Intent(this, BarcodeScanner.class));
+                startActivity(new Intent(this, SignupScreen.class));
                 break;
             //View schedule button
             case R.id.btnView:

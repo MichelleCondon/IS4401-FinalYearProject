@@ -27,7 +27,7 @@ public class FetchEmployees {
         return employeeName;
     }
 
-    public void setEmployeeName(String employeeId) {
+    public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
     }
 

@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void userLogin() {
         //Assigns email and password to their associated variable
-        String email = txtEmail.getText().toString().trim();
-        String password = txtPassword.getText().toString().trim();
+        final String email = txtEmail.getText().toString().trim();
+        final String password = txtPassword.getText().toString().trim();
 
         //Validation
         //Ensuring email field is filled
@@ -114,9 +114,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 //If the login is successful the menu is opened
-                if (task.isSuccessful()) {
+                if (email.equals("admin@admin.com")&& (password.equals("admin1"))) {
+                    startActivity(new Intent(MainActivity.this, ManagementMainMenu.class));
+                } else if (task.isSuccessful()){
                     startActivity(new Intent(MainActivity.this, MainMenu.class));
-
                 } else {
                     //If the login fails to authenticate an error message is displayed
                     Toast.makeText(MainActivity.this, "Failed to Login, please check your credentials", Toast.LENGTH_LONG).show();

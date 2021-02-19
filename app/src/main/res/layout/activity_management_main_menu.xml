@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".MainMenu">
-
-
+    tools:context=".ManagementMainMenu">
 
     <Button
         android:id="@+id/btnView"
@@ -28,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/lblMenu"
+        android:text="@string/lblMgtMenu"
         android:textColor="#070707"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,8 +40,8 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="46dp"
         android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_article_24"
-        android:text="@string/btnInventory"
+        android:drawableStart="@drawable/ic_baseline_edit_24"
+        android:text="@string/btnEditEmployee"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnCreateList"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -57,7 +55,7 @@
         android:layout_marginBottom="45dp"
         android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_add_24"
-        android:text="@string/btnAdd"
+        android:text="@string/btnAddEmployee"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnProductCheck"
         app:layout_constraintEnd_toStartOf="@+id/btnEditEmployee"
@@ -71,8 +69,8 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="48dp"
         android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_fingerprint_24"
-        android:text="@string/btnClock"
+        android:drawableStart="@drawable/ic_baseline_add_24"
+        android:text="@string/btnAddSchedule"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnAddEmployee"
         app:layout_constraintEnd_toStartOf="@+id/btnView"
