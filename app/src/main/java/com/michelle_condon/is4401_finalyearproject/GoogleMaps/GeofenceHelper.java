@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.GoogleMaps;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -10,6 +10,7 @@ import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofenceStatusCodes;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.maps.model.LatLng;
+import com.michelle_condon.is4401_finalyearproject.GoogleMaps.GeofenceBroadcastReceiver;
 
 public class GeofenceHelper extends ContextWrapper {
 

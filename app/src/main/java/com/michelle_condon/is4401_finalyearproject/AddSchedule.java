@@ -3,7 +3,10 @@ package com.michelle_condon.is4401_finalyearproject;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +24,7 @@ public class AddSchedule extends AppCompatActivity {
     Button btnAddHours;
     DatabaseReference reff;
     FetchEmployees fetchEmployees;
-
+//https://www.tutorialspoint.com/android/android_sending_email.htm
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +60,40 @@ public class AddSchedule extends AppCompatActivity {
                 fetchEmployees.setThursday(txtThursday.getText().toString().trim());
                 fetchEmployees.setFriday(txtFriday.getText().toString().trim());
                 reff.push().setValue(fetchEmployees);
+                sendEmail();
                 Toast.makeText(AddSchedule.this, "Data saved", Toast.LENGTH_LONG).show();
             }
+
         });
         //End
 
     }
+
+    protected void sendEmail() {
+        Log.i("Send email", "");
+        String[] TO = {"117320951@umail.ucc.ie"};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Roster Available for Week 26");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi all, " +
+                "A new roster for week 26 has been released and is available to view within the app once you search for your name in the schedule section" +
+                "Kind Regards," +
+                "Management");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(AddSchedule.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+
     }
+}
+
+

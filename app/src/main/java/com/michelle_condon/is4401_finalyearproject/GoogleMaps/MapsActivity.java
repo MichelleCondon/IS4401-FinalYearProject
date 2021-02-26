@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.GoogleMaps;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -9,7 +9,6 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,6 +26,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.michelle_condon.is4401_finalyearproject.GoogleMaps.GeofenceHelper;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

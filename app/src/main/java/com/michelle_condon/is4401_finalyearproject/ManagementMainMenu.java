@@ -28,12 +28,12 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         //Buttons on the menu
 
         //Assigning values by resource Id's - ClockIn/Out button
-        clockin = (TextView) findViewById(R.id.btnAddSchedule);
+        clockin = (TextView) findViewById(R.id.btnClockIn);
         //Listening for the users button click for clock in/out
         clockin.setOnClickListener(this);
 
         //Assigning values by resource Id's - Add Product button
-        btnAddEmployee = (Button) findViewById(R.id.btnAddEmployee);
+        btnAddEmployee = (Button) findViewById(R.id.btnAddProduct);
         //Listening for the users button click for add product
         btnAddEmployee.setOnClickListener(this);
 
@@ -43,12 +43,12 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         btnCreateList.setOnClickListener(this);
 
         //Assigning values by resource Id's - View Schedule button
-        view = (Button) findViewById(R.id.btnView);
+        view = (Button) findViewById(R.id.btnViewSchedule);
         //Listening for the users button click for view schedule
         view.setOnClickListener(this);
 
         //Assigning values by resource Id's - View Inventory button
-        inventory = (TextView) findViewById(R.id.btnEditEmployee);
+        inventory = (TextView) findViewById(R.id.btnViewInventory);
         //Listening for the users button click for view inventory
         inventory.setOnClickListener(this);
 
@@ -64,19 +64,19 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         //Java switch statement
         switch (v.getId()) {
             //Clock In/Out button
-            case R.id.btnAddSchedule:
+            case R.id.btnClockIn:
                 startActivity(new Intent(this, AddSchedule.class));
                 break;
             //View inventory button
-            case R.id.btnEditEmployee:
+            case R.id.btnViewInventory:
                 startActivity(new Intent(this, ManagementEditEmployee.class));
                 break;
             //Add product button
-            case R.id.btnAddEmployee:
+            case R.id.btnAddProduct:
                 startActivity(new Intent(this, SignupScreen.class));
                 break;
             //View schedule button
-            case R.id.btnView:
+            case R.id.btnViewSchedule:
                 startActivity(new Intent(this, EmployeeSchedule.class));
                 break;
             //Product check button

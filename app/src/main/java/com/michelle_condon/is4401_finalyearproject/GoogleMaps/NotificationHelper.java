@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.GoogleMaps;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -13,6 +13,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.Random;
 

@@ -1,16 +1,19 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.michelle_condon.is4401_finalyearproject.FetchData;
+import com.michelle_condon.is4401_finalyearproject.Models.Items;
+import com.michelle_condon.is4401_finalyearproject.R;
+import com.michelle_condon.is4401_finalyearproject.UpdateProducts;
 
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class HelperAdapter extends RecyclerView.Adapter{
 
     //List Item
     List<FetchData> fetchDataList;
+    Items item;
 
 
     public HelperAdapter(List<FetchData> fetchDataList) {
@@ -84,10 +88,18 @@ public class HelperAdapter extends RecyclerView.Adapter{
                     Context context = v.getContext();
                     Intent intent = new Intent(context, UpdateProducts.class);
                     String a = name.getText().toString();
+                    String b = description.getText().toString();
+                    String c = quantity.getText().toString();
+                    String d = price.getText().toString();
                     intent.putExtra("Name", a);
+                    intent.putExtra("Desc", b);
+                    intent.putExtra("Quantity", c);
+                    intent.putExtra("Price", d);
                     context.startActivity(intent);
                 }
             });
+
+
 
         }
 

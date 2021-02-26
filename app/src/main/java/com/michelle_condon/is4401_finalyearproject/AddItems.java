@@ -15,6 +15,7 @@ import android.widget.Toast;
 //Firebase Imports
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.michelle_condon.is4401_finalyearproject.Models.Items;
 
 //Importing the scanResult variable from the BarcodeScanner.java class
 import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.scanResult;
@@ -70,6 +71,7 @@ public class AddItems extends AppCompatActivity {
             }
         });
         //End
+
 
     }
 }

@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.GoogleMaps;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
+import com.michelle_condon.is4401_finalyearproject.ClockIn_Screen;
 
 import java.util.List;
 

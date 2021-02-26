@@ -9,13 +9,24 @@
     android:background="#FFFFFF"
     tools:context=".SignupScreen">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/companyLogoRegister"
         android:layout_width="409dp"
         android:layout_height="174dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="76dp"
         android:contentDescription="@string/companyLogo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_logo_foreground" />

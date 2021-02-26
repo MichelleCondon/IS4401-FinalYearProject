@@ -8,7 +8,7 @@
     tools:context=".ManagementMainMenu">
 
     <Button
-        android:id="@+id/btnView"
+        android:id="@+id/btnViewSchedule"
         android:layout_width="140dp"
         android:layout_height="85dp"
         android:layout_marginEnd="45dp"
@@ -17,7 +17,7 @@
         android:drawableStart="@drawable/ic_baseline_table_view_24"
         android:text="@string/btnView"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnEditEmployee"
+        app:layout_constraintBottom_toTopOf="@+id/btnViewInventory"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnEditEmployee"
+        android:id="@+id/btnViewInventory"
         android:layout_width="140dp"
         android:layout_height="85dp"
         android:layout_marginEnd="40dp"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/btnAddEmployee"
+        android:id="@+id/btnAddProduct"
         android:layout_width="140dp"
         android:layout_height="85dp"
         android:layout_marginStart="40dp"
@@ -58,11 +58,11 @@
         android:text="@string/btnAddEmployee"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnProductCheck"
-        app:layout_constraintEnd_toStartOf="@+id/btnEditEmployee"
+        app:layout_constraintEnd_toStartOf="@+id/btnViewInventory"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnAddSchedule"
+        android:id="@+id/btnClockIn"
         android:layout_width="140dp"
         android:layout_height="85dp"
         android:layout_marginStart="35dp"
@@ -72,8 +72,8 @@
         android:drawableStart="@drawable/ic_baseline_add_24"
         android:text="@string/btnAddSchedule"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddEmployee"
-        app:layout_constraintEnd_toStartOf="@+id/btnView"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddProduct"
+        app:layout_constraintEnd_toStartOf="@+id/btnViewSchedule"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent" />
 

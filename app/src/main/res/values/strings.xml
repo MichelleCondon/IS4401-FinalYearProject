@@ -57,6 +57,64 @@
     <string name="hintFriday">Friday Hours</string>
     <string name="txtEmployeeNameS">Employee Name</string>
     <string name="btnAddHours">Add Hours</string>
+    <string name="lblHoursRequest">Request Hours Change</string>
+    <string name="lblTimeOffRequest">Request Time Off</string>
+    <string name="lblExistingHours">Enter hours you wish to change:</string>
+    <string name="lblAccount">Account</string>
+    <string name="lblTimeOff">Please select the month and week for your time off request:</string>
+    <string name="btnRequestChange">Request Change</string>
+    <string name="txtDate">Date</string>
+    <string name="txtDay">Day</string>
+    <string name="txtHours">Hours</string>
+    <string name="txtAccountMenu">Account Menu</string>
+    <string name="btnRequestHoursChange">Request Change to Hours</string>
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string-array name="days">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
 
 
     <string name="title_activity_register">RegisterActivity</string>

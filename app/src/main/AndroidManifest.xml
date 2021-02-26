@@ -22,8 +22,12 @@
         android:icon="@mipmap/ic_logo_foreground"
         android:label="Solution Trail"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".UpdateProducts"></activity>
+        android:theme="@style/AppTheme1">
+        <activity android:name=".EmailTemplate"></activity>
+        <activity android:name=".Menus.AccountMenu" />
+        <activity android:name=".TimeOffRequest" />
+        <activity android:name=".HoursRequest" />
+        <activity android:name=".UpdateProducts" />
         <activity android:name=".AddSchedule" />
         <activity android:name=".ManagementEditEmployee" />
         <activity android:name=".ManagementMainMenu" />
@@ -43,7 +47,7 @@
         <activity android:name=".EmployeeSchedule" />
 
         <receiver
-            android:name=".GeofenceBroadcastReceiver"
+            android:name=".GoogleMaps.GeofenceBroadcastReceiver"
             android:enabled="true"
             android:exported="true" />
         <!--
@@ -59,7 +63,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".GoogleMaps.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".DisplayItems" />
         <activity android:name=".AddItems" />

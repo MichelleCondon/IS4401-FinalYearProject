@@ -1,8 +1,6 @@
 package com.michelle_condon.is4401_finalyearproject;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,30 +8,40 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.michelle_condon.is4401_finalyearproject.GoogleMaps.MapsActivity;
+import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
+
 public class MainMenu extends AppCompatActivity implements View.OnClickListener {
 
     //Declaring Variables
-    private TextView clockin, inventory, productCheck;
-    private Button btnAddItem, view, btnCreateList;
-    private Toolbar toolbar;
+    private TextView clockin;
+    private Button btnAddItem, btnViewSchedule, btnCreateList, inventory, productCheck, lblAccount;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-
-
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         //Buttons on the menu
+        //Assigning values by resource Id's - Account Button
+        lblAccount = (Button) findViewById(R.id.btnAccount);
+        //Listening for the users button click for clock in/out
+        lblAccount.setOnClickListener(this);
+        lblAccount.setText(firebaseUser.getEmail());
 
         //Assigning values by resource Id's - ClockIn/Out button
-        clockin = (TextView) findViewById(R.id.btnAddSchedule);
+        clockin = (TextView) findViewById(R.id.btnClockIn);
         //Listening for the users button click for clock in/out
         clockin.setOnClickListener(this);
 
         //Assigning values by resource Id's - Add Product button
-        btnAddItem = (Button) findViewById(R.id.btnAddEmployee);
+        btnAddItem = (Button) findViewById(R.id.btnAddProduct);
         //Listening for the users button click for add product
         btnAddItem.setOnClickListener(this);
 
@@ -43,17 +51,17 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         btnCreateList.setOnClickListener(this);
 
         //Assigning values by resource Id's - View Schedule button
-        view = (Button) findViewById(R.id.btnView);
+        btnViewSchedule = (Button) findViewById(R.id.btnViewSchedule);
         //Listening for the users button click for view schedule
-        view.setOnClickListener(this);
+        btnViewSchedule.setOnClickListener(this);
 
         //Assigning values by resource Id's - View Inventory button
-        inventory = (TextView) findViewById(R.id.btnEditEmployee);
+        inventory = (Button) findViewById(R.id.btnViewInventory);
         //Listening for the users button click for view inventory
         inventory.setOnClickListener(this);
 
         //Assigning values by resource Id's - Product Check button
-        productCheck = (TextView) findViewById(R.id.btnProductCheck);
+        productCheck = (Button) findViewById(R.id.btnProductCheck);
         //Listening for the users button click for product check
         productCheck.setOnClickListener(this);
     }
@@ -63,20 +71,24 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         //Java switch statement
         switch (v.getId()) {
+            //Account button
+            case R.id.btnAccount:
+                startActivity(new Intent(this, AccountMenu.class));
+                break;
             //Clock In/Out button
-            case R.id.btnAddSchedule:
+            case R.id.btnClockIn:
                 startActivity(new Intent(this, MapsActivity.class));
                 break;
             //View inventory button
-            case R.id.btnEditEmployee:
+            case R.id.btnViewInventory:
                 startActivity(new Intent(this, DisplayItems.class));
                 break;
             //Add product button
-            case R.id.btnAddEmployee:
+            case R.id.btnAddProduct:
                 startActivity(new Intent(this, BarcodeScanner.class));
                 break;
             //View schedule button
-            case R.id.btnView:
+            case R.id.btnViewSchedule:
                 startActivity(new Intent(this, EmployeeSchedule.class));
                 break;
             //Product check button

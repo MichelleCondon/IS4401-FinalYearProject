@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.michelle_condon.is4401_finalyearproject.FetchEmployees;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.List;
 
