@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +26,7 @@ public class TimeOffRequest extends AppCompatActivity {
 
     //Declare Variables
     EditText txtDay;
-    Spinner mySpinner;
+    Spinner mySpinner, mySpinner2;
     DatabaseReference reff;
     Button btnRequestTime, btnAccount;
     Hours hour;
@@ -38,17 +41,23 @@ public class TimeOffRequest extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        Spinner mySpinner = (Spinner) findViewById(R.id.spinnerMonth);
-        EditText txtDay = (EditText) findViewById(R.id.txtDay);
-        Button btnRequestTime = (Button) findViewById(R.id.btnRequestOff);
+        mySpinner = (Spinner) findViewById(R.id.spinnerMonth);
+        mySpinner2 = (Spinner) findViewById(R.id.spinnerDate);
+        txtDay = (EditText) findViewById(R.id.txtDay);
+        btnRequestTime = (Button) findViewById(R.id.btnRequestOff);
         btnAccount = (Button) findViewById(R.id.btnAccount);
         btnAccount.setText(firebaseUser.getEmail());
 
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TimeOffRequest.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.months));
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.months));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
+
+        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(TimeOffRequest.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner2.setAdapter(myAdapter2);
 
         //Referencing the hours class
         hour = new Hours();
@@ -64,7 +73,9 @@ public class TimeOffRequest extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog alertDialog = new AlertDialog.Builder(TimeOffRequest.this).create(); //Read Update
                 alertDialog.setTitle("Confirm Request");
-                alertDialog.setMessage("You have requested time off");
+                String date = mySpinner2.getSelectedItem().toString();
+                String spinner = mySpinner.getSelectedItem().toString();
+                alertDialog.setMessage("You have requested time off on " + date + "th of " + spinner);
 
                 alertDialog.setButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -72,15 +83,44 @@ public class TimeOffRequest extends AppCompatActivity {
                         hour.setEmail(btnAccount.getText().toString());
                         String test = mySpinner.getSelectedItem().toString();
                         hour.setMonth(test);
-                        hour.setDay(txtDay.getText().toString().trim());
+                        String test2 = mySpinner2.getSelectedItem().toString();
+                        hour.setDay(test2);
                         reff.push().setValue(hour);
                         Toast.makeText(TimeOffRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
-
+                        sendEmail();
                     }
                 });
                 alertDialog.show();
             }
             //End
         });
+    }
+
+    protected void sendEmail() {
+        Log.i("Send email", "");
+        String[] TO = {"117320951@umail.ucc.ie"};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        String user = firebaseUser.getEmail();
+        String date = mySpinner2.getSelectedItem().toString();
+        String month = mySpinner.getSelectedItem().toString();
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Request");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Management" + '\n' + '\n' +
+                "A time off request has been made by: " + user +
+                '\n' + '\n' + "They have requested the following day off: " + date + "th of " + month);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(TimeOffRequest.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

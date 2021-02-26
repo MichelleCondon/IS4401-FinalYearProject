@@ -1,6 +1,7 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -49,12 +50,12 @@ public class HoursRequest extends AppCompatActivity {
         btnAccount.setText(firebaseUser.getEmail());
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(HoursRequest.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.months));
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.months));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMonth.setAdapter(myAdapter);
 
         ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(HoursRequest.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.days));
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDay.setAdapter(myAdapter2);
 

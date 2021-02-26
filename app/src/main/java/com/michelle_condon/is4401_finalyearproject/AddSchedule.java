@@ -24,7 +24,7 @@ public class AddSchedule extends AppCompatActivity {
     Button btnAddHours;
     DatabaseReference reff;
     FetchEmployees fetchEmployees;
-//https://www.tutorialspoint.com/android/android_sending_email.htm
+//Code below based on a tutorial by TutorialsPoint https://www.tutorialspoint.com/android/android_sending_email.htm
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +79,11 @@ public class AddSchedule extends AppCompatActivity {
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Roster Available for Week 26");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi all, " +
-                "A new roster for week 26 has been released and is available to view within the app once you search for your name in the schedule section" +
-                "Kind Regards," +
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Roster Available");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi all," + '\n' +
+                "A new roster has been released and is available to view within the app " +
+                "once you search for your name in the schedule section." +
+                '\n' + "Kind Regards," + '\n' +
                 "Management");
 
         try {
@@ -95,5 +96,5 @@ public class AddSchedule extends AppCompatActivity {
 
     }
 }
-
+//End
 
