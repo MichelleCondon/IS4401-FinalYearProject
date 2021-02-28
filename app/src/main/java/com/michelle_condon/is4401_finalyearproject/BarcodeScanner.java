@@ -38,7 +38,7 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
         //If statement calls the checkPermission() method to check the status of permission access to the camera
         //If permission has not been granted the requestPermission() method is called
         if (checkPermission()) {
-            Toast.makeText(BarcodeScanner.this, "Permission is granted!", Toast.LENGTH_LONG).show();
+            Toast.makeText(BarcodeScanner.this, "Permission to Use Camera Granted", Toast.LENGTH_LONG).show();
         } else {
             requestPermissions();
         }

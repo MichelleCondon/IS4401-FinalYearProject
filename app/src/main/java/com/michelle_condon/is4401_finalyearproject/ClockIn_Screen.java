@@ -6,22 +6,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Timesheets;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Executor;
 
-public class ClockIn_Screen extends AppCompatActivity {
+public class ClockIn_Screen extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on the Youtube video "Biometric Authentication|Android Studio|Java", Atif Pervaiz, https://www.youtube.com/watch?v=yPcxZWSszh8 (1)
 
@@ -29,19 +35,41 @@ public class ClockIn_Screen extends AppCompatActivity {
     private TextView lblOptions, txtStartShift;
     private TextView txtEndShift, txtBreak, txtEndBreak;
     private EditText txtEmployeeName;
-    public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak, btnAuthenticate1, btnAuthenticate2, btnAuthenticate3, btnAuthenticate4;
+    public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak, btnAuthenticate1, btnAuthenticate2, btnAuthenticate3, btnAuthenticate4, lblAccount;
     public Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
     DatabaseReference reff;
     Timesheets timesheets;
     String timeStamp = new SimpleDateFormat("HH.mm.ss").format(new Date());
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in__screen);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_account:
+                        account();
+                        break;
+                    case R.id.action_home:
+                        home();
+                        break;
+                    case R.id.action_signout:
+                        signout();
+                        break;
+                }
+                return true;
+            }
+        });
+
 
         //Removes any text from the action bar
         ActionBar actionBar = getSupportActionBar();
@@ -50,6 +78,14 @@ public class ClockIn_Screen extends AppCompatActivity {
             actionBar.setTitle("");
         }
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        //Buttons on the menu
+        //Assigning values by resource Id's - Account Button
+        lblAccount = (Button) findViewById(R.id.btnAccount);
+        //Listening for the users button click for clock in/out
+        lblAccount.setOnClickListener(this);
+        lblAccount.setText(firebaseUser.getEmail());
         //initialise buttons and text
         lblOptions = findViewById(R.id.lblOptions);
         btnStartShift = findViewById(R.id.btnStartShift);
@@ -234,5 +270,26 @@ public class ClockIn_Screen extends AppCompatActivity {
         //End (1)
         //End (2)
         //End (3)
+    }
+    private void signout() {
+        finish();
+    }
+
+    private void home() {
+        startActivity(new Intent(this, MainMenu.class));
+    }
+
+    private void account() {
+        startActivity(new Intent(this, AccountMenu.class));
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            //Account button
+            case R.id.btnAccount:
+                startActivity(new Intent(this, AccountMenu.class));
+                break;
+        }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frmLogin"
@@ -83,7 +84,7 @@
         android:id="@+id/companyLogo"
         android:layout_width="409dp"
         android:layout_height="174dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="84dp"
         android:background="#FFFFFF"
         android:contentDescription="@string/companyLogo"
         app:layout_constraintEnd_toEndOf="parent"

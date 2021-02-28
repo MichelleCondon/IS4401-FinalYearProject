@@ -1,13 +1,17 @@
 package com.michelle_condon.is4401_finalyearproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.GoogleMaps.MapsActivity;
@@ -25,6 +29,25 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_account:
+                        account();
+                        break;
+                    case R.id.action_home:
+                        home();
+                        break;
+                    case R.id.action_signout:
+                        signout();
+                        break;
+                }
+                return true;
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -64,6 +87,17 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         productCheck = (Button) findViewById(R.id.btnProductCheck);
         //Listening for the users button click for product check
         productCheck.setOnClickListener(this);
+    }
+
+    private void signout() {
+        finish();
+    }
+
+    private void home() {
+    }
+
+    private void account() {
+        startActivity(new Intent(this, AccountMenu.class));
     }
 
     @Override

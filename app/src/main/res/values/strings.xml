@@ -68,6 +68,14 @@
     <string name="txtHours">Hours</string>
     <string name="txtAccountMenu">Account Menu</string>
     <string name="btnRequestHoursChange">Request Change to Hours</string>
+    <string name="iconHome">Home</string>
+    <string name="iconAccount">Account</string>
+    <string name="iconSignOut">Sign Out</string>
+    <string name="btnAuthenticate">Complete Authentication</string>
+    <string name="txtAddEmployeeName">Enter Your Fullname Here</string>
+    <string name="txtHiddenTextView">TextView</string>
+
+
     <string-array name="months">
         <item>January</item>
         <item>February</item>
@@ -115,6 +123,10 @@
         <item>30</item>
         <item>31</item>
     </string-array>
+
+
+
+
 
 
     <string name="title_activity_register">RegisterActivity</string>
