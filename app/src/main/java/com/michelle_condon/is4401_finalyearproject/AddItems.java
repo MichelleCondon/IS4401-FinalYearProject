@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //Firebase Imports
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +28,8 @@ import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
 
 //Importing the scanResult variable from the BarcodeScanner.java class
+import java.util.HashMap;
+
 import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.scanResult;
 
 
@@ -102,37 +105,21 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (txtName.getText().toString().isEmpty()) {
-                    txtName.setError("Product Name Cannot be Left Blank");
-                    txtName.requestFocus();
-                    return;
-                }
-                if (txtDescription.getText().toString().isEmpty()) {
-                    txtDescription.setError("Description Cannot be Left Blank");
-                    txtDescription.requestFocus();
-                    return;
-                }
-                if (txtPrice.getText().toString().isEmpty()) {
-                    txtPrice.setError("Price Cannot be Left Blank");
-                    txtPrice.requestFocus();
-                    return;
-                }
-                if (txtQuantity.getText().toString().isEmpty()) {
-                    txtQuantity.setError("Quantity Cannot be Left Blank");
-                    txtQuantity.requestFocus();
-                    return;
-                }
+                String name = txtName.getText().toString();
+                String description = txtDescription.getText().toString();
+                String barcode = barcodeRef.getText().toString();
+                String price = txtPrice.getText().toString();
+                String quantity = txtQuantity.getText().toString();
 
 
+                HashMap hashMap = new HashMap();
+                hashMap.put("barcode", barcode);
+                hashMap.put("name", name);
+                hashMap.put("description", description);
+                hashMap.put("price", price);
+                hashMap.put("quantity", quantity);
 
-                //Setting the value of each variable to whatever the user enters on the form
-                item.setName(txtName.getText().toString().trim());
-                item.setDescription(txtDescription.getText().toString().trim());
-                item.setBarcode(barcodeRef.getText().toString().trim());
-                item.setPrice(txtPrice.getText().toString().trim());
-                item.setQuantity(txtQuantity.getText().toString().trim());
-                reff.push().setValue(item);
+                reff.child(barcode).setValue(hashMap);
                 Toast.makeText(AddItems.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
             }
         });
