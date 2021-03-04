@@ -6,17 +6,34 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:contentDescription="@string/companyLogo"
-    tools:context=".SplashScreen">
+    tools:context=".SplashScreen.SplashScreen">
 
     <ImageView
         android:id="@+id/companyLogoImage"
-        android:layout_width="221dp"
-        android:layout_height="372dp"
+        android:layout_width="278dp"
+        android:layout_height="421dp"
         android:contentDescription="@string/companyLogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/splashScreenProgressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_logo_foreground" />
+
+    <ProgressBar
+        android:id="@+id/splashScreenProgressBar"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:progressBackgroundTint="#C6C6CC"
+        android:progressTint="@color/colorBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_logo_foreground" />
+        app:layout_constraintVertical_bias="0.627" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
