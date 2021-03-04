@@ -5,7 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:autofillHints="@string/txtListItem"
-    tools:context=".VirtualList">
+    tools:context=".List.VirtualList">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAccount"
+        android:layout_width="159dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="355dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:background="#00000000"
+        android:drawableEnd="@drawable/ic_baseline_person_24"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -13,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="137dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="137dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/lblProductList"
@@ -26,13 +50,14 @@
 
     <EditText
         android:id="@+id/txtListName"
-        android:layout_width="266dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="278dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="72dp"
+        android:autofillHints="@string/txtListName"
         android:background="@drawable/edit_text_border"
         android:ems="10"
-        android:hint="Product"
+        android:hint="@string/txtListName"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,20 +67,20 @@
         android:id="@+id/btnAddList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="68dp"
         android:background="@drawable/rounded_corners"
+        android:text="@string/btnAddList"
         android:textColor="#FFFFFF"
-        android:layout_marginBottom="12dp"
-        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtListName" />
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="375dp"
-        android:layout_height="523dp"
+        android:layout_width="381dp"
+        android:layout_height="429dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,16 +89,30 @@
     <Button
         android:id="@+id/btnViewList"
         android:layout_width="387dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corners"
+        android:text="@string/btnViewList"
         android:textColor="#FFFFFF"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:text="View Existing List Items"
+        app:layout_constraintBottom_toTopOf="@+id/txtListName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorBlue"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView" />
+        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

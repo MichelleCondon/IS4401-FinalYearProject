@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VirtualList" />
+        <activity android:name=".List.VirtualList" />
         <activity android:name=".ProductCheck" />
         <activity android:name=".MainActivity" />
         <activity android:name=".EmployeeSchedule" />

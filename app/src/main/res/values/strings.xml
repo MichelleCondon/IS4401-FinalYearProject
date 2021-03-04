@@ -24,7 +24,7 @@
     <string name="btnAddToList">Add To List</string>
     <string name="btnEditEmployee">Edit Employee</string>
     <string name="txtListItem">Type a Product Name</string>
-    <string name="lblProductList">Products Needed</string>
+    <string name="lblProductList">Product List</string>
     <string name="lblInventory">Inventory</string>
     <string name="lblClockInOptions">Please Choose an Option Below:</string>
     <string name="btnStartShift">Start of Shift</string>
@@ -74,6 +74,9 @@
     <string name="btnAuthenticate">Complete Authentication</string>
     <string name="txtAddEmployeeName">Enter Your Fullname Here</string>
     <string name="txtHiddenTextView">TextView</string>
+    <string name="btnViewList">View Existing List Items</string>
+    <string name="txtListName">Enter Product Here</string>
+    <string name="btnAddList">Add</string>
 
 
     <string-array name="months">

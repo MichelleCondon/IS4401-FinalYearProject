@@ -9,7 +9,7 @@
     <!--Code below is based on the Youtube video "Welcome Screen (Splash Page) Android Studio | Beginner's Guide", Ben O'Brien,	https://www.youtube.com/watch?v=9O1lI0BRCCE -->
     <style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">#050505</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
