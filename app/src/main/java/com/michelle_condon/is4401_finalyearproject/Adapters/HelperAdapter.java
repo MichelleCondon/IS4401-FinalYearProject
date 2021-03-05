@@ -51,6 +51,7 @@ public class HelperAdapter extends RecyclerView.Adapter{
         viewHolderClass.description.setText(fetchData.getDescription());
         viewHolderClass.quantity.setText(fetchData.getQuantity());
         viewHolderClass.price.setText(fetchData.getPrice());
+        viewHolderClass.barcode.setText(fetchData.getBarcode());
 
 
 
@@ -66,7 +67,7 @@ public class HelperAdapter extends RecyclerView.Adapter{
 
     public static class ViewHolderClass extends RecyclerView.ViewHolder {
         //Declaring variables
-        TextView name, description, quantity, price;
+        TextView name, description, quantity, price, barcode;
 
 
 
@@ -79,6 +80,7 @@ public class HelperAdapter extends RecyclerView.Adapter{
             description = itemView.findViewById(R.id.txtProductDescription);
             quantity = itemView.findViewById(R.id.txtProductQuantity);
             price = itemView.findViewById(R.id.txtProductPrice);
+            barcode = itemView.findViewById(R.id.txtBarcode);
 
             //https://stackoverflow.com/questions/37186805/start-new-activity-with-onclick-in-recyclerview/44898559
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +93,12 @@ public class HelperAdapter extends RecyclerView.Adapter{
                     String b = description.getText().toString();
                     String c = quantity.getText().toString();
                     String d = price.getText().toString();
+                    String e = barcode.getText().toString();
                     intent.putExtra("Name", a);
                     intent.putExtra("Desc", b);
                     intent.putExtra("Quantity", c);
                     intent.putExtra("Price", d);
+                    intent.putExtra("Barcode", e);
                     context.startActivity(intent);
                 }
             });

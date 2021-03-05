@@ -77,6 +77,11 @@
     <string name="btnViewList">View Existing List Items</string>
     <string name="txtListName">Enter Product Here</string>
     <string name="btnAddList">Add</string>
+    <string name="lblWorkSchedule">Work Schedule</string>
+    <string name="lblWorkDetail">Please Search For Your Name Below:</string>
+    <string name="hintName">Enter Your Name Here</string>
+    <string name="btnUpdateInventory">Update Inventory</string>
+    <string name="lblUpdateInventory">Update Inventory</string>
 
 
     <string-array name="months">

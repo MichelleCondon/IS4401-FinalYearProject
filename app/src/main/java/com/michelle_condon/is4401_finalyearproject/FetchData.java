@@ -8,15 +8,25 @@ public class FetchData {
     String description;
     String price;
     String quantity;
+    String barcode;
 
     public FetchData() {
     }
 
-    public FetchData(String name, String description, String price, String quantity) {
+    public FetchData(String name, String description, String price, String quantity, String barcode) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.barcode = barcode;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     //Getter
@@ -59,4 +69,5 @@ public class FetchData {
         this.quantity = quantity;
     }
 }
+
 //End

@@ -14,17 +14,17 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="177dp"
+            android:layout_height="219dp"
             android:background="#FFFFFF"
             tools:context=".MainMenu">
 
             <TextView
-                android:id="@+id/lblProductName"
+                android:id="@+id/lblBarcode"
                 android:layout_width="135dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="68dp"
                 android:layout_marginTop="12dp"
-                android:text="@string/lblProductName"
+                android:text="Barcode"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,11 +32,23 @@
 
 
             <TextView
+                android:id="@+id/lblProductName"
+                android:layout_width="135dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/lblProductName"
+                android:textColor="#0B0B0B"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblBarcode" />
+
+            <TextView
                 android:id="@+id/lblDescription"
                 android:layout_width="135dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="68dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/lblDescription"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"
@@ -48,7 +60,7 @@
                 android:layout_width="135dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="68dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="2dp"
                 android:text="@string/lblQuantity"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"
@@ -56,11 +68,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
 
             <TextView
+                android:id="@+id/txtBarcode"
+                android:layout_width="162dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="216dp"
+                android:layout_marginTop="12dp"
+                android:text="TextView"
+                android:textColor="#0B0B0B"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/x"
                 android:layout_width="135dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="68dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="9dp"
                 android:text="@string/lblPrice"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"
@@ -71,20 +95,20 @@
                 android:id="@+id/txtProductName"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/lblProductName"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtBarcode" />
 
             <TextView
                 android:id="@+id/txtProductDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"
@@ -95,8 +119,8 @@
                 android:id="@+id/txtProductQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
                 android:text="TextView"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"
@@ -106,9 +130,9 @@
             <TextView
                 android:id="@+id/txtProductPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="33dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginTop="7dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textColor="#0B0B0B"
                 android:textSize="18sp"

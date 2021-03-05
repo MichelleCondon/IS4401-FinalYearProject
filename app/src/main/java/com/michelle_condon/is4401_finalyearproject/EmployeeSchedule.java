@@ -1,18 +1,23 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,14 +25,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.Adapters.EmployeeAdapter;
+import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class EmployeeSchedule extends AppCompatActivity {
+public class EmployeeSchedule extends AppCompatActivity implements View.OnClickListener {
 
-    //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, https://www.youtube.com/watch?v=g74E5DpUT-Q
+    //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, "https://www.youtube.com/watch?v=g74E5DpUT-Q"
 
     //Declaring Variables
     private AutoCompleteTextView txtSearchEmployee;
@@ -35,6 +41,8 @@ public class EmployeeSchedule extends AppCompatActivity {
     RecyclerView recyclerView;
     List<FetchEmployees> fetchEmployees;
     EmployeeAdapter employeeAdapter;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
 
     @Override
@@ -42,11 +50,35 @@ public class EmployeeSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_schedule);
 
-        //Removed any wording from the action bar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("");
-        }
+        //Navigation Bar
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_account:
+                        account();
+                        break;
+                    case R.id.action_home:
+                        home();
+                        break;
+                    case R.id.action_signout:
+                        signout();
+                        break;
+                }
+                return true;
+            }
+        });
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        //Buttons on the menu
+        //Assigning values by resource Id's - Account Button
+        Button btnAccount = (Button) findViewById(R.id.btnAccount);
+        //Listening for the users button click for clock in/out
+        btnAccount.setOnClickListener(this);
+        btnAccount.setText(firebaseUser.getEmail());
 
         //Initialise access to firebase
         mref = FirebaseDatabase.getInstance().getReference("EmployeeRoster");
@@ -70,6 +102,18 @@ public class EmployeeSchedule extends AppCompatActivity {
         };
         mref.addListenerForSingleValueEvent(event);
 
+    }
+
+    private void signout() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    private void home() {
+        startActivity(new Intent(this, MainMenu.class));
+    }
+
+    private void account() {
+        startActivity(new Intent(this, AccountMenu.class));
     }
 
     //Populating the search field based off Firebase data
@@ -116,6 +160,14 @@ public class EmployeeSchedule extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        //If the register label is clicked the sign up screen opens
+        if (v.getId() == R.id.btnAccount) {
+            startActivity(new Intent(this, AccountMenu.class));
+        }
     }
 }
 //End
