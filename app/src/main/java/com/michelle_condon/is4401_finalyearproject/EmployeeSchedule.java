@@ -92,7 +92,6 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
         ValueEventListener event = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 populateSearch(snapshot);
             }
 

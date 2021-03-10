@@ -38,11 +38,14 @@ public class EmployeeAdapter extends RecyclerView.Adapter {
         ViewHolderClass viewHolderClass = (ViewHolderClass) holder;
         //Setting the hours for every day of the week by pulling the data from Firebase using getters
         FetchEmployees fetchEmployees = fetchEmployeesList.get(position);
+        viewHolderClass.weekNumber.setText(fetchEmployees.getWeekNumber());
         viewHolderClass.monday.setText(fetchEmployees.getMonday());
         viewHolderClass.tuesday.setText(fetchEmployees.getTuesday());
         viewHolderClass.wednesday.setText(fetchEmployees.getWednesday());
         viewHolderClass.thursday.setText(fetchEmployees.getThursday());
         viewHolderClass.friday.setText(fetchEmployees.getFriday());
+        viewHolderClass.saturday.setText(fetchEmployees.getSaturday());
+        viewHolderClass.sunday.setText(fetchEmployees.getSunday());
 
     }
 
@@ -54,16 +57,19 @@ public class EmployeeAdapter extends RecyclerView.Adapter {
 
     public static class ViewHolderClass extends RecyclerView.ViewHolder {
         //Declaring variables
-        TextView monday, tuesday, wednesday, thursday, friday;
+        TextView weekNumber, monday, tuesday, wednesday, thursday, friday, saturday, sunday;
 
         public ViewHolderClass(@NonNull View itemView) {
             super(itemView);
             //Assigning values to the variables by resource Id's
+            weekNumber = itemView.findViewById(R.id.weekNumber);
             monday = itemView.findViewById(R.id.monday);
             tuesday = itemView.findViewById(R.id.tuesday);
             wednesday = itemView.findViewById(R.id.wednesday);
             thursday = itemView.findViewById(R.id.thursday);
             friday = itemView.findViewById(R.id.friday);
+            saturday = itemView.findViewById(R.id.saturday);
+            sunday = itemView.findViewById(R.id.sunday);
 
         }
     }
