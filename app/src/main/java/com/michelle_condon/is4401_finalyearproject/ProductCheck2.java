@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,33 +25,32 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.michelle_condon.is4401_finalyearproject.Adapters.EmployeeAdapter;
+import com.michelle_condon.is4401_finalyearproject.Adapters.HelperAdapter;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner2.scanResult;
 
-public class EmployeeSchedule extends AppCompatActivity implements View.OnClickListener {
+public class ProductCheck2 extends AppCompatActivity implements View.OnClickListener{
 
-    //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, "https://www.youtube.com/watch?v=g74E5DpUT-Q"
-
-    //Declaring Variables
-    private AutoCompleteTextView txtSearchEmployee;
+    //Declare Variables
     DatabaseReference mref;
+    List<FetchData> fetchData;
     RecyclerView recyclerView;
-    List<FetchEmployees> fetchEmployees;
-    EmployeeAdapter employeeAdapter;
+    HelperAdapter helperAdapter;
+    TextView txtSearch;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-
+    Button btnAccount, btnCamera;
+    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employee_schedule);
+        setContentView(R.layout.activity_product_check2);
 
-        //Navigation Bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -70,30 +70,29 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
             }
         });
 
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         //Buttons on the menu
         //Assigning values by resource Id's - Account Button
-        Button btnAccount = (Button) findViewById(R.id.btnAccount);
+        btnAccount = (Button) findViewById(R.id.btnAccount);
         //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
-
-        //Initialise access to firebase
-        mref = FirebaseDatabase.getInstance().getReference("EmployeeRoster");
-
-        //Assigning values by resourceId
+        btnCamera = (Button) findViewById(R.id.btnCamera);
+        mref = FirebaseDatabase.getInstance().getReference("Items");
         recyclerView = findViewById(R.id.recyclerView1);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        fetchEmployees = new ArrayList<>();
-        txtSearchEmployee = (AutoCompleteTextView) findViewById(R.id.txtSearchEmployee);
+        fetchData = new ArrayList<>();
+        result = scanResult;
+        txtSearch = (TextView) findViewById(R.id.txtSearch);
+        txtSearch.setText(result);
+        searchProduct(result);
+
 
         ValueEventListener event = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                populateSearch(snapshot);
             }
 
             @Override
@@ -104,6 +103,34 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
         mref.addListenerForSingleValueEvent(event);
 
     }
+
+
+    //Searching for an employee based off their name from Firebase
+    private void searchProduct(String result) {
+        Query query = mref.orderByChild("barcode").equalTo(result);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    //Calling FetchData class to utilise the getters within the class
+                    FetchData data = ds.getValue(FetchData.class);
+                    fetchData.add(data);
+                }
+                //Calls the helper adapter class to manage the layout of the displayed items using a view holder class
+                helperAdapter = new HelperAdapter(fetchData);
+                recyclerView.setAdapter(helperAdapter);
+            }
+
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
@@ -117,63 +144,20 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
         startActivity(new Intent(this, AccountMenu.class));
     }
 
-    //Populating the search field based off Firebase data
-    private void populateSearch(DataSnapshot snapshot) {
-        ArrayList<String> employeeSearch = new ArrayList<>();
-        if (snapshot.exists()) {
-            for (DataSnapshot ds : snapshot.getChildren()) {
-                String search = ds.child("employeeName").getValue(String.class);
-                employeeSearch.add(search);
-            }
-            //Displaying results in a simple list item format
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, employeeSearch);
-            txtSearchEmployee.setAdapter(adapter);
-            txtSearchEmployee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String search = txtSearchEmployee.getText().toString();
-                    searchEmployee(search);
-
-                }
-            });
-        } else {
-            Log.d("EmployeeRoster", "No data found");
-        }
-    }
-
-    //Searching for an employee based off their name from Firebase
-    private void searchEmployee(String search) {
-
-        Query query = mref.orderByChild("employeeName").equalTo(search);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    //Calling FetchData class to utilise the getters within the class
-                    FetchEmployees data = ds.getValue(FetchEmployees.class);
-                    fetchEmployees.add(data);
-                }
-                //Calls the helper adapter class to manage the layout of the displayed items using a view holder class
-                employeeAdapter = new EmployeeAdapter(fetchEmployees);
-                recyclerView.setAdapter(employeeAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        });
-    }
-
-
 
     @Override
     public void onClick(View v) {
-        //If the register label is clicked the sign up screen opens
-        if (v.getId() == R.id.btnAccount) {
-            startActivity(new Intent(this, AccountMenu.class));
+        //Java switch statement
+        //Account button
+        switch (v.getId()) {
+            //Account button
+            case R.id.btnAccount:
+                startActivity(new Intent(this, AccountMenu.class));
+                break;
+            case R.id.btnCamera:
+                startActivity(new Intent(this, BarcodeScanner2.class));
+                break;
+
         }
     }
-}
-//End
+    }

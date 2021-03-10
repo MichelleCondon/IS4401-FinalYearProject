@@ -5,15 +5,15 @@ public class Timesheets {
 
     //Code below is based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
 
-    private String employeeName;
+    private String employee;
     private String In;
     private String Break;
     private String EndBreak;
     private String Out;
 
 
-    public Timesheets(String employeeName, String In, String Break, String EndBreak, String Out) {
-        this.employeeName = employeeName;
+    public Timesheets(String employee, String In, String Break, String EndBreak, String Out) {
+        this.employee = employee;
         this.In = In;
         this.Break = Break;
         this.EndBreak = EndBreak;
@@ -21,12 +21,12 @@ public class Timesheets {
 
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public String getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public void setEmployee(String employee) {
+        this.employee = employee;
     }
 
     public String getIn() {

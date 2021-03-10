@@ -1,10 +1,13 @@
 package com.michelle_condon.is4401_finalyearproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,19 +15,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Hours;
+
+import java.util.HashMap;
 
 public class HoursRequest extends AppCompatActivity {
 
     //Declare Variables
-    EditText txtDay, txtHours;
+    EditText txtDay, txtHours, txtComments;
     DatabaseReference reff;
     Hours hour;
-    Spinner spinnerDay, spinnerMonth;
     Button btnAccount;
 
     FirebaseAuth firebaseAuth;
@@ -35,6 +42,25 @@ public class HoursRequest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hours_request);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_account:
+                        account();
+                        break;
+                    case R.id.action_home:
+                        home();
+                        break;
+                    case R.id.action_signout:
+                        signout();
+                        break;
+                }
+                return true;
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -73,19 +99,25 @@ public class HoursRequest extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog alertDialog = new AlertDialog.Builder(HoursRequest.this).create(); //Read Update
                 alertDialog.setTitle("Confirm Request");
-                alertDialog.setMessage("You have requested a modification to your hours");
+                alertDialog.setMessage("You have Requested a Modification to your Hours");
 
                 alertDialog.setButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        hour.setEmail(btnAccount.getText().toString());
+                        String email = btnAccount.getText().toString();
                         String date = spinnerDay.getSelectedItem().toString();
-                        hour.setDate(date);
+                        String day = txtDay.getText().toString();
                         String month = spinnerMonth.getSelectedItem().toString();
-                        hour.setMonth(month);
-                        hour.setDay(txtDay.getText().toString().trim());
-                        hour.setHours(txtHours.getText().toString().trim());
-                        reff.push().setValue(hour);
+                        String hours = txtHours.getText().toString();
+
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("email", email);
+                        hashMap.put("date", date);
+                        hashMap.put("day", day);
+                        hashMap.put("month", month);
+                        hashMap.put("hours", hours);
+
+                        reff.child(email).setValue(hashMap);
                         Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
 
                     }
@@ -95,6 +127,17 @@ public class HoursRequest extends AppCompatActivity {
             //End
         });
 
+    }
+
+    private void signout() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    private void home() {startActivity(new Intent(this, MainMenu.class));
+    }
+
+    private void account() {
+        startActivity(new Intent(this, AccountMenu.class));
     }
 
 }

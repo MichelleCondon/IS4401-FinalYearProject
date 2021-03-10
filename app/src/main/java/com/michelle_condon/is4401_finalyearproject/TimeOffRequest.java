@@ -24,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.michelle_condon.is4401_finalyearproject.Models.Hours;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class TimeOffRequest extends AppCompatActivity {
 
 
@@ -49,6 +52,8 @@ public class TimeOffRequest extends AppCompatActivity {
         txtStart = (TextView)findViewById(R.id.txtStart);
         txtEnd = (TextView)findViewById(R.id.txtEnd);
         calenderView = (CalendarView) findViewById(R.id.calendarView);
+
+        Date today = new Date();
 
 
 

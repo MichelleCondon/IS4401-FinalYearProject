@@ -22,9 +22,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Timesheets;
+import com.michelle_condon.is4401_finalyearproject.Models.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.Executor;
 
 public class ClockIn_Screen extends AppCompatActivity implements View.OnClickListener {
@@ -32,9 +34,9 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
     //Code below is based on the Youtube video "Biometric Authentication|Android Studio|Java", Atif Pervaiz, https://www.youtube.com/watch?v=yPcxZWSszh8 (1)
 
     //Declare Variables
-    private TextView lblOptions, txtStartShift;
+    private TextView txtStartShift;
+    private EditText txtClockInName;
     private TextView txtEndShift, txtBreak, txtEndBreak;
-    private EditText txtEmployeeName;
     public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak, btnAuthenticate1, btnAuthenticate2, btnAuthenticate3, btnAuthenticate4, lblAccount;
     public Executor executor;
     private BiometricPrompt biometricPrompt;
@@ -87,7 +89,6 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
         lblAccount.setOnClickListener(this);
         lblAccount.setText(firebaseUser.getEmail());
         //initialise buttons and text
-        lblOptions = findViewById(R.id.lblOptions);
         btnStartShift = findViewById(R.id.btnStartShift);
         btnEndShift = findViewById(R.id.btnEndShift);
         btnEndBreak = findViewById(R.id.btnEndBreak);
@@ -100,7 +101,8 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
         txtEndShift = findViewById(R.id.txtEndShift);
         txtBreak = findViewById(R.id.txtBreak);
         txtEndBreak = findViewById(R.id.txtEndBreak);
-        txtEmployeeName = findViewById(R.id.txtEmployeeName);
+        txtClockInName = findViewById(R.id.txtClockInName);
+
 
 
         //Code below is based on the website Developers, Android Developers, https://developer.android.com/training/sign-in/biometric-auth (2)
@@ -111,7 +113,6 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
                 //error authenticating
-                lblOptions.setText("Authentication Error: " + errString);
                 btnAuthenticate1.setVisibility(View.INVISIBLE);
                 btnAuthenticate2.setVisibility(View.INVISIBLE);
                 btnAuthenticate3.setVisibility(View.INVISIBLE);
@@ -123,8 +124,6 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 //authentication succeed, continue tasks that require authentication
-                lblOptions.setText("Authentication Succeeded at: " + timeStamp);
-                txtEmployeeName.setVisibility(View.VISIBLE);
                 Toast.makeText(ClockIn_Screen.this, "Authentication Succeeded!", Toast.LENGTH_SHORT).show();
             }
 
@@ -133,7 +132,6 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             public void onAuthenticationFailed() {
                 //Failure with authentication
                 super.onAuthenticationFailed();
-                lblOptions.setText("Authentication Failed!");
                 btnAuthenticate1.setVisibility(View.INVISIBLE);
                 btnAuthenticate2.setVisibility(View.INVISIBLE);
                 btnAuthenticate3.setVisibility(View.INVISIBLE);
@@ -161,6 +159,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                 txtEndShift.setText("0");
                 txtBreak.setText("0");
                 txtEndBreak.setText("0");
+                txtClockInName.setVisibility(View.VISIBLE);
 
 
             }
@@ -175,6 +174,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                 txtStartShift.setText("0");
                 txtBreak.setText("0");
                 txtEndBreak.setText("0");
+                txtClockInName.setVisibility(View.VISIBLE);
 
 
             }
@@ -189,6 +189,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                 txtEndShift.setText("0");
                 txtStartShift.setText("0");
                 txtEndBreak.setText("0");
+                txtClockInName.setVisibility(View.VISIBLE);
 
             }
         });
@@ -202,6 +203,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                 txtEndShift.setText("0");
                 txtBreak.setText("0");
                 txtStartShift.setText("0");
+                txtClockInName.setVisibility(View.VISIBLE);
 
 
             }
@@ -216,12 +218,21 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 //Setting the value of each variable to whatever value is derived from the system timestamp
                 // and the name the employee enters
-                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
-                timesheets.setIn(txtStartShift.getText().toString().trim());
-                timesheets.setBreak("0");
-                timesheets.setEndBreak("0");
-                timesheets.setOut("0");
-                reff.push().setValue(timesheets);
+                String employee = (txtClockInName.getText().toString().trim());
+                String in = (txtStartShift.getText().toString().trim());
+                String Break = ("0");
+                String EndBreak = ("0");
+                String out = ("0");
+
+
+                HashMap hashMap = new HashMap();
+                hashMap.put("employee", employee);
+                hashMap.put("in", in);
+                hashMap.put("break", Break);
+                hashMap.put("endbreak", EndBreak);
+                hashMap.put("out", out);
+
+                reff.child(employee).setValue(hashMap);
                 Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
             }
         });
@@ -230,12 +241,21 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
-                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
-                timesheets.setIn("0");
-                timesheets.setBreak("0");
-                timesheets.setEndBreak("0");
-                timesheets.setOut(txtEndShift.getText().toString().trim());
-                reff.push().setValue(timesheets);
+                String employee = (txtClockInName.getText().toString().trim());
+                String in = ("0");
+                String Break = ("0");
+                String EndBreak = ("0");
+                String out = (txtEndShift.getText().toString().trim());
+
+
+                HashMap hashMap = new HashMap();
+                hashMap.put("employee", employee);
+                hashMap.put("in", in);
+                hashMap.put("break", Break);
+                hashMap.put("endbreak", EndBreak);
+                hashMap.put("out", out);
+
+                reff.child(employee).setValue(hashMap);
                 Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
             }
         });
@@ -244,12 +264,22 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
-                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
-                timesheets.setIn("0");
-                timesheets.setBreak(txtBreak.getText().toString().trim());
-                timesheets.setEndBreak("0");
-                timesheets.setOut("0");
-                reff.push().setValue(timesheets);
+                String employee = (txtClockInName.getText().toString().trim());
+                String in = ("0");
+                String Break = (txtBreak.getText().toString().trim());
+                String EndBreak = ("0");
+                String out = ("0");
+
+
+                HashMap hashMap = new HashMap();
+                hashMap.put("employee", employee);
+                hashMap.put("in", in);
+                hashMap.put("break", Break);
+                hashMap.put("endbreak", EndBreak);
+                hashMap.put("out", out);
+
+                reff.child(employee).setValue(hashMap);
+
                 Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
             }
         });
@@ -258,12 +288,21 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
-                timesheets.setEmployeeName(txtEmployeeName.getText().toString().trim());
-                timesheets.setIn("0");
-                timesheets.setBreak("0");
-                timesheets.setEndBreak(txtEndBreak.getText().toString().trim());
-                timesheets.setOut("0");
-                reff.push().setValue(timesheets);
+                String employee = (txtClockInName.getText().toString().trim());
+                String in = ("0");
+                String Break = ("0");
+                String EndBreak = (txtEndBreak.getText().toString().trim());
+                String out = ("0");
+
+
+                HashMap hashMap = new HashMap();
+                hashMap.put("employee", employee);
+                hashMap.put("in", in);
+                hashMap.put("break", Break);
+                hashMap.put("endbreak", EndBreak);
+                hashMap.put("out", out);
+
+                reff.child(employee).setValue(hashMap);
                 Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
             }
         });
@@ -272,7 +311,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
         //End (3)
     }
     private void signout() {
-        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     private void home() {
@@ -285,11 +324,9 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            //Account button
-            case R.id.btnAccount:
-                startActivity(new Intent(this, AccountMenu.class));
-                break;
+        //Account button
+        if (v.getId() == R.id.btnAccount) {
+            startActivity(new Intent(this, AccountMenu.class));
         }
     }
 }

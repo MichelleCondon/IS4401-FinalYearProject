@@ -129,7 +129,7 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void signout() {
-        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     private void home() {

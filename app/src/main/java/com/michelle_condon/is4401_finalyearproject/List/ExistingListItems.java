@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.Adapters.ListAdapter;
 import com.michelle_condon.is4401_finalyearproject.Models.VList;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.ArrayList;
 import java.util.List;

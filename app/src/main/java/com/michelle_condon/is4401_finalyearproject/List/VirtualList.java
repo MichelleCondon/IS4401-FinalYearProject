@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.michelle_condon.is4401_finalyearproject.ExistingListItems;
+import com.michelle_condon.is4401_finalyearproject.AddItems;
 import com.michelle_condon.is4401_finalyearproject.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
@@ -29,6 +29,7 @@ import com.michelle_condon.is4401_finalyearproject.Models.VList;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class VirtualList extends AppCompatActivity implements View.OnClickListener {
 
@@ -97,8 +98,11 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 //Setting the value of each variable to whatever the user enters on the form
-                list.setProducts(txtListName.getText().toString().trim());
-                reff.push().setValue(list);
+                String item = txtListName.getText().toString();
+                HashMap hashMap = new HashMap();
+                hashMap.put("product", item);
+
+                reff.child(item).setValue(hashMap);
                 Toast.makeText(VirtualList.this, "Listed Product Saved to Database", Toast.LENGTH_LONG).show();
                 addItem(view);
             }
@@ -132,10 +136,9 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Product Removed from List", Toast.LENGTH_LONG).show();
-
                 items.remove(i);
                 itemsAdapter.notifyDataSetChanged();
+                Toast.makeText(context, "Product Removed from List", Toast.LENGTH_LONG).show();
                 return true;
             }
         });

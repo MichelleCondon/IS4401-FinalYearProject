@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="219dp"
-            android:background="#FFFFFF"
+            android:background="#e3eeff"
             tools:context=".MainMenu">
 
             <TextView
@@ -138,6 +138,7 @@
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/x"
                 app:layout_constraintTop_toBottomOf="@+id/txtProductQuantity" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

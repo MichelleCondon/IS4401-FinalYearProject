@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:autofillHints="@string/txtHours"
     tools:context=".HoursRequest">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,27 +16,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerDay"
-        android:layout_width="141dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRequestSubtitle" />
-
-    <Spinner
-        android:id="@+id/spinnerMonth"
-        android:layout_width="149dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtDay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRequestSubtitle"
-        app:layout_constraintVertical_bias="0.666" />
 
     <Button
         android:id="@+id/btnAccount"
@@ -52,34 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnRequestChange"
-        android:layout_width="136dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/rounded_corners"
-        android:text="@string/btnRequestChange"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtHours" />
-
-    <EditText
-        android:id="@+id/txtHours"
-        android:layout_width="213dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="12dp"
-        android:autofillHints="@string/txtHours"
-        android:ems="10"
-        android:hint="@string/txtHours"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDay" />
-
     <TextView
         android:id="@+id/lblRequestSubtitle"
         android:layout_width="wrap_content"
@@ -89,7 +41,7 @@
         android:textColor="#090909"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblRequestHoursChange" />
 
@@ -101,25 +53,87 @@
         android:text="@string/lblHoursRequest"
         android:textColor="#0E0E0E"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinnerMonth"
+        android:layout_width="176dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtDay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRequestSubtitle"
+        app:layout_constraintVertical_bias="1.0" />
+
     <EditText
         android:id="@+id/txtDay"
         android:layout_width="213dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
         android:autofillHints="@string/txtDay"
         android:ems="10"
         android:hint="@string/txtDay"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerDay" />
+
+    <Spinner
+        android:id="@+id/spinnerDay"
+        android:layout_width="100dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRequestSubtitle" />
+
+    <Button
+        android:id="@+id/btnRequestChange"
+        android:layout_width="136dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corners"
+        android:text="@string/btnRequestChange"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="574dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorBlue"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <EditText
+        android:id="@+id/txtHours"
+        android:layout_width="213dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="17dp"
+        android:autofillHints="@string/txtHours"
+        android:ems="10"
+        android:hint="@string/txtHours"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDay" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,7 +64,7 @@ public class NotificationHelper extends ContextWrapper {
                 .setContentText(body)
                 .setSmallIcon(R.mipmap.ic_company_logo_foreground)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setStyle(new NotificationCompat.BigTextStyle().setSummaryText("Work Alert").setBigContentTitle(title).bigText(body))
+                .setStyle(new NotificationCompat.BigTextStyle().setSummaryText("Work Notification").setBigContentTitle(title).bigText(body))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .build();
