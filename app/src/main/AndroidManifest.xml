@@ -23,10 +23,12 @@
         android:label="Solution Trail"
         android:supportsRtl="true"
         android:theme="@style/AppTheme1">
-        <activity android:name=".ProductCheck2"></activity>
+        <activity android:name=".UserProfile"/>
+        <activity android:name=".ProductCheck2" />
         <activity android:name=".EmailTemplate" />
         <activity android:name=".Menus.AccountMenu" />
-        <activity android:name=".TimeOffRequest" />
+        <activity android:name=".TimeOffRequest"
+            android:theme="@style/AppTheme2"/>
         <activity android:name=".HoursRequest" />
         <activity android:name=".UpdateProducts" />
         <activity android:name=".AddSchedule" />

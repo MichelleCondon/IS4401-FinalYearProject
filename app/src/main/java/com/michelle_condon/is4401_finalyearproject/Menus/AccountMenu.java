@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.HoursRequest;
@@ -40,6 +41,9 @@ public class AccountMenu extends AppCompatActivity implements View.OnClickListen
         //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
+        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
+        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+
 
     }
 
