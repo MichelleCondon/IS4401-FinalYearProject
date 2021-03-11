@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,7 +18,7 @@
 
     <Button
         android:id="@+id/btnAccount"
-        android:layout_width="wrap_content"
+        android:layout_width="159dp"
         android:layout_height="47dp"
         android:layout_marginStart="355dp"
         android:layout_marginTop="4dp"
@@ -36,8 +36,11 @@
         android:layout_width="match_parent"
         android:layout_height="501dp"
         android:layout_below="@+id/lblInventory"
-        android:layout_marginTop="6dp"
-        tools:layout_editor_absoluteY="75dp" />
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblInventory" />
 
     <TextView
         android:id="@+id/lblInventory"
@@ -45,12 +48,17 @@
         android:layout_height="53dp"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="133dp"
         android:layout_marginTop="19dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="133dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/lblInventory"
+        android:textAlignment="center"
         android:textColor="#040202"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -65,5 +73,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="102dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_corners"
+        android:drawableStart="@drawable/ic_baseline_refresh_24"
+        android:onClick="onClick"
+        android:text="Refresh"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView1"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

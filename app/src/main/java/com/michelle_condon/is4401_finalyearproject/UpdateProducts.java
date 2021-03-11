@@ -33,7 +33,7 @@ public class UpdateProducts extends AppCompatActivity implements View.OnClickLis
     //Code below is based on the Youtube Video Android Firebase - 10 - How Update Data in Firebase Realtime Database, Technical Skillz, "https://www.youtube.com/watch?v=0HLyJNuyhSo"
 
     private EditText name, description, quantity, price;
-    private Button btnEdit, btnAccount;
+    private Button btnEdit, btnAccount, btnDelete;
     public TextView barcode;
     DatabaseReference reff;
     FirebaseAuth firebaseAuth;
@@ -69,6 +69,7 @@ public class UpdateProducts extends AppCompatActivity implements View.OnClickLis
         //Buttons on the menu
         //Assigning values by resource Id's - Account Button
         btnAccount = (Button) findViewById(R.id.btnAccount);
+        btnDelete = (Button) findViewById(R.id.btnDelete);
         //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
@@ -136,6 +137,9 @@ public class UpdateProducts extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v.getId() == R.id.btnAccount) {
             startActivity(new Intent(this, AccountMenu.class));
+        } else if (v.getId() == R.id.btnDelete){
+            String existingBarcode = barcode.getText().toString();
+            reff.child(existingBarcode).removeValue();
         }
     }
 }

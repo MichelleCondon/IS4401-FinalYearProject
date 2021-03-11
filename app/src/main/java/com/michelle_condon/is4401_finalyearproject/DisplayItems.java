@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +24,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.michelle_condon.is4401_finalyearproject.Adapters.EmployeeAdapter;
 import com.michelle_condon.is4401_finalyearproject.Adapters.HelperAdapter;
+import com.michelle_condon.is4401_finalyearproject.GoogleMaps.MapsActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 
 import java.util.ArrayList;
@@ -38,14 +41,13 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    Button btnAccount;
+    Button btnAccount, btnRefresh;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_items);
-
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -73,6 +75,7 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
         //Buttons on the menu
         //Assigning values by resource Id's - Account Button
         btnAccount = (Button) findViewById(R.id.btnAccount);
+        btnRefresh = (Button) findViewById(R.id.btnRefresh);
         //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
@@ -121,8 +124,17 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btnAccount) {
-            startActivity(new Intent(this, AccountMenu.class));
+        switch (v.getId()) {
+            //Account button
+            case R.id.btnAccount:
+                startActivity(new Intent(this, AccountMenu.class));
+                break;
+            //Clock In/Out button
+            case R.id.btnRefresh:
+                finish();
+                startActivity(getIntent());
+                break;
+
         }
     }
 }
