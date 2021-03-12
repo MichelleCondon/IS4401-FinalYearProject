@@ -73,6 +73,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         //Assigning values by resource Id's - Account Button
         btnAccount = (Button) findViewById(R.id.btnAccount);
         btnRefresh = (Button) findViewById(R.id.btnRefreshUser);
+        btnRefresh.setOnClickListener(this);
         //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());

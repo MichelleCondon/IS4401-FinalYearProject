@@ -100,14 +100,14 @@
         android:id="@+id/btnRequestChange"
         android:layout_width="136dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="51dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/btnRequestChange"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchMorning" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -119,6 +119,7 @@
         app:itemTextColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
@@ -141,21 +142,21 @@
         android:id="@+id/switchMorning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
         android:text="Morning"
-        app:layout_constraintBottom_toTopOf="@+id/btnRequestChange"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRequestName" />
 
     <Switch
         android:id="@+id/switchEvening"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="108dp"
         android:text="Evening"
-        app:layout_constraintBottom_toTopOf="@+id/btnRequestChange"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRequestName" />
 
     <EditText
         android:id="@+id/txtRequestName"
@@ -165,7 +166,9 @@
         android:layout_marginTop="13dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
+        android:hint="Name"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHours" />

@@ -24,9 +24,9 @@ import java.util.HashMap;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText fullname, emailAddress, phoneNumber, position;
+    private EditText emailAddress, phoneNumber;
     private Button btnUpdate, btnAccount, btnDelete;
-    public TextView employeeId;
+    public TextView employeeId, fullname, position;
     DatabaseReference reff;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -61,6 +61,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         //Assigning values by resource Id's - Account Button
         btnAccount = (Button) findViewById(R.id.btnAccount);
         btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(this);
         //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
@@ -68,21 +69,27 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         Intent i = getIntent();
         String NAME = i.getStringExtra("email");
         String var1 = i.getStringExtra("employeeId");
-        String var2 = i.getStringExtra("fullname");
+        String var2 = i.getStringExtra("fullName");
         String var3 = i.getStringExtra("phoneNumber");
         String var4 = i.getStringExtra("position");
 
         btnUpdate = (Button) findViewById(R.id.btnUpdateProfile);
-        fullname = (EditText) findViewById(R.id.txtUpdateFullName);
+        fullname = (TextView) findViewById(R.id.txtUpdateFullName);
         fullname.setText(var2);
         emailAddress = (EditText) findViewById(R.id.txtUpdateEmailAddress);
         emailAddress.setText(NAME);
         phoneNumber = (EditText) findViewById(R.id.txtUpdatedPhoneNumber);
         phoneNumber.setText(var3);
-        position = (EditText) findViewById(R.id.txtUpdatedPosition);
+        position = (TextView) findViewById(R.id.txtUpdatedPosition);
         position.setText(var4);
         employeeId = (TextView) findViewById(R.id.txtUpdatedEmployeeId);
         employeeId.setText(var1);
+
+        if(firebaseUser.getEmail().equals("admin@admin.com")) {
+            btnDelete.setVisibility(View.VISIBLE);
+        } else {
+            btnDelete.setVisibility(View.INVISIBLE);
+        }
 
         reff = FirebaseDatabase.getInstance().getReference().child("Users");
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +106,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 hashMap.put("email", updatedEmail);
                 hashMap.put("phoneNumber", updatedPhone);
 
-                reff.child("xE5EaYIsc3ZWBBhl0gO5NPfCYek1").updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                reff.child(fullname.getText().toString()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o) {
                         Toast.makeText(EditProfile.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
@@ -124,11 +131,15 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btnAccount) {
-            startActivity(new Intent(this, AccountMenu.class));
-        } else if (v.getId() == R.id.btnDelete){
-            //String existingBarcode = barcode.getText().toString();
-            reff.child("xE5EaYIsc3ZWBBhl0gO5NPfCYek1").removeValue();
-        }
+        switch (v.getId()) {
+            //Account button
+            case R.id.btnAccount:
+                startActivity(new Intent(this, AccountMenu.class));
+                break;
+            case R.id.btnDelete:
+                String name = fullname.getText().toString();
+                reff.child(name).removeValue();
+                break;
     }
     }
+}

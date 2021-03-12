@@ -46,7 +46,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
     //Declare Variables
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    private Button mPickDateButton, btnAccount;
+    private Button mPickDateButton;
     private TextView mShowSelectedDateText, txtDates;
     DatabaseReference reff;
 //https://www.geeksforgeeks.org/material-design-date-picker-in-android/
@@ -78,11 +78,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         //Buttons on the menu
-        //Assigning values by resource Id's - Account Button
-        btnAccount = (Button) findViewById(R.id.btnAccount);
-        //Listening for the users button click for clock in/out
-        btnAccount.setOnClickListener(this);
-        btnAccount.setText(firebaseUser.getEmail());
+
 
         // now register the text view and the button with
         // their appropriate IDs

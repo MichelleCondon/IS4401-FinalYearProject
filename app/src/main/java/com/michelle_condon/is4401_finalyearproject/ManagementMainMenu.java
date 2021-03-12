@@ -108,7 +108,7 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
                 break;
             //View inventory button
             case R.id.btnViewInventory:
-                startActivity(new Intent(this, EditProfile.class));
+                startActivity(new Intent(this, UserProfile.class));
                 break;
             //Add product button
             case R.id.btnAddProduct:

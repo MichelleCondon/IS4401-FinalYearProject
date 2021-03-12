@@ -11,34 +11,6 @@
 
     <!--button to open the material design date picker dialog-->
 
-    <TextView
-        android:id="@+id/show_selected_date"
-        android:layout_width="162dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="35dp"
-        android:layout_marginBottom="24dp"
-        android:text="Selected Days Are:"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/pick_date_button"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnAccount"
-        android:layout_width="159dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="355dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="20dp"
-        android:background="#00000000"
-        android:drawableEnd="@drawable/ic_baseline_person_24"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/pick_date_button"
         android:layout_width="193dp"
@@ -50,9 +22,52 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="193dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="119dp"
+        android:background="@drawable/rounded_corners"
+        android:onClick="onClick"
+        android:text="Confirm Request"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pick_date_button" />
+
+    <TextView
+        android:id="@+id/show_selected_date"
+        android:layout_width="162dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="40dp"
+        android:text="Selected Days Are:"
+        android:textColor="#090909"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/pick_date_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtDates"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="40dp"
+        android:text="TextView"
+        android:textColor="#090909"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/pick_date_button"
+        app:layout_constraintStart_toEndOf="@+id/show_selected_date" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -66,31 +81,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="193dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="119dp"
-        android:background="@drawable/rounded_corners"
-        android:onClick="onClick"
-        android:text="Confirm Request"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pick_date_button" />
-
-    <TextView
-        android:id="@+id/txtDates"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="28dp"
-        android:text="TextView"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/pick_date_button"
-        app:layout_constraintStart_toEndOf="@+id/show_selected_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

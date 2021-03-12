@@ -17,8 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.michelle_condon.is4401_finalyearproject.Models.User;
+
+import java.util.HashMap;
 
 
 public class SignupScreen extends AppCompatActivity implements View.OnClickListener {
@@ -28,6 +31,7 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private Button registerUser;
     private EditText txtFullName, txtEmployeeId, txtEmail, txtPassword, txtPhoneNumber, txtPosition;
+    DatabaseReference reff;
 
 
     @Override
@@ -121,7 +125,7 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-
+        reff = FirebaseDatabase.getInstance().getReference().child("Users");
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
         //Create user with email and password in Firebase
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -130,12 +134,22 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //If registration is successful a new user is created
                         if (task.isSuccessful()) {
-                            User user = new User(email, employeeId, fullName, password, position, phoneNumber);
+                            String email = txtEmail.getText().toString();
+                            String employeeId = txtEmployeeId.getText().toString();
+                            String fullName = txtFullName.getText().toString();
+                            String password = txtPassword.getText().toString();
+                            String position = txtPosition.getText().toString();
+                            String phoneNumber = txtPhoneNumber.getText().toString();
 
-                            //Access Firebase path "Users" to save information to
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            HashMap hashMap = new HashMap();
+                            hashMap.put("email", email);
+                            hashMap.put("employeeId", employeeId);
+                            hashMap.put("fullName", fullName);
+                            hashMap.put("password", password);
+                            hashMap.put("position", position);
+                            hashMap.put("phoneNumber", phoneNumber);
+
+                            reff.child(fullName).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     //If registration is successful a new user is created

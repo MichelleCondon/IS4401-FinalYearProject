@@ -26,6 +26,7 @@
                 android:paddingStart="85dp"
                 android:paddingEnd="0dp"
                 android:text="Name:"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
             <TextView
@@ -35,6 +36,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingStart="50dp"
                 android:paddingEnd="0dp"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -49,6 +51,7 @@
                 android:paddingStart="30dp"
                 android:paddingEnd="0dp"
                 android:text="Employee ID:"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
             <TextView
@@ -58,6 +61,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingStart="50dp"
                 android:paddingEnd="0dp"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -72,6 +76,7 @@
                 android:paddingStart="66dp"
                 android:paddingEnd="0dp"
                 android:text="Position:"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
             <TextView
@@ -81,6 +86,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingStart="50dp"
                 android:paddingEnd="0dp"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -95,6 +101,7 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"
                 android:text="Phone Number:"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
             <TextView
@@ -104,6 +111,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingStart="50dp"
                 android:paddingEnd="0dp"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -118,6 +126,7 @@
                 android:paddingStart="85dp"
                 android:paddingEnd="0dp"
                 android:text="Email:"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
             <TextView
@@ -127,6 +136,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingStart="50dp"
                 android:paddingEnd="0dp"
+                android:textColor="#070707"
                 android:textSize="20sp" />
 
         </TableRow>

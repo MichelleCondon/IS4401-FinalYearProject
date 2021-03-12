@@ -44,7 +44,7 @@ public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int positi
     UserAdapter.ViewHolderClass viewHolderClass = (UserAdapter.ViewHolderClass) holder;
         //Setting the hours for every day of the week by pulling the data from Firebase using getters
         User vUsers = userData.get(position);
-        viewHolderClass.name.setText(vUsers.getFullname());
+        viewHolderClass.fullname.setText(vUsers.getFullName());
         viewHolderClass.employeeId.setText(vUsers.getEmployeeId());
         viewHolderClass.position.setText(vUsers.getPosition());
         viewHolderClass.phonenumber.setText(String.valueOf(vUsers.getPhoneNumber()));
@@ -62,12 +62,12 @@ public int getItemCount() {
 
 public static class ViewHolderClass extends RecyclerView.ViewHolder {
     //Declaring variables
-    TextView name, email, employeeId, position, phonenumber;
+    TextView fullname, email, employeeId, position, phonenumber;
 
     public ViewHolderClass(@NonNull View itemView) {
         super(itemView);
         //Assigning values to the variables by resource Id's
-        name = itemView.findViewById(R.id.userFullName);
+        fullname = itemView.findViewById(R.id.userFullName);
         employeeId = itemView.findViewById(R.id.userEmployeeId);
         position = itemView.findViewById(R.id.userPosition);
         phonenumber = itemView.findViewById(R.id.userPhoneNumber);
@@ -80,16 +80,16 @@ public static class ViewHolderClass extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, EditProfile.class);
-                String a = name.getText().toString();
+                String a = fullname.getText().toString();
                 String b = employeeId.getText().toString();
                 String c = phonenumber.getText().toString();
                 String d = position.getText().toString();
                 String e = email.getText().toString();
-                intent.putExtra("email", a);
+                intent.putExtra("fullName", a);
                 intent.putExtra("employeeId", b);
-                intent.putExtra("fullname", c);
-                intent.putExtra("phoneNumber", d);
-                intent.putExtra("position", e);
+                intent.putExtra("phoneNumber", c);
+                intent.putExtra("position", d);
+                intent.putExtra("email", e);
                 context.startActivity(intent);
             }
         });
