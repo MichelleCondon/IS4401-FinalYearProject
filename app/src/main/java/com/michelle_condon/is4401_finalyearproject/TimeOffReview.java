@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -87,7 +88,8 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
 
     }
 
-    protected void sendEmailApproval () {
+    @SuppressLint("IntentReset")
+    protected void sendEmailApproval() {
         txtEmployeeEmail = (TextView) findViewById(R.id.txtEmployeeEmailReview);
         String user = (txtEmployeeEmail.getText().toString());
         Log.i("Send email", "");
@@ -111,7 +113,7 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    protected void sendEmailDenial () {
+    protected void sendEmailDenial() {
         txtEmployeeEmail = (TextView) findViewById(R.id.txtEmployeeEmailReview);
         String user = String.valueOf(txtEmployeeEmail.getText().toString());
         Log.i("Send email", "");

@@ -49,7 +49,8 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
     private Button mPickDateButton;
     private TextView mShowSelectedDateText, txtDates;
     DatabaseReference reff;
-//https://www.geeksforgeeks.org/material-design-date-picker-in-android/
+
+    // Code for the material calender is based off of the website example 'Material Design Date Picker in Android' which can be found at "https://www.geeksforgeeks.org/material-design-date-picker-in-android/"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -172,28 +174,28 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
 
     }
 
-        protected void sendEmail () {
-            Log.i("Send email", "");
-            String[] TO = {"117320951@umail.ucc.ie"};
-            String[] CC = {""};
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            String user = firebaseUser.getEmail();
+    protected void sendEmail() {
+        Log.i("Send email", "");
+        String[] TO = {"117320951@umail.ucc.ie"};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        String user = firebaseUser.getEmail();
 
-            emailIntent.setData(Uri.parse("mailto:"));
-            emailIntent.setType("text/plain");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-            emailIntent.putExtra(Intent.EXTRA_CC, CC);
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Request");
-            emailIntent.putExtra(Intent.EXTRA_TEXT, user + " has requested the following days off: " + "\n" + txtDates.getText().toString());
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Request");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, user + " has requested the following days off: " + "\n" + txtDates.getText().toString());
 
-            try {
-                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                finish();
-                Log.i("Finished sending email...", "");
-            } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(TimeOffRequest.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-            }
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(TimeOffRequest.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
-
     }
+
+}
 

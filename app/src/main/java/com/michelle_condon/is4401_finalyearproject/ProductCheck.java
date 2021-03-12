@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +35,6 @@ import java.util.List;
 public class ProductCheck extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, https://www.youtube.com/watch?v=g74E5DpUT-Q
-
     //Declare Variables
     DatabaseReference mref;
     List<FetchData> fetchData;
@@ -44,7 +44,6 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     Button btnAccount, btnCamera;
-    public AutoCompleteTextView barcodeSearch;
 
 
     @Override
@@ -54,6 +53,7 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -71,20 +71,20 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        //Assigning values to the previously declared variables
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //Buttons on the menu
-        //Assigning values by resource Id's - Account Button
         btnAccount = (Button) findViewById(R.id.btnAccount);
-        //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
         btnCamera = (Button) findViewById(R.id.btnCamera);
-        mref = FirebaseDatabase.getInstance().getReference("Items");
         recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchData = new ArrayList<>();
         txtSearch = (AutoCompleteTextView) findViewById(R.id.txtSearch);
+
+        //Connection to the object Items in Firebase
+        mref = FirebaseDatabase.getInstance().getReference("Items");
 
         ValueEventListener event = new ValueEventListener() {
             @Override
@@ -123,7 +123,7 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //Searching for an employee based off their name from Firebase
+    //Searching for an product based off the name from Firebase
     private void searchProduct(String name) {
         Query query = mref.orderByChild("name").equalTo(name);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -138,8 +138,6 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
                 helperAdapter = new HelperAdapter(fetchData);
                 recyclerView.setAdapter(helperAdapter);
             }
-
-
 
 
             @Override

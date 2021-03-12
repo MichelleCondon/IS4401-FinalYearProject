@@ -82,7 +82,9 @@ public class HelperAdapter extends RecyclerView.Adapter{
             price = itemView.findViewById(R.id.txtProductPrice);
             barcode = itemView.findViewById(R.id.txtBarcode);
 
-            //https://stackoverflow.com/questions/37186805/start-new-activity-with-onclick-in-recyclerview/44898559
+            //Code to transfer data to the next form was found on Stackoverflow at
+            // "https://stackoverflow.com/questions/37186805/start-new-activity-with-onclick-in-recyclerview/44898559"
+
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -94,6 +96,7 @@ public class HelperAdapter extends RecyclerView.Adapter{
                     String c = quantity.getText().toString();
                     String d = price.getText().toString();
                     String e = barcode.getText().toString();
+
                     intent.putExtra("Name", a);
                     intent.putExtra("Desc", b);
                     intent.putExtra("Quantity", c);

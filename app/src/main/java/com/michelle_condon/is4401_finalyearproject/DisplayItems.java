@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayItems extends AppCompatActivity implements View.OnClickListener {
+
     //Code below ia based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
     //Declare Variables
     List<FetchData> fetchData;
@@ -42,7 +44,7 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_items);
 
-
+        //Navigation Bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -63,17 +65,13 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
         });
 
 
+        //Assigning values to the variables declared above
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //Buttons on the menu
-        //Assigning values by resource Id's - Account Button
         btnAccount = (Button) findViewById(R.id.btnAccount);
         btnRefresh = (Button) findViewById(R.id.btnRefresh);
-        //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
-
-        //Assigning the recycler view by resource id
         recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchData = new ArrayList<>();
@@ -115,6 +113,7 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(this, AccountMenu.class));
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -45,8 +46,10 @@ public class UpdateProducts extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_products);
 
+        //Bottom Navigation Bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
@@ -137,9 +140,10 @@ public class UpdateProducts extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v.getId() == R.id.btnAccount) {
             startActivity(new Intent(this, AccountMenu.class));
-        } else if (v.getId() == R.id.btnDelete){
+        } else if (v.getId() == R.id.btnDelete) {
             String existingBarcode = barcode.getText().toString();
             reff.child(existingBarcode).removeValue();
+            Toast.makeText(UpdateProducts.this, "Product Deleted from Inventory", Toast.LENGTH_LONG).show();
         }
     }
 }
