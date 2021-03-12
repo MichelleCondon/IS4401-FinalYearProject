@@ -21,7 +21,7 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
 
     //Declaring Variables
     private TextView clockin, inventory, productCheck;
-    private Button btnAddEmployee, view, btnCreateList, btnAccount;
+    private Button btnAddEmployee, view, btnCreateList, btnAccount, btnAddSchedule;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
@@ -59,9 +59,9 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         btnAccount.setText(firebaseUser.getEmail());
 
         //Assigning values by resource Id's - ClockIn/Out button
-        clockin = (TextView) findViewById(R.id.btnClockIn);
+        btnAddSchedule = (Button) findViewById(R.id.btnAddSchedule);
         //Listening for the users button click for clock in/out
-        clockin.setOnClickListener(this);
+        btnAddSchedule.setOnClickListener(this);
 
         //Assigning values by resource Id's - Add Product button
         btnAddEmployee = (Button) findViewById(R.id.btnAddProduct);
@@ -103,7 +103,7 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         //Java switch statement
         switch (v.getId()) {
             //Clock In/Out button
-            case R.id.btnClockIn:
+            case R.id.btnAddSchedule:
                 startActivity(new Intent(this, AddSchedule.class));
                 break;
             //View inventory button
@@ -116,7 +116,7 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
                 break;
             //View schedule button
             case R.id.btnViewSchedule:
-                startActivity(new Intent(this, EmployeeSchedule.class));
+                startActivity(new Intent(this, ManagementViewEmployeeSchedule.class));
                 break;
             //Product check button
             case R.id.btnProductCheck:

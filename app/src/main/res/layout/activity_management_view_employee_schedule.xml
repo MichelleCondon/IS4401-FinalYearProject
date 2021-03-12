@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimeOffReview">
+    tools:context=".EmployeeSchedule">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -31,28 +31,63 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/menu"
+        android:id="@+id/lblWorkSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Review Time Off Requests"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:paddingTop="15dp"
+        android:text="@string/lblWorkSchedule"
         android:textAlignment="center"
-        android:textColor="#070707"
+        android:textColor="#050505"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/lblProductSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblWorkSchedule"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="15dp"
+        android:text="@string/lblWorkDetail"
+        android:textAlignment="center"
+        android:textColor="#050505"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblWorkSchedule" />
+
+    <AutoCompleteTextView
+        android:id="@+id/txtSearchEmployee"
+        android:layout_width="341dp"
+        android:layout_height="54dp"
+        android:layout_below="@+id/lblProductSearch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_border"
+        android:drawableStart="@drawable/ic_baseline_search2_24"
+        android:hint="@string/hintName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblProductSearch" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewReview"
-        android:layout_width="410dp"
-        android:layout_height="533dp"
-        android:layout_marginBottom="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        android:id="@+id/ListRecyclerViewMgtSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="415dp"
+        android:layout_below="@+id/txtSearchEmployee"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSearchEmployee" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

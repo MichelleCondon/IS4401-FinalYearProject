@@ -23,7 +23,9 @@
         android:label="Solution Trail"
         android:supportsRtl="true"
         android:theme="@style/AppTheme1">
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".UpdateSchedule"></activity>
+        <activity android:name=".ManagementViewEmployeeSchedule" />
+        <activity android:name=".EditProfile" />
         <activity android:name=".TimeOffReview" />
         <activity android:name=".UserProfile" />
         <activity android:name=".ProductCheck2" />

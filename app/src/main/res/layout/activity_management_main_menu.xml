@@ -39,7 +39,7 @@
         android:layout_marginBottom="47dp"
         android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_table_view_24"
-        android:text="@string/btnView"
+        android:text="View + Edit Schedule"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnViewInventory"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -86,7 +86,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnClockIn"
+        android:id="@+id/btnAddSchedule"
         android:layout_width="140dp"
         android:layout_height="85dp"
         android:layout_marginStart="35dp"

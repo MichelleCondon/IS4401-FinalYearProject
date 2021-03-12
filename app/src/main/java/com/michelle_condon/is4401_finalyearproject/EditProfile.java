@@ -74,15 +74,15 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
         btnUpdate = (Button) findViewById(R.id.btnUpdateProfile);
         fullname = (EditText) findViewById(R.id.txtUpdateFullName);
-        fullname.setText(NAME);
+        fullname.setText(var2);
         emailAddress = (EditText) findViewById(R.id.txtUpdateEmailAddress);
-        emailAddress.setText(var1);
+        emailAddress.setText(NAME);
         phoneNumber = (EditText) findViewById(R.id.txtUpdatedPhoneNumber);
-        phoneNumber.setText(var2);
+        phoneNumber.setText(var3);
         position = (EditText) findViewById(R.id.txtUpdatedPosition);
-        position.setText(var3);
+        position.setText(var4);
         employeeId = (TextView) findViewById(R.id.txtUpdatedEmployeeId);
-        employeeId.setText(var4);
+        employeeId.setText(var1);
 
         reff = FirebaseDatabase.getInstance().getReference().child("Users");
         btnUpdate.setOnClickListener(new View.OnClickListener() {
