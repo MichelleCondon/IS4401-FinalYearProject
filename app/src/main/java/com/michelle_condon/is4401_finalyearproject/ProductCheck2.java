@@ -7,12 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -80,7 +76,7 @@ public class ProductCheck2 extends AppCompatActivity implements View.OnClickList
         btnAccount.setText(firebaseUser.getEmail());
         btnCamera = (Button) findViewById(R.id.btnCamera);
         mref = FirebaseDatabase.getInstance().getReference("Items");
-        recyclerView = findViewById(R.id.recyclerView1);
+        recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchData = new ArrayList<>();
         result = scanResult;

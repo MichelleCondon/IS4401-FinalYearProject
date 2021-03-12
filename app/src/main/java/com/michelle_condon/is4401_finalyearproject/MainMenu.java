@@ -46,7 +46,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
                         break;
                 }
                 return true;
-            }
+            } //action_employeeInfo
         });
 
         firebaseAuth = FirebaseAuth.getInstance();

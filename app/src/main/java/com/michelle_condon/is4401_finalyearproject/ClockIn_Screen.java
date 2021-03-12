@@ -209,6 +209,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+
 //Code below to insert data into Firebase is based on a YouTube Video, by EducaTree, https://www.youtube.com/watch?v=iy6WexahCdY&t=328 (3)
         timesheets = new Timesheets();
         //Accessing data from Firebase
@@ -218,6 +219,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 //Setting the value of each variable to whatever value is derived from the system timestamp
                 // and the name the employee enters
+
                 String employee = (txtClockInName.getText().toString().trim());
                 String in = (txtStartShift.getText().toString().trim());
                 String Break = ("0");
@@ -310,6 +312,10 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
         //End (2)
         //End (3)
     }
+
+
+
+
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -321,6 +327,8 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
     private void account() {
         startActivity(new Intent(this, AccountMenu.class));
     }
+
+
 
     @Override
     public void onClick(View v) {

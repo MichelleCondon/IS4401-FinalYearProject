@@ -14,10 +14,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.HoursRequest;
 import com.michelle_condon.is4401_finalyearproject.R;
 import com.michelle_condon.is4401_finalyearproject.TimeOffRequest;
+import com.michelle_condon.is4401_finalyearproject.UserProfile;
 
 public class AccountMenu extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnRequestHoursChange, btnRequestTimeOff, btnAccount;
+    private Button btnRequestHoursChange, btnRequestTimeOff, btnAccount, btnUserProfile;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
@@ -41,8 +42,8 @@ public class AccountMenu extends AppCompatActivity implements View.OnClickListen
         //Listening for the users button click for clock in/out
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
-        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
-        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
+        btnUserProfile = (Button) findViewById(R.id.btnViewProfile);
+        btnUserProfile.setOnClickListener(this);
 
 
     }
@@ -57,6 +58,9 @@ public class AccountMenu extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.btnRequestTimeOff:
                 startActivity(new Intent(this, TimeOffRequest.class));
+                break;
+            case R.id.btnViewProfile:
+                startActivity(new Intent(this, UserProfile.class));
                 break;
 
         }

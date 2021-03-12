@@ -32,20 +32,21 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUser"
-        android:layout_width="match_parent"
-        android:layout_height="501dp"
+        android:layout_width="409dp"
+        android:layout_height="464dp"
         android:layout_below="@+id/lblUser"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblInventory" />
+        app:layout_constraintTop_toBottomOf="@+id/lblUser" />
 
     <TextView
         android:id="@+id/lblUser"
-        android:layout_width="176dp"
-        android:layout_height="54dp"
+        android:layout_width="217dp"
+        android:layout_height="53dp"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="133dp"
@@ -72,6 +73,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
+    <Button
+        android:id="@+id/btnRefreshUser"
+        android:layout_width="102dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_corners"
+        android:drawableStart="@drawable/ic_baseline_refresh_24"
+        android:onClick="onClick"
+        android:text="Refresh"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewUser"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

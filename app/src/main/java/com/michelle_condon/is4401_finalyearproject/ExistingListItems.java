@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject.List;
+package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -13,9 +13,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.michelle_condon.is4401_finalyearproject.Adapters.ListAdapter;
 import com.michelle_condon.is4401_finalyearproject.Models.VList;
-import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +53,7 @@ public class ExistingListItems extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    //Calling VList class to utilise the getters within the class
+                    //Calling FetchData class to utilise the getters within the class
                     VList data = ds.getValue(VList.class);
                     vLists.add(data);
                 }

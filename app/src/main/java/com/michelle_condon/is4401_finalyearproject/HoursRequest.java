@@ -3,6 +3,7 @@ package com.michelle_condon.is4401_finalyearproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,10 +28,10 @@ import com.michelle_condon.is4401_finalyearproject.Models.Hours;
 
 import java.util.HashMap;
 
-public class HoursRequest extends AppCompatActivity {
+public class HoursRequest extends AppCompatActivity implements View.OnClickListener {
 
     //Declare Variables
-    EditText txtDay, txtHours, txtComments;
+    EditText txtDay, txtHours, txtName;
     DatabaseReference reff;
     Hours hour;
     Button btnAccount;
@@ -64,6 +66,11 @@ public class HoursRequest extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+        // initiate a Switch
+        @SuppressLint("UseSwitchCompatOrMaterialCode")
+        Switch switchMorning = (Switch) findViewById(R.id.switchMorning);
+        @SuppressLint("UseSwitchCompatOrMaterialCode")
+        Switch switchEvening = (Switch) findViewById(R.id.switchEvening);
 
 
         //Assigning values by resource ID
@@ -74,6 +81,7 @@ public class HoursRequest extends AppCompatActivity {
         Button btnRequestHours = (Button) findViewById(R.id.btnRequestChange);
         btnAccount = (Button) findViewById(R.id.btnAccount);
         btnAccount.setText(firebaseUser.getEmail());
+        txtName = (EditText) findViewById(R.id.txtRequestName);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(HoursRequest.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.months));
@@ -104,21 +112,50 @@ public class HoursRequest extends AppCompatActivity {
                 alertDialog.setButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String email = btnAccount.getText().toString();
-                        String date = spinnerDay.getSelectedItem().toString();
-                        String day = txtDay.getText().toString();
-                        String month = spinnerMonth.getSelectedItem().toString();
-                        String hours = txtHours.getText().toString();
+                        if (switchMorning.isChecked()) {
+                            String email = btnAccount.getText().toString();
+                            String date = spinnerDay.getSelectedItem().toString();
+                            String day = txtDay.getText().toString();
+                            String month = spinnerMonth.getSelectedItem().toString();
+                            String hours = txtHours.getText().toString();
+                            String name = txtName.getText().toString();
+                            String preference = ("Morning");
 
-                        HashMap hashMap = new HashMap();
-                        hashMap.put("email", email);
-                        hashMap.put("date", date);
-                        hashMap.put("day", day);
-                        hashMap.put("month", month);
-                        hashMap.put("hours", hours);
+                            HashMap hashMap = new HashMap();
+                            hashMap.put("email", email);
+                            hashMap.put("date", date);
+                            hashMap.put("day", day);
+                            hashMap.put("month", month);
+                            hashMap.put("hours", hours);
+                            hashMap.put("preference", preference);
+                            hashMap.put("name", name);
 
-                        reff.child(email).setValue(hashMap);
-                        Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
+                            reff.child(name).setValue(hashMap);
+                            Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
+
+                        } else if (switchEvening.isChecked()) {
+                            String email = btnAccount.getText().toString();
+                            String date = spinnerDay.getSelectedItem().toString();
+                            String day = txtDay.getText().toString();
+                            String month = spinnerMonth.getSelectedItem().toString();
+                            String hours = txtHours.getText().toString();
+                            String name = txtName.getText().toString();
+                            String preference = ("Evening");
+
+                            HashMap hashMap = new HashMap();
+                            hashMap.put("email", email);
+                            hashMap.put("date", date);
+                            hashMap.put("day", day);
+                            hashMap.put("month", month);
+                            hashMap.put("hours", hours);
+                            hashMap.put("preference", preference);
+                            hashMap.put("name", name);
+
+                            reff.child(name).setValue(hashMap);
+                            Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
+
+                        }
+
 
                     }
                 });
@@ -133,11 +170,21 @@ public class HoursRequest extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    private void home() {startActivity(new Intent(this, MainMenu.class));
+    private void home() {
+        startActivity(new Intent(this, MainMenu.class));
     }
 
     private void account() {
         startActivity(new Intent(this, AccountMenu.class));
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            //Account button
+            case R.id.btnAccount:
+                startActivity(new Intent(this, AccountMenu.class));
+                break;
+        }
+    }
 }

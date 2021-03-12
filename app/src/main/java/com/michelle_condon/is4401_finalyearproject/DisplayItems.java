@@ -1,20 +1,15 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,9 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.michelle_condon.is4401_finalyearproject.Adapters.EmployeeAdapter;
 import com.michelle_condon.is4401_finalyearproject.Adapters.HelperAdapter;
-import com.michelle_condon.is4401_finalyearproject.GoogleMaps.MapsActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 
 import java.util.ArrayList;
@@ -81,7 +74,7 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
         btnAccount.setText(firebaseUser.getEmail());
 
         //Assigning the recycler view by resource id
-        recyclerView = findViewById(R.id.recyclerView1);
+        recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchData = new ArrayList<>();
 

@@ -1,7 +1,6 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,7 +81,7 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
         btnAccount.setText(firebaseUser.getEmail());
         btnCamera = (Button) findViewById(R.id.btnCamera);
         mref = FirebaseDatabase.getInstance().getReference("Items");
-        recyclerView = findViewById(R.id.recyclerView1);
+        recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchData = new ArrayList<>();
         txtSearch = (AutoCompleteTextView) findViewById(R.id.txtSearch);

@@ -81,7 +81,7 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         final String fullName = txtFullName.getText().toString().trim();
         final String employeeId = txtEmployeeId.getText().toString().trim();
         final String position = txtPosition.getText().toString().trim();
-        final Integer phoneNumber = Integer.parseInt(txtPhoneNumber.getText().toString().trim());
+        final String phoneNumber = txtPhoneNumber.getText().toString().trim();
 
         //Validation
         //Ensuring the name field is filled

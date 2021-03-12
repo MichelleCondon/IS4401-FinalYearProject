@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView1"
+        android:id="@+id/ListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="501dp"
         android:layout_below="@+id/lblInventory"
@@ -84,7 +84,7 @@
         android:onClick="onClick"
         android:text="Refresh"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView1"
+        app:layout_constraintBottom_toTopOf="@+id/ListRecyclerView"
         app:layout_constraintEnd_toEndOf="parent" />
 
 

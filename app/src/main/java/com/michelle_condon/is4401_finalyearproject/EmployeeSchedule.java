@@ -84,7 +84,7 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
         mref = FirebaseDatabase.getInstance().getReference("EmployeeRoster");
 
         //Assigning values by resourceId
-        recyclerView = findViewById(R.id.recyclerView1);
+        recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchEmployees = new ArrayList<>();
         txtSearchEmployee = (AutoCompleteTextView) findViewById(R.id.txtSearchEmployee);

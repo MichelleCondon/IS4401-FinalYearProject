@@ -1,33 +1,62 @@
 package com.michelle_condon.is4401_finalyearproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.List.VirtualList;
+import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 
 public class ManagementMainMenu extends AppCompatActivity implements View.OnClickListener {
 
     //Declaring Variables
     private TextView clockin, inventory, productCheck;
-    private Button btnAddEmployee, view, btnCreateList;
+    private Button btnAddEmployee, view, btnCreateList, btnAccount;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_main_menu);
 
-        //Removed any wording in the action bar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("");
-        }
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_employeeInfo:
+                        account();
+                        break;
+                    case R.id.action_home:
+                        home();
+                        break;
+                    case R.id.action_signout:
+                        signout();
+                        break;
+                }
+                return true;
+            }
+        });
         //Buttons on the menu
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        //Buttons on the menu
+        //Assigning values by resource Id's - Account Button
+        btnAccount = (Button) findViewById(R.id.btnAccount);
+        //Listening for the users button click for clock in/out
+        btnAccount.setOnClickListener(this);
+        btnAccount.setText(firebaseUser.getEmail());
 
         //Assigning values by resource Id's - ClockIn/Out button
         clockin = (TextView) findViewById(R.id.btnClockIn);
@@ -60,6 +89,14 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         productCheck.setOnClickListener(this);
     }
 
+    private void signout() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    private void home() { }
+
+    private void account(){ }
+
     @Override
     //OnClick method
     public void onClick(View v) {
@@ -71,7 +108,7 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
                 break;
             //View inventory button
             case R.id.btnViewInventory:
-                startActivity(new Intent(this, ManagementEditEmployee.class));
+                startActivity(new Intent(this, EditProfile.class));
                 break;
             //Add product button
             case R.id.btnAddProduct:
@@ -87,7 +124,7 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
                 break;
             //Create list button
             case R.id.btnCreateList:
-                startActivity(new Intent(this, VirtualList.class));
+                startActivity(new Intent(this, TimeOffReview.class));
                 break;
 
         }

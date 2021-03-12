@@ -11,8 +11,8 @@
         android:id="@+id/btnViewProfile"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="312dp"
         android:background="#3A82C9"
         android:text="View Profile"
         android:textColor="#FFFFFF"
@@ -58,8 +58,8 @@
         android:id="@+id/btnRequestHoursChange"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="49dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="160dp"
         android:background="#3A82C9"
         android:text="@string/lblHoursRequest"
         android:textColor="#FFFFFF"
@@ -83,12 +83,24 @@
         android:id="@+id/btnRequestTimeOff"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="44dp"
         android:background="#3A82C9"
         android:text="Request Time Off"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="40dp"
+        android:text="Edit Profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnViewProfile"
+        app:layout_constraintTop_toBottomOf="@+id/btnRequestTimeOff" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
