@@ -17,7 +17,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,15 +65,13 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        // initiate a Switch
-        @SuppressLint("UseSwitchCompatOrMaterialCode")
+
         Switch switchMorning = (Switch) findViewById(R.id.switchMorning);
-        @SuppressLint("UseSwitchCompatOrMaterialCode")
         Switch switchEvening = (Switch) findViewById(R.id.switchEvening);
 
 
         //Assigning values by resource ID
-        Spinner spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
+        Spinner spinnerDay = (Spinner) findViewById(R.id.spinnerDate);
         Spinner spinnerMonth = (Spinner) findViewById(R.id.spinnerMonth);
         txtDay = (EditText) findViewById(R.id.txtDay);
         txtHours = (EditText) findViewById(R.id.txtHours);

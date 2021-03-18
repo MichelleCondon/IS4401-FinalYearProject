@@ -39,26 +39,26 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblUser" />
+        app:layout_constraintTop_toBottomOf="@+id/lblUser"
+        app:layout_constraintVertical_bias="0.472" />
 
     <TextView
         android:id="@+id/lblUser"
-        android:layout_width="217dp"
-        android:layout_height="53dp"
+        android:layout_width="245dp"
+        android:layout_height="51dp"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="133dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="133dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-black"
-        android:text="User Profile"
+        android:text="@string/lblUserProfile"
         android:textAlignment="center"
         android:textColor="#040202"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintEnd_toStartOf="@+id/btnRefreshUser"
+        app:layout_constraintHorizontal_bias="0.675"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -79,10 +79,11 @@
         android:id="@+id/btnRefreshUser"
         android:layout_width="102dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/rounded_corners"
         android:drawableStart="@drawable/ic_baseline_refresh_24"
-        android:text="Refresh"
+        android:text="@string/btnRefresh"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewUser"
         app:layout_constraintEnd_toEndOf="parent" />

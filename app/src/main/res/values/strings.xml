@@ -137,6 +137,15 @@
     <string name="btnRequestTimeOff">Request Time Off</string>
     <string name="btnViewProfile">View Profile</string>
     <string name="btnSubmitDocuments">Submit Documents</string>
+    <string name="switchMorning">Morning</string>
+    <string name="switchEvening">Evening</string>
+    <string name="txtEmployeeName">Employee Name:</string>
+    <string name="txtEmployeeid">Employee ID:</string>
+    <string name="txtEmployeePosition">Position:</string>
+    <string name="txtPhoneNumber">Phone Number:</string>
+    <string name="txtEmail">Email:</string>
+    <string name="lblUserProfile">Employee Info</string>
+    <string name="btnRefresh">Refresh</string>
 
 
 
