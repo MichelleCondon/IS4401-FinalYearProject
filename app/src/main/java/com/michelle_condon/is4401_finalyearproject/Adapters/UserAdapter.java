@@ -10,12 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.michelle_condon.is4401_finalyearproject.EditProfile;
-import com.michelle_condon.is4401_finalyearproject.ListAdapter;
+import com.michelle_condon.is4401_finalyearproject.UpdatePages.EditProfile;
 import com.michelle_condon.is4401_finalyearproject.Models.User;
 import com.michelle_condon.is4401_finalyearproject.R;
-import com.michelle_condon.is4401_finalyearproject.UpdateProducts;
 
 import java.util.List;
 

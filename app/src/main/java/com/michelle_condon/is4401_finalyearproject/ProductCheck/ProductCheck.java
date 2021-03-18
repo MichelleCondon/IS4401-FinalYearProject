@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.ProductCheck;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.Adapters.HelperAdapter;
+import com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner2;
+import com.michelle_condon.is4401_finalyearproject.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
+import com.michelle_condon.is4401_finalyearproject.Models.FetchData;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.ArrayList;
 import java.util.List;

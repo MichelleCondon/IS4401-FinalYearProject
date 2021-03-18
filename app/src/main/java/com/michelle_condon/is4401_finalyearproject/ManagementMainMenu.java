@@ -1,7 +1,6 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,8 +13,10 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.michelle_condon.is4401_finalyearproject.List.VirtualList;
-import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
+import com.michelle_condon.is4401_finalyearproject.AddPages.AddSchedule;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.TimeOffReview;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
+import com.michelle_condon.is4401_finalyearproject.ProductCheck.ProductCheck;
 
 public class ManagementMainMenu extends AppCompatActivity implements View.OnClickListener {
 

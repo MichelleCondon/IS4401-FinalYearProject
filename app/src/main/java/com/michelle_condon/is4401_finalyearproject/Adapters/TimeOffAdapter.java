@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.michelle_condon.is4401_finalyearproject.FetchRequests;
+import com.michelle_condon.is4401_finalyearproject.Models.FetchRequests;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
 import com.michelle_condon.is4401_finalyearproject.R;
 

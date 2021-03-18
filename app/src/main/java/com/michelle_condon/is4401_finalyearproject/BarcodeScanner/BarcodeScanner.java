@@ -1,4 +1,11 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.BarcodeScanner;
+
+//Import Statements
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -6,18 +13,14 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import com.google.zxing.Result;
+import com.michelle_condon.is4401_finalyearproject.AddPages.AddItems;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
 
-public class BarcodeScanner2 extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class BarcodeScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     //Declaring Variables
     private static final int REQUEST_CAMERA = 1;
@@ -36,7 +39,7 @@ public class BarcodeScanner2 extends AppCompatActivity implements ZXingScannerVi
         //If statement calls the checkPermission() method to check the status of permission access to the camera
         //If permission has not been granted the requestPermission() method is called
         if (checkPermission()) {
-            Toast.makeText(BarcodeScanner2.this, "Permission to Use Camera Granted", Toast.LENGTH_LONG).show();
+            Toast.makeText(BarcodeScanner.this, "Permission to Use Camera Granted", Toast.LENGTH_LONG).show();
         } else {
             requestPermissions();
         }
@@ -45,7 +48,7 @@ public class BarcodeScanner2 extends AppCompatActivity implements ZXingScannerVi
 
     //Check the permission access rights to the device's camera
     private boolean checkPermission() {
-        return (ContextCompat.checkSelfPermission(BarcodeScanner2.this, CAMERA) == PackageManager.PERMISSION_GRANTED);
+        return (ContextCompat.checkSelfPermission(BarcodeScanner.this, CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 
     //Request permission for access rights to the devices camera
@@ -61,11 +64,11 @@ public class BarcodeScanner2 extends AppCompatActivity implements ZXingScannerVi
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     //Camera permission has been granted
                     if (cameraAccepted) {
-                        Toast.makeText(BarcodeScanner2.this, "Permission To Access The Camera Has Been Granted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(BarcodeScanner.this, "Permission To Access The Camera Has Been Granted", Toast.LENGTH_LONG).show();
                     }
                     //Permission to access the camera is denied
                     else {
-                        Toast.makeText(BarcodeScanner2.this, "Permission To Access The Camera Has Not Been Granted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(BarcodeScanner.this, "Permission To Access The Camera Has Not Been Granted", Toast.LENGTH_LONG).show();
                         //Prompting the user to grant permission for access to the camera
                         if (shouldShowRequestPermissionRationale(CAMERA)) {
                             displayAlertMessage("You need to allow access for both permissions",
@@ -108,7 +111,7 @@ public class BarcodeScanner2 extends AppCompatActivity implements ZXingScannerVi
     }
 
     public void displayAlertMessage(String message, DialogInterface.OnClickListener listener) {
-        new AlertDialog.Builder(BarcodeScanner2.this)
+        new AlertDialog.Builder(BarcodeScanner.this)
 
                 //Details of the alert message to be displayed
                 .setMessage(message)
@@ -124,17 +127,17 @@ public class BarcodeScanner2 extends AppCompatActivity implements ZXingScannerVi
         scanResult = result.getText();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
-        builder.setPositiveButton("Search", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Add to Inventory", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent i = new Intent(BarcodeScanner2.this, ProductCheck2.class);
+                Intent i = new Intent(BarcodeScanner.this, AddItems.class);
                 startActivity(i);
             }
         });
         builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(BarcodeScanner2.this);
+                scannerView.resumeCameraPreview(BarcodeScanner.this);
             }
         });
         builder.setMessage(scanResult);

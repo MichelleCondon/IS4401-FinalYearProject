@@ -85,8 +85,6 @@
     <string name="txtSearch">Product Name</string>
     <string name="txtComments">Additional Comments</string>
     <string name="txtClockInName">Enter your Name Here</string>
-
-
     <string-array name="months">
         <item>January</item>
         <item>February</item>
@@ -134,6 +132,18 @@
         <item>30</item>
         <item>31</item>
     </string-array>
+    <string name="txtWeekNumber">Week Number:</string>
+    <string name="txtMonday">Monday:</string>
+    <string name="btnRequestTimeOff">Request Time Off</string>
+    <string name="btnViewProfile">View Profile</string>
+    <string name="btnSubmitDocuments">Submit Documents</string>
+
+
+
+
+
+
+
 
 
     <string name="title_activity_register">RegisterActivity</string>

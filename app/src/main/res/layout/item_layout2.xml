@@ -18,43 +18,27 @@
             android:background="#3A82C9">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="5dp"
-                android:layout_gravity="center_horizontal"
-                android:padding="10sp"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="5dp"
-                android:layout_gravity="center_horizontal"
-                android:padding="10sp"
-                android:textSize="14sp" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
                 android:id="@+id/lblWeekNumber"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:paddingLeft="27dp"
-                android:text="Week Number:"
-                android:textColor="#000000"
+                android:text="@string/txtWeekNumber"
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/weekNumber"
-                android:layout_width="match_parent"
+                android:layout_width="92dp"
                 android:layout_height="match_parent"
-                android:paddingStart="50dp"
-                android:textAlignment="viewEnd"
-                android:textColor="#000000"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
 
         </TableRow>
+
         <!--Table Data-->
         <TableRow>
 

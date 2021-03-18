@@ -13,9 +13,12 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.DisplayItems;
 import com.michelle_condon.is4401_finalyearproject.GoogleMaps.MapsActivity;
 import com.michelle_condon.is4401_finalyearproject.List.VirtualList;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
+import com.michelle_condon.is4401_finalyearproject.ProductCheck.ProductCheck;
 
 public class MainMenu extends AppCompatActivity implements View.OnClickListener {
 

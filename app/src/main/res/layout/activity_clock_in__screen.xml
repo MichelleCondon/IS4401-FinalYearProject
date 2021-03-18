@@ -8,7 +8,7 @@
     android:clickable="true"
     android:contextClickable="false"
     android:visibility="visible"
-    tools:context=".ClockIn_Screen">
+    tools:context=".ClockInPages.ClockIn_Screen">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

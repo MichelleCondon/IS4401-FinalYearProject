@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
-import com.michelle_condon.is4401_finalyearproject.ClockIn_Screen;
+import com.michelle_condon.is4401_finalyearproject.ClockInPages.ClockIn_Screen;
 
 import java.util.List;
 

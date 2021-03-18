@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.michelle_condon.is4401_finalyearproject.FetchEmployees;
+import com.michelle_condon.is4401_finalyearproject.Models.FetchEmployees;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.List;

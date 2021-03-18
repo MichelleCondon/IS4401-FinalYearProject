@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.AddPages;
 
 //Import Statements
 
@@ -16,21 +16,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //Firebase Imports
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import com.google.firebase.database.Query;
+import com.michelle_condon.is4401_finalyearproject.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 //Importing the scanResult variable from the BarcodeScanner.java class
 import java.util.HashMap;
 
-import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.scanResult;
+import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner.scanResult;
 
 
 public class AddItems extends AppCompatActivity implements View.OnClickListener {

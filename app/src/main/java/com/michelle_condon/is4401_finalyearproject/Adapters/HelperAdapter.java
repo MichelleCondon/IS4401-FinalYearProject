@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.michelle_condon.is4401_finalyearproject.FetchData;
+import com.michelle_condon.is4401_finalyearproject.Models.FetchData;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
 import com.michelle_condon.is4401_finalyearproject.R;
-import com.michelle_condon.is4401_finalyearproject.UpdateProducts;
+import com.michelle_condon.is4401_finalyearproject.UpdatePages.UpdateProducts;
 
 import java.util.List;
 
