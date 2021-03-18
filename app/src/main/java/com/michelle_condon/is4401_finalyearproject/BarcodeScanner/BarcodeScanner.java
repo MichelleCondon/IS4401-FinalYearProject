@@ -1,7 +1,5 @@
 package com.michelle_condon.is4401_finalyearproject.BarcodeScanner;
 
-//Import Statements
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -27,7 +25,7 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
     private ZXingScannerView scannerView;
     public static String scanResult;
 
-    //Code below ia based on a YouTube Video, by TechAcademy, youtube.com/watch?v=otkz5Cwdw38
+    //Code below ia based on a YouTube Video "QR and Barcode Scanner | Android Tutorial", by TechAcademy, "youtube.com/watch?v=otkz5Cwdw38"
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,7 +124,7 @@ public class BarcodeScanner extends AppCompatActivity implements ZXingScannerVie
     public void handleResult(Result result) {
         scanResult = result.getText();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
+        builder.setTitle("Barcode");
         builder.setPositiveButton("Add to Inventory", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

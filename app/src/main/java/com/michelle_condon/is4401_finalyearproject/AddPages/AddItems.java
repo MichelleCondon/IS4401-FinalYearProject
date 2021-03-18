@@ -1,7 +1,5 @@
 package com.michelle_condon.is4401_finalyearproject.AddPages;
 
-//Import Statements
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//Firebase Imports
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,19 +25,17 @@ import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
 import com.michelle_condon.is4401_finalyearproject.R;
 
-//Importing the scanResult variable from the BarcodeScanner.java class
 import java.util.HashMap;
 
 import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner.scanResult;
 
 
 public class AddItems extends AppCompatActivity implements View.OnClickListener {
-    //Code below to insert data into Firebase is based on a YouTube Video, by EducaTree, https://www.youtube.com/watch?v=iy6WexahCdY&t=328
 
     //Declare Variables
     EditText txtName, txtDescription, txtPrice, txtQuantity;
     TextView barcodeRef;
-    Button btnSave, lblAccount;
+    Button btnSave, btnAccount;
     DatabaseReference reff;
     Items item;
     FirebaseAuth firebaseAuth;
@@ -52,50 +47,43 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_items);
 
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_account:
-                        account();
-                        break;
-                    case R.id.action_home:
-                        home();
-                        break;
-                    case R.id.action_signout:
-                        signout();
-                        break;
+                if (item.getItemId() == R.id.action_account) {
+                    account();
+                } else if (item.getItemId() == R.id.action_home) {
+                    home();
+                } else if (item.getItemId() == R.id.action_signout) {
+                    signout();
                 }
                 return true;
             }
         });
-        //Assigning values by resource ID
-        txtName = (EditText) findViewById(R.id.txtName);
-        txtPrice = (EditText) findViewById(R.id.txtPrice);
-        txtQuantity = (EditText) findViewById(R.id.txtQuantity);
-        barcodeRef = (TextView) findViewById(R.id.barcodeRef);
-        txtDescription = (EditText) findViewById(R.id.txtDescription);
-        btnSave = (Button) findViewById(R.id.btnAddToSchedule);
-        barcodeRef = (TextView) findViewById(R.id.barcodeRef);
+        //End
 
-        //https://suragch.medium.com/how-to-add-a-bottom-navigation-bar-in-android-958ed728ef6c
+
+        //Product Name Text Box
+        txtName = (EditText) findViewById(R.id.txtName);
+        //Price Text Box
+        txtPrice = (EditText) findViewById(R.id.txtPrice);
+        //Description Text Box
+        txtDescription = (EditText) findViewById(R.id.txtDescription);
+        //Quantity Text Box
+        txtQuantity = (EditText) findViewById(R.id.txtQuantity);
+        //Barcode TextView
+        barcodeRef = (TextView) findViewById(R.id.barcodeRef);
+        //Save Button
+        btnSave = (Button) findViewById(R.id.btnAddToSchedule);
+
+        //Account Button
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //Buttons on the menu
-        //Assigning values by resource Id's - Account Button
-        lblAccount = (Button) findViewById(R.id.btnAccount);
-        //Listening for the users button click for clock in/out
-        lblAccount.setOnClickListener(this);
-        lblAccount.setText(firebaseUser.getEmail());
-
-
-
-        //Removed any wording from within the action bar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("");
-        }
+        btnAccount = (Button) findViewById(R.id.btnAccount);
+        btnAccount.setOnClickListener(this);
+        btnAccount.setText(firebaseUser.getEmail());
 
         //Setting the text of the barcode text view with the scanned value from the barcode scanner
         barcodeRef.setText(scanResult);
@@ -112,7 +100,7 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
                 String price = txtPrice.getText().toString();
                 String quantity = txtQuantity.getText().toString();
 
-
+                //Pushing data to Firebase using a Hashmap
                 HashMap hashMap = new HashMap();
                 hashMap.put("barcode", barcode);
                 hashMap.put("name", name);
@@ -124,7 +112,6 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
                 Toast.makeText(AddItems.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
             }
         });
-        //End
 
 
     }
@@ -143,11 +130,9 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            //Account button
-            case R.id.btnAccount:
-                startActivity(new Intent(this, AccountMenu.class));
-                break;
+        //Account button
+        if (v.getId() == R.id.btnAccount) {
+            startActivity(new Intent(this, AccountMenu.class));
         }
     }
 }
