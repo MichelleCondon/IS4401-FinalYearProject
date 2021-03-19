@@ -146,6 +146,33 @@
     <string name="txtEmail">Email:</string>
     <string name="lblUserProfile">Employee Info</string>
     <string name="btnRefresh">Refresh</string>
+    <string name="hintSaturday">Saturday Hours</string>
+    <string name="hintSunday">Sunday Hours</string>
+    <string name="hintWeekNumber">Week Number</string>
+    <string name="txtTuesday">Tuesday:</string>
+    <string name="txtWednesday">Wednesday:</string>
+    <string name="txtThursday">Thursday:</string>
+    <string name="txtFriday">Friday:</string>
+    <string name="txtSaturday">Saturday:</string>
+    <string name="txtSunday">Sunday:</string>
+    <string name="lblBarcode">Barcode:</string>
+    <string name="btnDeleteRoster">Delete Roster</string>
+    <string name="btnDeleteProduct">Delete Product</string>
+    <string name="lblUpdateSchedule">Update Schedule</string>
+    <string name="lblReviewTimeOffRequests">Review Time Off Requests</string>
+    <string name="btnViewEdit">View + Edit Schedule</string>
+    <string name="btnReviewTimeOffRequest">Review Time Off Requests</string>
+    <string name="lblExistingLists">Existing List</string>
+    <string name="btnUpdateProfile">Update Profile</string>
+    <string name="lblUpdateUserProfile">Update User Profile</string>
+    <string name="btnDeleteProfile">Delete Profile</string>
+
+
+
+
+
+
+
 
 
 
@@ -162,18 +189,12 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="employee_app_text">Employee App</string>
-    <string name="welcome_back_text">Welcome Back! Login Below:</string>
-    <string name="first_name_text">First Name:</string>
-    <string name="first_name_textbox"></string>
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="employee_id">Employee ID</string>
     <string name="userEmail">Email</string>
     <string name="lblBarcodeScannerCode">Barcode Number:</string>
     <string name="lblTitle">Add Product to Inventory</string>
-
-
     <string name="lblProductDescription">Product Description:</string>
-
     <string name="btnSave">Add to Inventory</string>
     <string name="title_activity_maps">Map</string>
 

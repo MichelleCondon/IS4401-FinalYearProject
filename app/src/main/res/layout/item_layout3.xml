@@ -1,59 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/item_layout"
     android:orientation="vertical">
 
-
-    <TableLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp">
+        android:layout_height="match_parent">
 
-        <!--Table Heading-->
-        <TableRow>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_horizontal"
-                android:padding="10sp"
-                android:textAlignment="viewEnd"
-                android:textSize="14sp" />
+            <!--Table Heading-->
+            <TableRow>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_horizontal"
-                android:padding="10sp"
-                android:textAlignment="viewEnd"
-                android:textSize="14sp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10sp"
+                    android:textSize="14sp" />
 
-        </TableRow>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10sp"
+                    android:textSize="14sp" />
 
-
-        <!--Table Data-->
-        <TableRow>
-
-            <TextView
-                android:id="@+id/products"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="50dp"
-                android:paddingEnd="0dp"
-                android:layout_gravity="center_horizontal"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/colorBlue"
-                android:textSize="20sp" />
-
-        </TableRow>
+            </TableRow>
 
 
-    </TableLayout>
-</RelativeLayout>
+            <!--Table Data-->
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/products"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="50dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
 

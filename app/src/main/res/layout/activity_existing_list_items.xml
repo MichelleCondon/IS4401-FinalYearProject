@@ -22,7 +22,7 @@
         android:layout_height="71dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-black"
-        android:text="Existing Lists"
+        android:text="@string/lblExistingLists"
         android:textAlignment="center"
         android:textColor="#040202"
         android:textSize="30sp"

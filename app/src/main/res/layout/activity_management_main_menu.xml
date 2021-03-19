@@ -39,7 +39,7 @@
         android:layout_marginBottom="47dp"
         android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_table_view_24"
-        android:text="View + Edit Schedule"
+        android:text="@string/btnViewEdit"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnViewInventory"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -123,7 +123,7 @@
         android:layout_marginBottom="208dp"
         android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_edit_24"
-        android:text="Review Time Off Requests"
+        android:text="@string/btnReviewTimeOffRequest"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

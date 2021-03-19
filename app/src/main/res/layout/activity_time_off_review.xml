@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:fontFamily="sans-serif-black"
-        android:text="Review Time Off Requests"
+        android:text="@string/lblReviewTimeOffRequests"
         android:textAlignment="center"
         android:textColor="#070707"
         android:textSize="30sp"

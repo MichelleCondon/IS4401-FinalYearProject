@@ -159,7 +159,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
         android:onClick="onClick"
-        android:text="Delete Product"
+        android:text="@string/btnDeleteProduct"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.471"

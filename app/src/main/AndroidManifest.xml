@@ -22,14 +22,14 @@
         android:icon="@mipmap/ic_logo_foreground"
         android:label="Solution Trail"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme1">
-        <activity android:name=".UpdatePages.UpdateSchedule"></activity>
+        android:theme="@style/AppTheme1"
+        tools:ignore="AllowBackup">
+        <activity android:name=".UpdatePages.UpdateSchedule"/>
         <activity android:name=".ManagementViewEmployeeSchedule" />
         <activity android:name=".UpdatePages.EditProfile" />
         <activity android:name=".DisplayPages.TimeOffReview" />
         <activity android:name=".DisplayPages.UserProfile" />
         <activity android:name=".ProductCheck.ProductCheck2" />
-        <activity android:name=".EmailTemplate" />
         <activity android:name=".Menus.AccountMenu" />
         <activity
             android:name=".TimeOffRequest"
@@ -56,7 +56,8 @@
         <receiver
             android:name=".GoogleMaps.GeofenceBroadcastReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="ExportedReceiver" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
