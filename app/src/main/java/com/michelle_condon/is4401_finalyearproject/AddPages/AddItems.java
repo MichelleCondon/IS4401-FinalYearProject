@@ -16,9 +16,12 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
@@ -94,22 +97,64 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = txtName.getText().toString();
-                String description = txtDescription.getText().toString();
-                String barcode = barcodeRef.getText().toString();
-                String price = txtPrice.getText().toString();
-                String quantity = txtQuantity.getText().toString();
+                String productName = txtName.getText().toString();
+                String productDescription = txtDescription.getText().toString();
+                String productQuantity = txtQuantity.getText().toString();
+                String productPrice = txtPrice.getText().toString();
 
-                //Pushing data to Firebase using a Hashmap
-                HashMap hashMap = new HashMap();
-                hashMap.put("barcode", barcode);
-                hashMap.put("name", name);
-                hashMap.put("description", description);
-                hashMap.put("price", price);
-                hashMap.put("quantity", quantity);
+                if (productName.isEmpty()) {
+                    txtName.setError("Product Name is Required");
+                    txtName.requestFocus();
+                    return;
+                }
+                if (productDescription.isEmpty()) {
+                    txtDescription.setError("Product Description is Required");
+                    txtDescription.requestFocus();
+                    return;
+                }
+                if (productQuantity.isEmpty()) {
+                    txtQuantity.setError("Product Quantity is Required");
+                    txtQuantity.requestFocus();
+                    return;
+                }
+                if (productPrice.isEmpty()) {
+                    txtPrice.setError("Product Price is Required");
+                    txtPrice.requestFocus();
+                    return;
+                }
 
-                reff.child(barcode).setValue(hashMap);
-                Toast.makeText(AddItems.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
+                reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChild(scanResult)) {
+                            Toast.makeText(AddItems.this, "Barcode Already Exists, Please Search and Edit the Existing Product", Toast.LENGTH_LONG).show();
+                        } else {
+                            String name = txtName.getText().toString();
+                            String description = txtDescription.getText().toString();
+                            String barcode = barcodeRef.getText().toString();
+                            String price = txtPrice.getText().toString();
+                            String quantity = txtQuantity.getText().toString();
+
+                            //Pushing data to Firebase using a Hashmap
+                            HashMap hashMap = new HashMap();
+                            hashMap.put("barcode", barcode);
+                            hashMap.put("name", name);
+                            hashMap.put("description", description);
+                            hashMap.put("price", price);
+                            hashMap.put("quantity", quantity);
+
+                            reff.child(barcode).setValue(hashMap);
+                            Toast.makeText(AddItems.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
         });
 
