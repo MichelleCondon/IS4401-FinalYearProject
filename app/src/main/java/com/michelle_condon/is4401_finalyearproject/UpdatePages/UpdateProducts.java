@@ -99,6 +99,31 @@ public class UpdateProducts extends AppCompatActivity implements View.OnClickLis
             @SuppressWarnings("unchecked")
             @Override
             public void onClick(View v) {
+                String productName = name.getText().toString();
+                String productDescription = description.getText().toString();
+                String productQuantity = quantity.getText().toString();
+                String productPrice = price.getText().toString();
+
+                if (productName.isEmpty()) {
+                    name.setError("Product Name is Required");
+                    name.requestFocus();
+                    return;
+                }
+                if (productDescription.isEmpty()) {
+                    name.setError("Product Description is Required");
+                    name.requestFocus();
+                    return;
+                }
+                if (productQuantity.isEmpty()) {
+                    name.setError("Product Quantity is Required");
+                    name.requestFocus();
+                    return;
+                }
+                if (productPrice.isEmpty()) {
+                    name.setError("Product Price is Required");
+                    name.requestFocus();
+                    return;
+                }
                 String updatedName = name.getText().toString();
                 String updatedDescription = description.getText().toString();
                 String updatedPrice = price.getText().toString();

@@ -8,140 +8,151 @@
     android:background="@drawable/item_layout"
     android:orientation="horizontal">
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="226dp"
+        android:background="@color/colorBlue"
+        tools:context=".MainMenu">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="226dp"
-            android:background="#e3eeff"
-            tools:context=".MainMenu">
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/lblBarcode"
-                android:layout_width="135dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="12dp"
-                android:text="@string/lblBarcode"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/lblBarcode"
+                    android:layout_width="135dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/lblBarcode"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/lblProductName"
-                android:layout_width="135dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/lblProductName"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblBarcode" />
+                <TextView
+                    android:id="@+id/lblProductName"
+                    android:layout_width="135dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/lblProductName"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblBarcode" />
 
-            <TextView
-                android:id="@+id/lblTuesday"
-                android:layout_width="135dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/lblDescription"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblProductName" />
+                <TextView
+                    android:id="@+id/lblTuesday"
+                    android:layout_width="135dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/lblDescription"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblProductName" />
 
-            <TextView
-                android:id="@+id/lblThursday"
-                android:layout_width="135dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="2dp"
-                android:text="@string/lblQuantity"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblTuesday" />
+                <TextView
+                    android:id="@+id/lblThursday"
+                    android:layout_width="135dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/lblQuantity"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblTuesday" />
 
-            <TextView
-                android:id="@+id/txtBarcode"
-                android:layout_width="162dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="216dp"
-                android:layout_marginTop="12dp"
-                android:text="@string/txtHiddenTextView"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/txtBarcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/txtHiddenTextView"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/lblBarcode"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/lblPrice"
-                android:layout_width="135dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="9dp"
-                android:text="@string/lblPrice"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblThursday" />
+                <TextView
+                    android:id="@+id/lblPrice"
+                    android:layout_width="135dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/lblPrice"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblThursday" />
 
-            <TextView
-                android:id="@+id/txtProductName"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtHiddenTextView"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/lblProductName"
-                app:layout_constraintTop_toBottomOf="@+id/txtBarcode" />
+                <TextView
+                    android:id="@+id/txtProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txtHiddenTextView"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/lblProductName"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBarcode" />
 
-            <TextView
-                android:id="@+id/txtProductDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtHiddenTextView"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/lblTuesday"
-                app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
+                <TextView
+                    android:id="@+id/txtProductDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txtHiddenTextView"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/lblTuesday"
+                    app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
 
-            <TextView
-                android:id="@+id/txtProductQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/txtHiddenTextView"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/lblThursday"
-                app:layout_constraintTop_toBottomOf="@+id/txtProductDescription" />
+                <TextView
+                    android:id="@+id/txtProductQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txtHiddenTextView"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/lblThursday"
+                    app:layout_constraintTop_toBottomOf="@+id/txtProductDescription" />
 
-            <TextView
-                android:id="@+id/txtProductPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtHiddenTextView"
-                android:textColor="#0B0B0B"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/lblPrice"
-                app:layout_constraintTop_toBottomOf="@+id/txtProductQuantity" />
+                <TextView
+                    android:id="@+id/txtProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/txtHiddenTextView"
+                    android:textColor="#0B0B0B"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/lblPrice"
+                    app:layout_constraintTop_toBottomOf="@+id/txtProductQuantity" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.cardview.widget.CardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 
