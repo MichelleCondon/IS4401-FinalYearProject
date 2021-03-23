@@ -6,7 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +33,7 @@ public class ExistingListItems extends AppCompatActivity {
     RecyclerView recyclerView1;
     ListAdapter listAdapter;
     DatabaseReference databaseReference;
+    TextView products;
 
 
     @Override
@@ -44,6 +50,7 @@ public class ExistingListItems extends AppCompatActivity {
 
         //Assigning the recycler view by resource id
         recyclerView1 = findViewById(R.id.recyclerView1);
+        products = findViewById(R.id.products);
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
         vLists = new ArrayList<>();
 
@@ -67,6 +74,7 @@ public class ExistingListItems extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
 
 
     }

@@ -2,6 +2,7 @@ package com.michelle_condon.is4401_finalyearproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -66,8 +67,8 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        Switch switchMorning = (Switch) findViewById(R.id.switchMorning);
-        Switch switchEvening = (Switch) findViewById(R.id.switchEvening);
+        SwitchCompat switchMorning = (SwitchCompat) findViewById(R.id.switchMorning);
+        SwitchCompat switchEvening = (SwitchCompat) findViewById(R.id.switchEvening);
 
 
         //Assigning values by resource ID

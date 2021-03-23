@@ -36,12 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Removed any wording in the action bar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("");
-        }
-
         //Assigning values to variables with resource Id's - Register TextView
         register = (TextView) findViewById(R.id.lblRegister);
         //Listening for the text view click for register
@@ -116,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 //If the login is successful the menu is opened
-                if (email.equals("admin@admin.com")&& (password.equals("admin1"))) {
+                if (email.equals("admin@gmail.com")&& (password.equals("admin1"))) {
                     startActivity(new Intent(MainActivity.this, ManagementMainMenu.class));
                 } else if (task.isSuccessful()){
                     startActivity(new Intent(MainActivity.this, MainMenu.class));
