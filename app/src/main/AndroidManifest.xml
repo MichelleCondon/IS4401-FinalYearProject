@@ -78,7 +78,7 @@
         <activity android:name=".BarcodeScanner.BarcodeScanner" />
         <activity android:name=".BarcodeScanner.BarcodeScanner2" />
         <activity android:name=".ClockInPages.ClockIn_Screen" />
-        <activity android:name=".MainMenu" />
+        <activity android:name=".Menus.MainMenu" />
         <activity android:name=".SignupScreen" />
     </application>
 
