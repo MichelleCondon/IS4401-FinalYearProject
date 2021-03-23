@@ -149,7 +149,6 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
             case R.id.btnApprove:
                 startActivity(new Intent(this, ManagementViewEmployeeSchedule.class));
                 sendEmailApproval();
-
                 break;
             case R.id.btnReject:
                 sendEmailDenial();

@@ -78,7 +78,7 @@
         android:layout_width="102dp"
         android:layout_height="48dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_corners"
         android:drawableStart="@drawable/ic_baseline_refresh_24"
         android:onClick="onClick"

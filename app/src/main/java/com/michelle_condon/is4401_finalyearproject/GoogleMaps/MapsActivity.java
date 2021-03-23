@@ -40,7 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GeofencingClient geoFencingClient;
     private GeofenceHelper geofenceHelper;
 
-    private float GEOFENCE_RADIUS = 50;
+    private float GEOFENCE_RADIUS = 100;
     private String GEOFENCE_ID = "SOME_GEOFENCE_ID";
     private int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
     private int BACKGROUND_LOCATION_ACCESS_REQUEST_CODE = 10002;
@@ -74,9 +74,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in my home location and move the camera
-        LatLng home = new LatLng(52.266806, -8.26962);
+        LatLng home = new LatLng(52.29364, -8.18674);
         //mMap.animateCamera(CameraUpdateFactory.zoomIn());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(home, 2));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(home, 4));
         enableUserLocation();
         mMap.clear();
         addMarker(home);

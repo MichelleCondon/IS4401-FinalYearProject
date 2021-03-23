@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/item_layout"
@@ -24,230 +25,340 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TableLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp">
+                android:layout_height="match_parent">
 
-                <!--Table Heading-->
-                <TableRow android:background="#3A82C9">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/lblWeekNumber"
+
+                    <!--Table Heading-->
+                    <TableRow android:background="#3A82C9">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/lblWeekNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="@string/txtWeekNumber"
+                                android:textAlignment="viewStart"
+                                android:textColor="#FFFFFF"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/weekNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="2dp"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewStart"
+                                android:textColor="#FFFFFF"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblWeekNumber"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </TableRow>
+
+                    <!--Table Data-->
+                    <TableRow
                         android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:text="@string/txtWeekNumber"
-                        android:textAlignment="viewStart"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
+                        android:layout_height="14dp">
 
-                    <TextView
-                        android:id="@+id/weekNumber"
-                        android:layout_width="92dp"
-                        android:layout_height="match_parent"
-                        android:paddingStart="0dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewStart"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
+                            <TextView
+                                android:id="@+id/lblMondayEmployee"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:text="@string/txtMonday"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                </TableRow>
+                            <TextView
+                                android:id="@+id/monday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="48dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewStart"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblMondayEmployee"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                <!--Table Data-->
-                <TableRow>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/lblMondayEmployee"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingStart="84dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/txtMonday"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                    </TableRow>
 
-                    <TextView
-                        android:id="@+id/monday"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingStart="50dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="100"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/lblTuesday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="80dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/txtTuesday"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tuesday"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingStart="50dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="100"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/lblWednesday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="52dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/txtWednesday"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/wednesday"
+                    <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingStart="50dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:layout_weight="100"
+                        android:orientation="horizontal">
 
-                </TableRow>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_weight="100"
-                    android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/lblTuesday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:text="@string/txtTuesday"
+                                android:textAlignment="viewStart"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/lblThursday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="72dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/txtThursday"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/tuesday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="46dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblTuesday"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/thursday"
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingStart="50dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-                </TableRow>
+                        android:layout_weight="100"
+                        android:orientation="horizontal">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="100"
-                    android:orientation="vertical">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/lblFriday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="100dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/txtFriday"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/lblWednesday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:text="@string/txtWednesday"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/friday"
+                            <TextView
+                                android:id="@+id/wednesday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblWednesday"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="50dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-                </TableRow>
+                        android:layout_height="46dp"
+                        android:layout_weight="100"
+                        android:orientation="horizontal">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="100"
-                    android:orientation="vertical">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/lblSaturday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="77dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/txtSaturday"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/lblThursday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:text="@string/txtThursday"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/saturday"
+                            <TextView
+                                android:id="@+id/thursday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="38dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblThursday"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="50dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-                </TableRow>
+                        android:layout_height="100dp"
+                        android:layout_weight="100"
+                        android:orientation="vertical">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="100"
-                    android:orientation="vertical">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/lblSunday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="88dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/txtSunday"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/lblFriday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:text="@string/txtFriday"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/sunday"
+                            <TextView
+                                android:id="@+id/friday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="70dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblFriday"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </TableRow>
+
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="50dp"
-                        android:paddingEnd="0dp"
-                        android:textAlignment="viewEnd"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
-                </TableRow>
+                        android:layout_height="100dp"
+                        android:layout_weight="100"
+                        android:orientation="vertical">
 
-            </TableLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
+                            <TextView
+                                android:id="@+id/lblSaturday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:text="@string/txtSaturday"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/saturday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="43dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblSaturday"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_weight="100"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/lblSunday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="80dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:text="@string/txtSunday"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/sunday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="56dp"
+                                android:layout_marginTop="3dp"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="0dp"
+                                android:textAlignment="viewEnd"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toEndOf="@+id/lblSunday"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </TableRow>
+
+                </TableLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
