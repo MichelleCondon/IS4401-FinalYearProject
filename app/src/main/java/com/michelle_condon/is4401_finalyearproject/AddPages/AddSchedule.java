@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchEmployees;
-import com.michelle_condon.is4401_finalyearproject.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.ManagementMainMenu;
 import com.michelle_condon.is4401_finalyearproject.R;
 

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.michelle_condon.is4401_finalyearproject.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 public class SplashScreen extends AppCompatActivity {

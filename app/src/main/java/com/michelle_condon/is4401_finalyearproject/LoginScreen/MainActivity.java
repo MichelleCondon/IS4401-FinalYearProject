@@ -1,5 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
-
+package com.michelle_condon.is4401_finalyearproject.LoginScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,24 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.michelle_condon.is4401_finalyearproject.MainMenu;
+import com.michelle_condon.is4401_finalyearproject.ManagementMainMenu;
+import com.michelle_condon.is4401_finalyearproject.R;
+import com.michelle_condon.is4401_finalyearproject.SignupScreen;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on the Youtube Video Login and Registration Android App Tutorial using Firebase Authentication - Login, CodeWithMazn, https://www.youtube.com/watch?v=KB2BIm_m1Os&t=336s (1)
-    //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
-
-    //Declaring Variables
-    private TextView register;
     private EditText txtEmail, txtPassword;
-    private Button signIn;
     private FirebaseAuth mAuth;
 
 
@@ -36,39 +28,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Assigning values to variables with resource Id's - Register TextView
-        register = (TextView) findViewById(R.id.lblRegister);
-        //Listening for the text view click for register
+        //Assigning values to variables with resource Id's
+        TextView register = findViewById(R.id.lblRegister);
         register.setOnClickListener(this);
 
-        //Assigning values to variables with resource Id's - Login Button
-        signIn = (Button) findViewById(R.id.btnLogin);
-        //Listening for the users button click for login
+        Button signIn = findViewById(R.id.btnLogin);
         signIn.setOnClickListener(this);
 
-        //Assigning values to variables with resource Id's - email and password text boxes
-        txtEmail = (EditText) findViewById(R.id.txtEmail);
-        txtPassword = (EditText) findViewById(R.id.txtPassword);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPassword = findViewById(R.id.txtPassword);
 
-
-        //Entry point of Firebase authentication
+        //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
+        //Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
     }
     //End(2)
 
-    //OnClick Method
     @Override
     public void onClick(View v) {
-        //Switch Case statement
-        switch (v.getId()) {
-            //If the register label is clicked the sign up screen opens
-            case R.id.lblRegister:
-                startActivity(new Intent(this, SignupScreen.class));
-                break;
-            //If the login button is clicked the userLogin() method is called
-            case R.id.btnLogin:
-                userLogin();
-                break;
+        //If statement for when when buttons or text views are clicked
+        if (v.getId() == R.id.lblRegister) {
+            startActivity(new Intent(this, SignupScreen.class));
+        } else if (v.getId() == R.id.btnLogin) {
+            userLogin();
         }
     }
 
@@ -104,20 +86,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
-
         //Authenticating sign in to Firebase using email and password parameters (Inbuilt function)
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                //If the login is successful the menu is opened
-                if (email.equals("admin@gmail.com")&& (password.equals("admin1"))) {
-                    startActivity(new Intent(MainActivity.this, ManagementMainMenu.class));
-                } else if (task.isSuccessful()){
-                    startActivity(new Intent(MainActivity.this, MainMenu.class));
-                } else {
-                    //If the login fails to authenticate an error message is displayed
-                    Toast.makeText(MainActivity.this, "Failed to Login, please check your credentials", Toast.LENGTH_LONG).show();
-                }
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            //If the login is successful the management menu is opened
+            if (email.equals("admin@gmail.com") && (password.equals("admin1"))) {
+                startActivity(new Intent(MainActivity.this, ManagementMainMenu.class));
+            } else if (task.isSuccessful()) {
+                startActivity(new Intent(MainActivity.this, MainMenu.class));
+            } else {
+                //If the login fails to authenticate an error message is displayed
+                Toast.makeText(MainActivity.this, "Failed to login, please check your credentials", Toast.LENGTH_LONG).show();
             }
         });
 

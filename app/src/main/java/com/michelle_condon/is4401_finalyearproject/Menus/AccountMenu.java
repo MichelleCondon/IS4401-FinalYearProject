@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.HoursRequest;
-import com.michelle_condon.is4401_finalyearproject.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.R;
 import com.michelle_condon.is4401_finalyearproject.TimeOffRequest;

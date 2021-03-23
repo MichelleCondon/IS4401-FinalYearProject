@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.michelle_condon.is4401_finalyearproject.Models.User;
+import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 
 import java.util.HashMap;
 

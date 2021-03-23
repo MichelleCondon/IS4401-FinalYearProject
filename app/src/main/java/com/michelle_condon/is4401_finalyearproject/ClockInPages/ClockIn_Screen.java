@@ -24,8 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.michelle_condon.is4401_finalyearproject.AddPages.AddItems;
-import com.michelle_condon.is4401_finalyearproject.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Timesheets;
@@ -37,8 +36,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
-
-import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner.scanResult;
 
 public class ClockIn_Screen extends AppCompatActivity implements View.OnClickListener {
 

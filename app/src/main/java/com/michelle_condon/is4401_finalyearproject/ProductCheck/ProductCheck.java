@@ -27,7 +27,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.Adapters.HelperAdapter;
 import com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner2;
-import com.michelle_condon.is4401_finalyearproject.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchData;

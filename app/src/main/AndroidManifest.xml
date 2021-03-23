@@ -50,7 +50,7 @@
         </activity>
         <activity android:name=".List.VirtualList" />
         <activity android:name=".ProductCheck.ProductCheck" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginScreen.MainActivity" />
         <activity android:name=".EmployeeSchedule" />
 
         <receiver
