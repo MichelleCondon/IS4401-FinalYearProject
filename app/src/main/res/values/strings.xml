@@ -79,7 +79,7 @@
     <string name="btnAddList">Add</string>
     <string name="lblWorkSchedule">Work Schedule</string>
     <string name="lblWorkDetail">Please Search For Your Name Below:</string>
-    <string name="hintName">Enter Your Name Here</string>
+    <string name="hintName">Enter Employee Name here</string>
     <string name="btnUpdateInventory">Update Inventory</string>
     <string name="lblUpdateInventory">Update Inventory</string>
     <string name="txtSearch">Product Name</string>

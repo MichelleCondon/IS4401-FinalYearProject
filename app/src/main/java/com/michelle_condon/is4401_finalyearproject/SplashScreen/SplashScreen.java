@@ -22,17 +22,15 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Show the splash screen
+        //Shows the splash screen
         setContentView(R.layout.activity_splash_screen);
-        mProgress = (ProgressBar) findViewById(R.id.splashScreenProgressBar);
+        mProgress = findViewById(R.id.splashScreenProgressBar);
 
-        // Start lengthy operation in a background thread
-        new Thread(new Runnable() {
-            public void run() {
-                doWork();
-                startApp();
-                finish();
-            }
+        // Start operation in a background thread
+        new Thread(() -> {
+            doWork();
+            startApp();
+            finish();
         }).start();
     }
 
@@ -40,7 +38,7 @@ public class SplashScreen extends AppCompatActivity {
         //For loop to load progress bar on the screen
         for (int progress = 10; progress < 100; progress += 10) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 mProgress.setProgress(progress);
             } catch (Exception e) {
                 Toast.makeText(SplashScreen.this, "App Failed to Load, Please Contact Management", Toast.LENGTH_LONG).show();

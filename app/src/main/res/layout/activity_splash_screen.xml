@@ -15,11 +15,9 @@
         android:contentDescription="@string/companyLogo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/splashScreenProgressBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_logo_foreground" />
+        app:srcCompat="@mipmap/ic_company_logo_foreground" />
 
     <ProgressBar
         android:id="@+id/splashScreenProgressBar"

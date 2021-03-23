@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -68,6 +69,9 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
         //Assigning values to variables by resource ID
         txtWeekNumber = findViewById(R.id.txtWeekNumber);
         txtEmployeename = findViewById(R.id.txtEmpName);
+        //Auto Capitalise the first letter of the employee name - code is from Stackoverflow by JibW which can be found at "https://stackoverflow.com/questions/17042430/android-edittexttextbox-auto-capitalizing-first-letter-of-each-word-while"
+        txtEmployeename.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        //End
         txtMonday = findViewById(R.id.txtMonday);
         txtTuesday = findViewById(R.id.txtTuesday);
         txtWednesday = findViewById(R.id.txtWednesday);
@@ -98,43 +102,43 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
                 return;
             }
             if (vEmployeeName.isEmpty()) {
-                txtWeekNumber.setError("Employee Name is Required");
-                txtWeekNumber.requestFocus();
+                txtEmployeename.setError("Employee Name is Required");
+                txtEmployeename.requestFocus();
                 return;
             }
             if (vMonday.isEmpty()) {
-                txtWeekNumber.setError("Monday Hours are Required");
-                txtWeekNumber.requestFocus();
+                txtMonday.setError("Monday Hours are Required");
+                txtMonday.requestFocus();
                 return;
             }
             if (vTuesday.isEmpty()) {
-                txtWeekNumber.setError("Tuesday hours are Required");
-                txtWeekNumber.requestFocus();
+                txtTuesday.setError("Tuesday hours are Required");
+                txtTuesday.requestFocus();
                 return;
             }
             if (vWednesday.isEmpty()) {
-                txtWeekNumber.setError("Wednesday hours are Required");
-                txtWeekNumber.requestFocus();
+                txtWednesday.setError("Wednesday hours are Required");
+                txtWednesday.requestFocus();
                 return;
             }
             if (vThursday.isEmpty()) {
-                txtWeekNumber.setError("Thursday hours are Required");
-                txtWeekNumber.requestFocus();
+                txtThursday.setError("Thursday hours are Required");
+                txtThursday.requestFocus();
                 return;
             }
             if (vFriday.isEmpty()) {
-                txtWeekNumber.setError("Friday hours are Required");
-                txtWeekNumber.requestFocus();
+                txtFriday.setError("Friday hours are Required");
+                txtFriday.requestFocus();
                 return;
             }
             if (vSaturday.isEmpty()) {
-                txtWeekNumber.setError("Saturday hours are Required");
-                txtWeekNumber.requestFocus();
+                txtSaturday.setError("Saturday hours are Required");
+                txtSaturday.requestFocus();
                 return;
             }
             if (vSunday.isEmpty()) {
-                txtWeekNumber.setError("Sunday hours are Required");
-                txtWeekNumber.requestFocus();
+                txtSunday.setError("Sunday hours are Required");
+                txtSunday.requestFocus();
                 return;
             }
 
@@ -144,7 +148,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.hasChild(txtEmployeename.getText().toString() + txtWeekNumber.getText().toString())) {
-                        Toast.makeText(AddSchedule.this, "This Schedule Already Exists, Please Update if you Need to Make Changes", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddSchedule.this, "This schedule already exists, please update if you need to make changes", Toast.LENGTH_LONG).show();
                     } else {
                         String weekNumber = txtWeekNumber.getText().toString();
                         String employee = txtEmployeename.getText().toString();
@@ -229,7 +233,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         //Does Nothing
-    }
+        }
 }
 
 
