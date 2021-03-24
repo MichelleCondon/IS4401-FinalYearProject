@@ -1,22 +1,20 @@
 package com.michelle_condon.is4401_finalyearproject.Menus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 import com.michelle_condon.is4401_finalyearproject.HoursRequest;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.R;
 import com.michelle_condon.is4401_finalyearproject.TimeOffRequest.TimeOffRequest;
-import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 
 public class AccountMenu extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,40 +29,36 @@ public class AccountMenu extends AppCompatActivity implements View.OnClickListen
 
         //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
         //Bottom Navigation Menu Bar
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.action_account) {
-                    account();
-                } else if (item.getItemId() == R.id.action_home) {
-                    home();
-                } else if (item.getItemId() == R.id.action_signout) {
-                    signout();
-                }
-                return true;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
         //End
 
-        //Buttons Displayed on the Menu Page
-        //Account Button Displayed in the Top Toolbar
+        //Account button displayed in the tool bar
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        Button btnAccount = (Button) findViewById(R.id.btnAccount);
+        Button btnAccount = findViewById(R.id.btnAccount);
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
 
         //Request Hours Change Button
-        Button btnRequestHoursChange = (Button) findViewById(R.id.btnRequestHoursChange);
+        Button btnRequestHoursChange = findViewById(R.id.btnRequestHoursChange);
         btnRequestHoursChange.setOnClickListener(this);
 
         //Request Time Off Button
-        Button btnRequestTimeOff = (Button) findViewById(R.id.btnRequestTimeOff);
+        Button btnRequestTimeOff = findViewById(R.id.btnRequestTimeOff);
         btnRequestTimeOff.setOnClickListener(this);
 
         //User Profile Button
-        Button btnUserProfile = (Button) findViewById(R.id.btnViewProfile);
+        Button btnUserProfile = findViewById(R.id.btnViewProfile);
         btnUserProfile.setOnClickListener(this);
 
     }
