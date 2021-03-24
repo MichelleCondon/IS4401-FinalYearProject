@@ -48,34 +48,30 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_items);
 
-        //Navigation Bar
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_account:
-                        account();
-                        break;
-                    case R.id.action_home:
-                        home();
-                        break;
-                    case R.id.action_signout:
-                        signout();
-                        break;
-                }
-                return true;
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
+        //End
 
 
-        //Assigning values to the variables declared above
+        //account button in the toolbar
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        btnAccount = (Button) findViewById(R.id.btnAccount);
-        btnRefresh = (Button) findViewById(R.id.btnRefresh);
+        btnAccount = findViewById(R.id.btnAccount);
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
+
+        //assigning values by resource id
+        btnRefresh = findViewById(R.id.btnRefresh);
         recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchData = new ArrayList<>();
@@ -105,6 +101,7 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //Navigation bar methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -117,21 +114,15 @@ public class DisplayItems extends AppCompatActivity implements View.OnClickListe
         startActivity(new Intent(this, AccountMenu.class));
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            //Account button
-            case R.id.btnAccount:
-                startActivity(new Intent(this, AccountMenu.class));
-                break;
-            //Clock In/Out button
-            case R.id.btnRefresh:
-                finish();
-                startActivity(getIntent());
-                break;
-
+        //if statement for when a button is clicked
+        if (v.getId() == R.id.btnAccount) {
+            startActivity(new Intent(this, AccountMenu.class));
+        } else if (v.getId() == R.id.btnRefresh) {
+            finish();
+            startActivity(getIntent());
         }
     }
 }
-//End
+
