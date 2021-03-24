@@ -32,6 +32,7 @@ import java.util.HashMap;
 import static com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner.scanResult;
 
 
+@SuppressWarnings("unchecked")
 public class AddItems extends AppCompatActivity implements View.OnClickListener {
 
     //Declare Variables
@@ -50,40 +51,37 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_add_items);
 
         //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.action_account) {
-                    account();
-                } else if (item.getItemId() == R.id.action_home) {
-                    home();
-                } else if (item.getItemId() == R.id.action_signout) {
-                    signout();
-                }
-                return true;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
         //End
 
 
         //Product Name Text Box
-        txtName = (EditText) findViewById(R.id.txtName);
+        txtName = findViewById(R.id.txtName);
         //Price Text Box
-        txtPrice = (EditText) findViewById(R.id.txtPrice);
+        txtPrice = findViewById(R.id.txtPrice);
         //Description Text Box
-        txtDescription = (EditText) findViewById(R.id.txtDescription);
+        txtDescription = findViewById(R.id.txtDescription);
         //Quantity Text Box
-        txtQuantity = (EditText) findViewById(R.id.txtQuantity);
+        txtQuantity = findViewById(R.id.txtQuantity);
         //Barcode TextView
-        barcodeRef = (TextView) findViewById(R.id.barcodeRef);
+        barcodeRef = findViewById(R.id.barcodeRef);
         //Save Button
-        btnSave = (Button) findViewById(R.id.btnAddToSchedule);
+        btnSave = findViewById(R.id.btnAddToSchedule);
 
         //Account Button
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        btnAccount = (Button) findViewById(R.id.btnAccount);
+        btnAccount = findViewById(R.id.btnAccount);
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
 
@@ -93,73 +91,69 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
         item = new Items();
         //Accessing data from Firebase
         reff = FirebaseDatabase.getInstance().getReference().child("Items");
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String productName = txtName.getText().toString();
-                String productDescription = txtDescription.getText().toString();
-                String productQuantity = txtQuantity.getText().toString();
-                String productPrice = txtPrice.getText().toString();
+        btnSave.setOnClickListener(v -> {
+            String productName = txtName.getText().toString();
+            String productDescription = txtDescription.getText().toString();
+            String productQuantity = txtQuantity.getText().toString();
+            String productPrice = txtPrice.getText().toString();
 
-                if (productName.isEmpty()) {
-                    txtName.setError("Product Name is Required");
-                    txtName.requestFocus();
-                    return;
-                }
-                if (productDescription.isEmpty()) {
-                    txtDescription.setError("Product Description is Required");
-                    txtDescription.requestFocus();
-                    return;
-                }
-                if (productQuantity.isEmpty()) {
-                    txtQuantity.setError("Product Quantity is Required");
-                    txtQuantity.requestFocus();
-                    return;
-                }
-                if (productPrice.isEmpty()) {
-                    txtPrice.setError("Product Price is Required");
-                    txtPrice.requestFocus();
-                    return;
-                }
-
-                reff.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(scanResult)) {
-                            Toast.makeText(AddItems.this, "Barcode Already Exists, Please Search and Edit the Existing Product", Toast.LENGTH_LONG).show();
-                        } else {
-                            String name = txtName.getText().toString();
-                            String description = txtDescription.getText().toString();
-                            String barcode = barcodeRef.getText().toString();
-                            String price = txtPrice.getText().toString();
-                            String quantity = txtQuantity.getText().toString();
-
-                            //Pushing data to Firebase using a Hashmap
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("barcode", barcode);
-                            hashMap.put("name", name);
-                            hashMap.put("description", description);
-                            hashMap.put("price", price);
-                            hashMap.put("quantity", quantity);
-
-                            reff.child(barcode).setValue(hashMap);
-                            Toast.makeText(AddItems.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
+            //Validation to ensure fields are filled
+            if (productName.isEmpty()) {
+                txtName.setError("Product Name is Required");
+                txtName.requestFocus();
+                return;
             }
+            if (productDescription.isEmpty()) {
+                txtDescription.setError("Product Description is Required");
+                txtDescription.requestFocus();
+                return;
+            }
+            if (productQuantity.isEmpty()) {
+                txtQuantity.setError("Product Quantity is Required");
+                txtQuantity.requestFocus();
+                return;
+            }
+            if (productPrice.isEmpty()) {
+                txtPrice.setError("Product Price is Required");
+                txtPrice.requestFocus();
+                return;
+            }
+
+            //Checking to see if the barcode already exists in the database so it's not added twice
+            reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(scanResult)) {
+                        Toast.makeText(AddItems.this, "Barcode already exists in the inventory, please search for it to edit", Toast.LENGTH_LONG).show();
+                    } else {
+                        String name = txtName.getText().toString();
+                        String description = txtDescription.getText().toString();
+                        String barcode = barcodeRef.getText().toString();
+                        String price = txtPrice.getText().toString();
+                        String quantity = txtQuantity.getText().toString();
+
+                        //Pushing data to Firebase using a Hashmap
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("barcode", barcode);
+                        hashMap.put("name", name);
+                        hashMap.put("description", description);
+                        hashMap.put("price", price);
+                        hashMap.put("quantity", quantity);
+
+                        reff.child(barcode).setValue(hashMap);
+                        Toast.makeText(AddItems.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         });
-
-
     }
 
+    //Navigation bar methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -174,7 +168,7 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        //Account button
+        //if statement if a button is clicked
         if (v.getId() == R.id.btnAccount) {
             startActivity(new Intent(this, AccountMenu.class));
         }
