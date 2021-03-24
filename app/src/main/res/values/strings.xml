@@ -99,7 +99,16 @@
         <item>November</item>
         <item>December</item>
     </string-array>
-    <string-array name="days">
+    <string-array name="weekDays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string-array name="date">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -166,6 +175,7 @@
     <string name="btnUpdateProfile">Update Profile</string>
     <string name="lblUpdateUserProfile">Update User Profile</string>
     <string name="btnDeleteProfile">Delete Profile</string>
+    <string name="lblPreferedShift">Preferred Shift:</string>
 
 
 

@@ -1,14 +1,8 @@
 package com.michelle_condon.is4401_finalyearproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,11 +10,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
@@ -28,14 +29,14 @@ import com.michelle_condon.is4401_finalyearproject.Models.Hours;
 
 import java.util.HashMap;
 
+@SuppressWarnings("unchecked")
 public class HoursRequest extends AppCompatActivity implements View.OnClickListener {
 
-    //Declare Variables
-    EditText txtDay, txtHours, txtName;
+    EditText txtHours;
+    EditText txtName;
     DatabaseReference reff;
     Hours hour;
     Button btnAccount;
-
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
@@ -45,51 +46,54 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hours_request);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_account:
-                        account();
-                        break;
-                    case R.id.action_home:
-                        home();
-                        break;
-                    case R.id.action_signout:
-                        signout();
-                        break;
-                }
-                return true;
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
+        //End
 
+        //Used for the account button based off the logged in user
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        SwitchCompat switchMorning = (SwitchCompat) findViewById(R.id.switchMorning);
-        SwitchCompat switchEvening = (SwitchCompat) findViewById(R.id.switchEvening);
-
-
         //Assigning values by resource ID
-        Spinner spinnerDay = (Spinner) findViewById(R.id.spinnerDate);
-        Spinner spinnerMonth = (Spinner) findViewById(R.id.spinnerMonth);
-        txtDay = (EditText) findViewById(R.id.txtDay);
-        txtHours = (EditText) findViewById(R.id.txtHours);
-        Button btnRequestHours = (Button) findViewById(R.id.btnRequestChange);
-        btnAccount = (Button) findViewById(R.id.btnAccount);
-        btnAccount.setText(firebaseUser.getEmail());
-        txtName = (EditText) findViewById(R.id.txtRequestName);
+        SwitchCompat switchMorning = findViewById(R.id.switchMorning);
+        SwitchCompat switchEvening = findViewById(R.id.switchEvening);
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(HoursRequest.this,
+        Spinner spinnerDate = findViewById(R.id.spinnerDate);
+        Spinner spinnerMonth = findViewById(R.id.spinnerMonth);
+        Spinner spinnerDay = findViewById(R.id.spinnerDay);
+
+        txtHours = findViewById(R.id.txtHours);
+        Button btnRequestHours = findViewById(R.id.btnRequestChange);
+        btnAccount = findViewById(R.id.btnAccount);
+        btnAccount.setText(firebaseUser.getEmail());
+        txtName = findViewById(R.id.txtRequestName);
+
+        //Drop downs for all three spinners
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(HoursRequest.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.months));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMonth.setAdapter(myAdapter);
 
-        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(HoursRequest.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.days));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDay.setAdapter(myAdapter2);
+        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<>(HoursRequest.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.date));
+        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDate.setAdapter(myAdapter2);
+
+        ArrayAdapter<String> myAdapter3 = new ArrayAdapter<>(HoursRequest.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.weekDays));
+        myAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDay.setAdapter(myAdapter3);
+
 
         //Referencing the hours class
         hour = new Hours();
@@ -97,69 +101,203 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
         //Accessing data from Firebase
         reff = FirebaseDatabase.getInstance().getReference().child("HourChangeRequests");
 
-        btnRequestHours.setOnClickListener(new View.OnClickListener() {
-            //Alert Dialog prompt will appear when the request change button is clicked
-            //Code below is based on the website Stack Overflow, Aman Alam, https://stackoverflow.com/questions/4850493/how-to-open-a-dialog-when-i-click-a-button
+        //Alert Dialog prompt will appear when the request change button is clicked
+        //Code below is based on the website Stack Overflow, by Aman Alam, https://stackoverflow.com/questions/4850493/how-to-open-a-dialog-when-i-click-a-button
+        btnRequestHours.setOnClickListener(v -> {
+            AlertDialog alertDialog = new AlertDialog.Builder(HoursRequest.this).create(); //Read Update
+            alertDialog.setTitle("Confirm Request");
+            alertDialog.setMessage("Are you sure you want to request a change to your hours?");
 
-            @Override
-            public void onClick(View v) {
-                AlertDialog alertDialog = new AlertDialog.Builder(HoursRequest.this).create(); //Read Update
-                alertDialog.setTitle("Confirm Request");
-                alertDialog.setMessage("You have Requested a Modification to your Hours");
+            alertDialog.setButton("Confirm", (dialog, which) -> {
 
-                alertDialog.setButton("Confirm", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                if (switchMorning.isChecked()) {
+                    String textDate = spinnerDate.getSelectedItem().toString();
+                    String textMonth = spinnerMonth.getSelectedItem().toString();
+                    String textDay = spinnerDay.getSelectedItem().toString();
+                    String textHours = txtHours.getText().toString();
+                    String textName = txtName.getText().toString();
 
-                        if (switchMorning.isChecked()) {
-                            String email = btnAccount.getText().toString();
-                            String date = spinnerDay.getSelectedItem().toString();
-                            String day = txtDay.getText().toString();
-                            String month = spinnerMonth.getSelectedItem().toString();
-                            String hours = txtHours.getText().toString();
-                            String name = txtName.getText().toString();
-                            String preference = ("Morning");
+                    //Validation
+                    if (textDate.isEmpty()) {
+                        Toast.makeText(HoursRequest.this, "You must select a date to continue", Toast.LENGTH_LONG).show();
+                        spinnerDay.requestFocus();
+                        return;
+                    }
+                    if (textMonth.isEmpty()) {
+                        Toast.makeText(HoursRequest.this, "You must select a month to continue", Toast.LENGTH_LONG).show();
+                        spinnerMonth.requestFocus();
+                        return;
+                    }
+                    if (textDay.isEmpty()) {
+                        Toast.makeText(HoursRequest.this, "You must select a day to continue", Toast.LENGTH_LONG).show();
+                        spinnerDay.requestFocus();
+                        return;
+                    }
+                    if (textHours.isEmpty()) {
+                        txtHours.setError("You must fill out the hours you wish to change to continue");
+                        txtHours.requestFocus();
+                        return;
+                    }
+                    if (textName.isEmpty()) {
+                        txtName.setError("You must fill out your name to continue");
+                        txtName.requestFocus();
+                        return;
+                    }
+                    if (textDate.equals("30") && textMonth.equals("February")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in February", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("February")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in February", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("April")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in April", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("June")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in June", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("September")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in September", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("November")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in November", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                        //Validation to check if request has already been made
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.hasChild(textName + textDate + textMonth)) {
+                                Toast.makeText(HoursRequest.this, "You have already sent a change request for this date, please contact management", Toast.LENGTH_LONG).show();
+                            } else {
+                                String email = btnAccount.getText().toString();
+                                String date = spinnerDate.getSelectedItem().toString();
+                                String month = spinnerMonth.getSelectedItem().toString();
+                                String weekDay = spinnerDay.getSelectedItem().toString();
+                                String hours = txtHours.getText().toString();
+                                String name = txtName.getText().toString();
+                                String preference = ("Morning");
 
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("email", email);
-                            hashMap.put("date", date);
-                            hashMap.put("day", day);
-                            hashMap.put("month", month);
-                            hashMap.put("hours", hours);
-                            hashMap.put("preference", preference);
-                            hashMap.put("name", name);
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("email", email);
+                                hashMap.put("date", date);
+                                hashMap.put("day", weekDay);
+                                hashMap.put("month", month);
+                                hashMap.put("hours", hours);
+                                hashMap.put("preference", preference);
+                                hashMap.put("name", name);
 
-                            reff.child(name).setValue(hashMap);
-                            Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
-
-                        } else if (switchEvening.isChecked()) {
-                            String email = btnAccount.getText().toString();
-                            String date = spinnerDay.getSelectedItem().toString();
-                            String day = txtDay.getText().toString();
-                            String month = spinnerMonth.getSelectedItem().toString();
-                            String hours = txtHours.getText().toString();
-                            String name = txtName.getText().toString();
-                            String preference = ("Evening");
-
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("email", email);
-                            hashMap.put("date", date);
-                            hashMap.put("day", day);
-                            hashMap.put("month", month);
-                            hashMap.put("hours", hours);
-                            hashMap.put("preference", preference);
-                            hashMap.put("name", name);
-
-                            reff.child(name).setValue(hashMap);
-                            Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
-
+                                reff.child(name + date + month).setValue(hashMap);
+                                Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
+                            }
                         }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
+                        }
+                    });
+
+                } else if (switchEvening.isChecked()) {
+                    String textDate = spinnerDate.getSelectedItem().toString();
+                    String textMonth = spinnerMonth.getSelectedItem().toString();
+                    String textDay = spinnerDay.getSelectedItem().toString();
+                    String textHours = txtHours.getText().toString();
+                    String textName = txtName.getText().toString();
+
+                    //Validation
+                    if (textDate.isEmpty()) {
+                        Toast.makeText(HoursRequest.this, "You must select a date to continue", Toast.LENGTH_LONG).show();
+                        spinnerDay.requestFocus();
+                        return;
                     }
-                });
-                alertDialog.show();
-            }
-            //End
+                    if (textMonth.isEmpty()) {
+                        Toast.makeText(HoursRequest.this, "You must select a month to continue", Toast.LENGTH_LONG).show();
+                        spinnerMonth.requestFocus();
+                        return;
+                    }
+                    if (textDay.isEmpty()) {
+                        Toast.makeText(HoursRequest.this, "You must select a day to continue", Toast.LENGTH_LONG).show();
+                        spinnerDay.requestFocus();
+                        return;
+                    }
+                    if (textHours.isEmpty()) {
+                        txtHours.setError("You must fill out the hours you wish to change to continue");
+                        txtHours.requestFocus();
+                        return;
+                    }
+                    if (textName.isEmpty()) {
+                        txtName.setError("You must fill out your name to continue");
+                        txtName.requestFocus();
+                        return;
+                    }
+                    if (textDate.equals("30") && textMonth.equals("February")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in February", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("February")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in February", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("April")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in April", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("June")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in June", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("September")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in September", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (textDate.equals("31") && textMonth.equals("November")) {
+                        Toast.makeText(HoursRequest.this, "Please select a valid date in November", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                        //Validation to check if request has already been made
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.hasChild(textName + textDate + textMonth)) {
+                                Toast.makeText(HoursRequest.this, "You have already sent a change request for this date, please contact management", Toast.LENGTH_LONG).show();
+                            } else {
+                                String email = btnAccount.getText().toString();
+                                String date = spinnerDate.getSelectedItem().toString();
+                                String day = spinnerDay.getSelectedItem().toString();
+                                String month = spinnerMonth.getSelectedItem().toString();
+                                String hours = txtHours.getText().toString();
+                                String name = txtName.getText().toString();
+                                String preference = ("Evening");
+
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("email", email);
+                                hashMap.put("date", date);
+                                hashMap.put("day", day);
+                                hashMap.put("month", month);
+                                hashMap.put("hours", hours);
+                                hashMap.put("preference", preference);
+                                hashMap.put("name", name);
+
+                                reff.child(name + date + month).setValue(hashMap);
+                                Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+
+                } else if (!switchEvening.isChecked() && !switchMorning.isChecked()) {
+                    Toast.makeText(HoursRequest.this, "You must select a shift preference to continue", Toast.LENGTH_LONG).show();
+                }
+            });
+            alertDialog.show();
         });
 
     }
@@ -178,11 +316,9 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            //Account button
-            case R.id.btnAccount:
-                startActivity(new Intent(this, AccountMenu.class));
-                break;
+        //If statement for if a button is clicked
+        if (v.getId() == R.id.btnAccount) {
+            startActivity(new Intent(this, AccountMenu.class));
         }
     }
 }

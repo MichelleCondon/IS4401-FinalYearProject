@@ -63,25 +63,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtDay"
-        android:layout_width="213dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="6dp"
-        android:autofillHints="@string/txtDay"
-        android:ems="10"
-        android:hint="@string/txtDay"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerDate" />
-
-    <EditText
         android:id="@+id/txtHours"
         android:layout_width="213dp"
         android:layout_height="44dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:autofillHints="@string/txtHours"
         android:ems="10"
         android:hint="@string/txtHours"
@@ -90,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDay" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDay" />
 
     <Button
         android:id="@+id/btnRequestChange"
@@ -110,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="50dp"
         android:text="@string/switchMorning"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +105,7 @@
         android:id="@+id/switchEvening"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="76dp"
         android:text="@string/switchEvening"
         android:textSize="18sp"
@@ -131,7 +116,7 @@
         android:id="@+id/txtRequestName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:autofillHints="@string/txtEmployeeNameS"
         android:ems="10"
         android:hint="@string/txtEmployeeNameS"
@@ -146,23 +131,22 @@
         android:id="@+id/spinnerMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
         android:layout_marginEnd="72dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtDay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRequestSubtitle"
-        app:layout_constraintVertical_bias="0.2" />
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerDay"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginBottom="8dp"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRequestSubtitle" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerDay"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -177,6 +161,29 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
+    <Spinner
+        android:id="@+id/spinnerDay"
+        android:layout_width="213dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="80dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRequestSubtitle" />
+
+    <TextView
+        android:id="@+id/txtPreference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/lblPreferedShift"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/switchMorning"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
