@@ -118,17 +118,19 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         String dates = txtDates.getText().toString();
 
         //Validation
-        if (dates.equals("")) {
+        if (dates.equals("TextView")) {
             Toast.makeText(TimeOffRequest.this, "Your must select a series of dates in order to confirm your request", Toast.LENGTH_LONG).show();
+        } else if (dates.equals("")) {
+            Toast.makeText(TimeOffRequest.this, "Your must select a series of dates in order to confirm your request", Toast.LENGTH_LONG).show();
+        } else {
+            HashMap hashMap = new HashMap();
+            hashMap.put("employeeEmail", employeeEmail);
+            hashMap.put("dates", dates);
+
+            reff.child(dates).setValue(hashMap);
+            Toast.makeText(TimeOffRequest.this, "Your Time Off Request has been sent to Management", Toast.LENGTH_LONG).show();
+            sendEmail();
         }
-
-        HashMap hashMap = new HashMap();
-        hashMap.put("employeeEmail", employeeEmail);
-        hashMap.put("dates", dates);
-
-        reff.child(dates).setValue(hashMap);
-        Toast.makeText(TimeOffRequest.this, "Your Time Off Request has been sent to Management", Toast.LENGTH_LONG).show();
-        sendEmail();
     }
 
     @SuppressLint("IntentReset")

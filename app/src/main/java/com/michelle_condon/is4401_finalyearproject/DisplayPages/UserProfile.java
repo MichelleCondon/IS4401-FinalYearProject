@@ -1,15 +1,14 @@
 package com.michelle_condon.is4401_finalyearproject.DisplayPages;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,8 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.Adapters.UserAdapter;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
-import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
+import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.User;
 import com.michelle_condon.is4401_finalyearproject.R;
 
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfile extends AppCompatActivity implements View.OnClickListener {
-
 
     //Declare Variables
     List<User> userData;
@@ -41,38 +39,34 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     FirebaseUser firebaseUser;
     Button btnAccount, btnRefresh;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
         //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.action_account) {
-                    account();
-                } else if (item.getItemId() == R.id.action_home) {
-                    home();
-                } else if (item.getItemId() == R.id.action_signout) {
-                    signout();
-                }
-                return true;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
         //End
 
         //Account Button
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        btnAccount = (Button) findViewById(R.id.btnAccount);
+        btnAccount = findViewById(R.id.btnAccount);
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
 
         //Refresh Button
-        btnRefresh = (Button) findViewById(R.id.btnRefreshUser);
+        btnRefresh = findViewById(R.id.btnRefreshUser);
         btnRefresh.setOnClickListener(this);
 
 
