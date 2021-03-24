@@ -24,7 +24,7 @@ public class GeofenceHelper extends ContextWrapper {
         super(base);
     }
 
-    //Geofence Request
+    //Geofence Request - adding the geofence and setting the initial trigger
     public GeofencingRequest getGeofencingReuest(Geofence geofence) {
         return new GeofencingRequest.Builder()
                 .addGeofence(geofence)

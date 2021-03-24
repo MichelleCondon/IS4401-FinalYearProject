@@ -22,9 +22,6 @@ public class NotificationHelper extends ContextWrapper {
 
     //Code below is based on the Youtube Video "Geofencing | The ultimate tutorial | Create and monitor geofences", yoursTruly, https://www.youtube.com/watch?v=nmAtMqljH9M
 
-    //Declaring TAG
-    private static final String TAG = "NotificationHelper";
-
     //Ensuring the device is running the correct version to support notifications
     public NotificationHelper(Context base) {
         super(base);
@@ -33,14 +30,16 @@ public class NotificationHelper extends ContextWrapper {
         }
     }
 
-    //Declaring Variables
-    private String CHANNEL_NAME = "High priority channel";
-    private String CHANNEL_ID = "Dealz Mitchelstown Notification";
+    //Declare variables
+    private final String CHANNEL_ID = "Channel ID 123";
 
     //Ensures the device is running the necessary version
     @RequiresApi(api = Build.VERSION_CODES.O)
     //Creating the notification channel
     private void createChannels() {
+        //Declaring Variables
+        String CHANNEL_NAME = "High priority channel";
+        //Setting notification details
         NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
         notificationChannel.enableLights(true);
         notificationChannel.enableVibration(true);
@@ -70,8 +69,6 @@ public class NotificationHelper extends ContextWrapper {
                 .build();
 
         NotificationManagerCompat.from(this).notify(new Random().nextInt(), notification);
-
-
     }
 }
 

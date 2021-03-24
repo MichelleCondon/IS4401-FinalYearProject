@@ -1,10 +1,5 @@
 package com.michelle_condon.is4401_finalyearproject.GoogleMaps;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.pm.PackageManager;
@@ -12,6 +7,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingClient;
@@ -24,26 +24,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.michelle_condon.is4401_finalyearproject.GoogleMaps.GeofenceHelper;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     //Code below is based on the Youtube Video "Geofencing | The ultimate tutorial | Create and monitor geofences", yoursTruly, https://www.youtube.com/watch?v=nmAtMqljH9M
 
-
     //Declaring Variables
     private static final String TAG = "MapsActivity";
     private GoogleMap mMap;
     private GeofencingClient geoFencingClient;
     private GeofenceHelper geofenceHelper;
-
-    private float GEOFENCE_RADIUS = 100;
-    private String GEOFENCE_ID = "SOME_GEOFENCE_ID";
-    private int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
-    private int BACKGROUND_LOCATION_ACCESS_REQUEST_CODE = 10002;
+    private final int FINE_LOCATION_ACCESS_REQUEST_CODE = 10001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +45,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
         geoFencingClient = LocationServices.getGeofencingClient(this);
         geofenceHelper = new GeofenceHelper(this);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
+    //This callback is triggered when the map is ready to be used.
+    //If Google Play services is not installed on the device, the user will be prompted to install
+    //it inside the SupportMapFragment. This method will only be triggered once the user has
+    //installed Google Play services and returned to the app.
     //Version of map when it's ready for user interaction
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -75,15 +64,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in my home location and move the camera
         LatLng home = new LatLng(52.29364, -8.18674);
-        //mMap.animateCamera(CameraUpdateFactory.zoomIn());
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(home, 4));
         enableUserLocation();
         mMap.clear();
         addMarker(home);
+        float GEOFENCE_RADIUS = 100;
         addCircle(home, GEOFENCE_RADIUS);
         addGeofence(home, GEOFENCE_RADIUS);
-        //mMap.setOnMapLongClickListener(this);
-
     }
 
     //Method to enable access to user location
@@ -93,15 +80,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         } else {
             //Ask for permission
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission
-                    .ACCESS_FINE_LOCATION)) {
-                //Show user dialog for asking for permission
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission
-                        .ACCESS_FINE_LOCATION}, FINE_LOCATION_ACCESS_REQUEST_CODE);
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission
-                        .ACCESS_FINE_LOCATION}, FINE_LOCATION_ACCESS_REQUEST_CODE);
-            }
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission
+                    .ACCESS_FINE_LOCATION}, FINE_LOCATION_ACCESS_REQUEST_CODE);
         }
     }
 
@@ -115,11 +95,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     mMap.setMyLocationEnabled(true);
                 } else {
-                    //We don't have permission
+                    Toast.makeText(this, "You must grant location access in order to use this service", Toast.LENGTH_LONG).show();
                 }
             }
         }
         //Same as above code but used for API versions over 28 which require background access location
+        int BACKGROUND_LOCATION_ACCESS_REQUEST_CODE = 10002;
         if (requestCode == BACKGROUND_LOCATION_ACCESS_REQUEST_CODE) {
             //WE have permission
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -127,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Toast.makeText(this, "You can add geofences...", Toast.LENGTH_SHORT).show();
                 } else {
                     //We don't have permission
-                    Toast.makeText(this, "Background location access is necessary for georeferences to trigger",
+                    Toast.makeText(this, "You must grant location access in order to use this service",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -138,6 +119,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //Method to add the geofence
     private void addGeofence(LatLng latLng, float radius) {
+        String GEOFENCE_ID = "SOME_GEOFENCE_ID";
         Geofence geofence = geofenceHelper.getGeofence(GEOFENCE_ID, latLng, radius, Geofence
                 .GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_DWELL | Geofence.GEOFENCE_TRANSITION_EXIT);
         GeofencingRequest geofencingRequest = geofenceHelper.getGeofencingReuest(geofence);
@@ -145,19 +127,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+        //Adding geofences
         geoFencingClient.addGeofences(geofencingRequest, pendingIntent)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSuccess: Geofence Added...");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        String errorMessage = geofenceHelper.getErrorString(e);
-                        Log.d(TAG, "onFailure: " + errorMessage);
-                    }
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "onSuccess: Geofence Added..."))
+                .addOnFailureListener(e -> {
+                    String errorMessage = geofenceHelper.getErrorString(e);
+                    Log.d(TAG, "onFailure: " + errorMessage);
                 });
     }
 
@@ -178,5 +153,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addCircle(circleOptions);
     }
 }
-
 //End

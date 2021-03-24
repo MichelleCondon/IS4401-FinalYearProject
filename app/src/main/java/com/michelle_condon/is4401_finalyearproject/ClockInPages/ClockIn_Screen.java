@@ -1,20 +1,19 @@
 package com.michelle_condon.is4401_finalyearproject.ClockInPages;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,8 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
-import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
+import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Timesheets;
 import com.michelle_condon.is4401_finalyearproject.R;
 
@@ -37,20 +36,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 
+@SuppressWarnings("unchecked")
 public class ClockIn_Screen extends AppCompatActivity implements View.OnClickListener {
 
-    //Code below is based on the Youtube video "Biometric Authentication|Android Studio|Java", Atif Pervaiz, https://www.youtube.com/watch?v=yPcxZWSszh8 (1)
+    //Code below is based on the Youtube video "Biometric Authentication|Android Studio|Java", Atif Pervaiz, https://www.youtube.com/watch?v=yPcxZWSszh8
 
     //Declare Variables
     private TextView txtStartShift;
     private EditText txtClockInName;
     private TextView txtEndShift, txtBreak, txtEndBreak;
-    public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak, btnAuthenticate1, btnAuthenticate2, btnAuthenticate3, btnAuthenticate4, lblAccount;
+    public Button btnStartShift, btnEndShift, btnStartBreak, btnEndBreak, btnAuthenticate1, btnAuthenticate2, btnAuthenticate3, btnAuthenticate4, btnAccount;
     public Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
     DatabaseReference reff;
     Timesheets timesheets;
+    @SuppressLint("SimpleDateFormat")
     String timeStamp = new SimpleDateFormat("HH.mm.ss").format(new Date());
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -61,42 +62,28 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock_in__screen);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_account:
-                        account();
-                        break;
-                    case R.id.action_home:
-                        home();
-                        break;
-                    case R.id.action_signout:
-                        signout();
-                        break;
-                }
-                return true;
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
+        //End
 
-
-        //Removes any text from the action bar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            //Setting a dynamic title at runtime. Here, it displays the current time.
-            actionBar.setTitle("");
-        }
-
+        //Account button in the tool bar
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //Buttons on the menu
-        //Assigning values by resource Id's - Account Button
-        lblAccount = (Button) findViewById(R.id.btnAccount);
-        //Listening for the users button click for clock in/out
-        lblAccount.setOnClickListener(this);
-        lblAccount.setText(firebaseUser.getEmail());
-        //initialise buttons and text
+        btnAccount = findViewById(R.id.btnAccount);
+        btnAccount.setOnClickListener(this);
+        btnAccount.setText(firebaseUser.getEmail());
+
+        //assign values to variables using resource id
         btnStartShift = findViewById(R.id.btnStartShift);
         btnEndShift = findViewById(R.id.btnEndShift);
         btnEndBreak = findViewById(R.id.btnEndBreak);
@@ -110,10 +97,11 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
         txtBreak = findViewById(R.id.txtBreak);
         txtEndBreak = findViewById(R.id.txtEndBreak);
         txtClockInName = findViewById(R.id.txtClockInName);
+        //Code below is based off code by JibW which can be found on StackOverflow at "https://stackoverflow.com/questions/17042430/android-edittexttextbox-auto-capitalizing-first-letter-of-each-word-while"
         txtClockInName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+        //End
 
-
-        //Code below is based on the website Developers, Android Developers, https://developer.android.com/training/sign-in/biometric-auth (2)
+        //Code below is based on the website Developers, Android Developers, https://developer.android.com/training/sign-in/biometric-auth
         //initialise biometrics
         executor = ContextCompat.getMainExecutor(this);
         biometricPrompt = new BiometricPrompt(ClockIn_Screen.this, executor, new BiometricPrompt.AuthenticationCallback() {
@@ -128,15 +116,16 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(ClockIn_Screen.this, "Authentication Error, Please contact your manager", Toast.LENGTH_SHORT).show();
             }
 
+            //If biometric authentication succeeds
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 //authentication succeed, continue tasks that require authentication
-                Toast.makeText(ClockIn_Screen.this, "Authentication Succeeded!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClockIn_Screen.this, "You have been successfully authenticated", Toast.LENGTH_SHORT).show();
             }
 
+            //If biometric authentication fails
             @Override
-
             public void onAuthenticationFailed() {
                 //Failure with authentication
                 super.onAuthenticationFailed();
@@ -158,250 +147,230 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
 
         //When the button is clicked bring up the authentication prompt and the second authenticate button
         // while setting the text of the labels for insertion into Firebase
-        btnStartShift.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                biometricPrompt.authenticate((promptInfo));
-                btnAuthenticate1.setVisibility(View.VISIBLE);
-                txtStartShift.setText(timeStamp);
-                txtEndShift.setText("0");
-                txtBreak.setText("0");
-                txtEndBreak.setText("0");
-                txtClockInName.setVisibility(View.VISIBLE);
+        btnStartShift.setOnClickListener(v -> {
+            biometricPrompt.authenticate((promptInfo));
+            btnAuthenticate1.setVisibility(View.VISIBLE);
+            txtStartShift.setText(timeStamp);
+            txtEndShift.setText("0");
+            txtBreak.setText("0");
+            txtEndBreak.setText("0");
+            txtClockInName.setVisibility(View.VISIBLE);
 
 
-            }
         });
         //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
-        btnEndShift.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                biometricPrompt.authenticate((promptInfo));
-                btnAuthenticate2.setVisibility(View.VISIBLE);
-                txtEndShift.setText(timeStamp);
-                txtStartShift.setText("0");
-                txtBreak.setText("0");
-                txtEndBreak.setText("0");
-                txtClockInName.setVisibility(View.VISIBLE);
+        btnEndShift.setOnClickListener(v -> {
+            biometricPrompt.authenticate((promptInfo));
+            btnAuthenticate2.setVisibility(View.VISIBLE);
+            txtEndShift.setText(timeStamp);
+            txtStartShift.setText("0");
+            txtBreak.setText("0");
+            txtEndBreak.setText("0");
+            txtClockInName.setVisibility(View.VISIBLE);
 
 
-            }
         });
         //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
-        btnStartBreak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                biometricPrompt.authenticate((promptInfo));
-                btnAuthenticate3.setVisibility(View.VISIBLE);
-                txtBreak.setText(timeStamp);
-                txtEndShift.setText("0");
-                txtStartShift.setText("0");
-                txtEndBreak.setText("0");
-                txtClockInName.setVisibility(View.VISIBLE);
+        btnStartBreak.setOnClickListener(v -> {
+            biometricPrompt.authenticate((promptInfo));
+            btnAuthenticate3.setVisibility(View.VISIBLE);
+            txtBreak.setText(timeStamp);
+            txtEndShift.setText("0");
+            txtStartShift.setText("0");
+            txtEndBreak.setText("0");
+            txtClockInName.setVisibility(View.VISIBLE);
 
-            }
         });
         //When the button is clicked bring up the authentication prompt and the second authenticate button while setting the text of the labels for insertion into Firebase
-        btnEndBreak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                biometricPrompt.authenticate((promptInfo));
-                btnAuthenticate4.setVisibility(View.VISIBLE);
-                txtEndBreak.setText(timeStamp);
-                txtEndShift.setText("0");
-                txtBreak.setText("0");
-                txtStartShift.setText("0");
-                txtClockInName.setVisibility(View.VISIBLE);
+        btnEndBreak.setOnClickListener(v -> {
+            biometricPrompt.authenticate((promptInfo));
+            btnAuthenticate4.setVisibility(View.VISIBLE);
+            txtEndBreak.setText(timeStamp);
+            txtEndShift.setText("0");
+            txtBreak.setText("0");
+            txtStartShift.setText("0");
+            txtClockInName.setVisibility(View.VISIBLE);
 
 
-            }
         });
 
 
-//Code below to insert data into Firebase is based on a YouTube Video, by EducaTree, https://www.youtube.com/watch?v=iy6WexahCdY&t=328 (3)
         timesheets = new Timesheets();
         //Accessing data from Firebase
         reff = FirebaseDatabase.getInstance().getReference().child("Timesheet");
-        btnAuthenticate1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Setting the value of each variable to whatever value is derived from the system timestamp
-                // and the name the employee enters
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-                LocalDateTime now = LocalDateTime.now();
-                String employee = (txtClockInName.getText().toString().trim());
-                String title = (employee + "In" + dtf.format(now));
-                String in = (txtStartShift.getText().toString().trim());
-                String Break = ("0");
-                String EndBreak = ("0");
-                String out = ("0");
-                String user = (firebaseUser.getEmail());
 
-                reff.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(title)) {
-                            Toast.makeText(ClockIn_Screen.this, "You have already clocked in today", Toast.LENGTH_LONG).show();
-                        } else {
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("employee", employee);
-                            hashMap.put("in", in);
-                            hashMap.put("break", Break);
-                            hashMap.put("endbreak", EndBreak);
-                            hashMap.put("out", out);
-                            hashMap.put("user", user);
+        //Clock in
+        btnAuthenticate1.setOnClickListener(v -> {
+            //Setting the value of each variable to whatever value is derived from the system timestamp
+            // and the name the employee enters
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+            LocalDateTime now = LocalDateTime.now();
+            String employee = (txtClockInName.getText().toString().trim());
+            String title = (employee + "In" + dtf.format(now));
+            String in = (txtStartShift.getText().toString().trim());
+            String Break = ("0");
+            String EndBreak = ("0");
+            String out = ("0");
+            String user = (firebaseUser.getEmail());
 
-                            reff.child(title).setValue(hashMap);
-                            Toast.makeText(ClockIn_Screen.this, "Clock In Completed", Toast.LENGTH_LONG).show();
-                        }
-                        btnAuthenticate1.setVisibility(View.INVISIBLE);
+            reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(title)) {
+                        Toast.makeText(ClockIn_Screen.this, "You have already clocked in today", Toast.LENGTH_LONG).show();
+                    } else {
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("employee", employee);
+                        hashMap.put("in", in);
+                        hashMap.put("break", Break);
+                        hashMap.put("endbreak", EndBreak);
+                        hashMap.put("out", out);
+                        hashMap.put("user", user);
+
+                        reff.child(title).setValue(hashMap);
+                        Toast.makeText(ClockIn_Screen.this, "Clock In Completed", Toast.LENGTH_LONG).show();
                     }
+                    btnAuthenticate1.setVisibility(View.INVISIBLE);
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                }
+            });
 
-            }
         });
 
-        btnAuthenticate2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-                LocalDateTime now = LocalDateTime.now();
-                String employee = (txtClockInName.getText().toString().trim());
-                String title = (employee + "Out" + dtf.format(now));
-                String in = ("0");
-                String Break = ("0");
-                String EndBreak = ("0");
-                String out = (txtEndShift.getText().toString().trim());
-                String user = (firebaseUser.getEmail());
+        //Clock out
+        btnAuthenticate2.setOnClickListener(v -> {
+            //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+            LocalDateTime now = LocalDateTime.now();
+            String employee = (txtClockInName.getText().toString().trim());
+            String title = (employee + "Out" + dtf.format(now));
+            String in = ("0");
+            String Break = ("0");
+            String EndBreak = ("0");
+            String out = (txtEndShift.getText().toString().trim());
+            String user = (firebaseUser.getEmail());
 
-                reff.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(title)) {
-                            Toast.makeText(ClockIn_Screen.this, "You have already clocked out today", Toast.LENGTH_LONG).show();
-                        } else {
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("employee", employee);
-                            hashMap.put("in", in);
-                            hashMap.put("break", Break);
-                            hashMap.put("endbreak", EndBreak);
-                            hashMap.put("out", out);
-                            hashMap.put("user", user);
+            reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(title)) {
+                        Toast.makeText(ClockIn_Screen.this, "You have already clocked out today", Toast.LENGTH_LONG).show();
+                    } else {
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("employee", employee);
+                        hashMap.put("in", in);
+                        hashMap.put("break", Break);
+                        hashMap.put("endbreak", EndBreak);
+                        hashMap.put("out", out);
+                        hashMap.put("user", user);
 
-                            reff.child(title).setValue(hashMap);
-                            Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
-                        }
-                        btnAuthenticate2.setVisibility(View.INVISIBLE);
+                        reff.child(title).setValue(hashMap);
+                        Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
                     }
+                    btnAuthenticate2.setVisibility(View.INVISIBLE);
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                }
+            });
 
-            }
         });
 
+        //Clock out for break
+        btnAuthenticate3.setOnClickListener(v -> {
+            //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+            LocalDateTime now = LocalDateTime.now();
+            String employee = (txtClockInName.getText().toString().trim());
+            String title = (employee + "Break" + dtf.format(now));
+            String in = ("0");
+            String Break = (txtBreak.getText().toString().trim());
+            String EndBreak = ("0");
+            String out = ("0");
+            String user = (firebaseUser.getEmail());
 
-        btnAuthenticate3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-                LocalDateTime now = LocalDateTime.now();
-                String employee = (txtClockInName.getText().toString().trim());
-                String title = (employee + "Break" + dtf.format(now));
-                String in = ("0");
-                String Break = (txtBreak.getText().toString().trim());
-                String EndBreak = ("0");
-                String out = ("0");
-                String user = (firebaseUser.getEmail());
+            reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(title)) {
+                        Toast.makeText(ClockIn_Screen.this, "You have already clocked out for the start of your break today", Toast.LENGTH_LONG).show();
+                    } else {
 
-                reff.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(title)) {
-                            Toast.makeText(ClockIn_Screen.this, "You have already clocked out for the start of your break today", Toast.LENGTH_LONG).show();
-                        } else {
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("employee", employee);
+                        hashMap.put("in", in);
+                        hashMap.put("break", Break);
+                        hashMap.put("endbreak", EndBreak);
+                        hashMap.put("out", out);
+                        hashMap.put("user", user);
 
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("employee", employee);
-                            hashMap.put("in", in);
-                            hashMap.put("break", Break);
-                            hashMap.put("endbreak", EndBreak);
-                            hashMap.put("out", out);
-                            hashMap.put("user", user);
+                        reff.child(title).setValue(hashMap);
 
-                            reff.child(title).setValue(hashMap);
-
-                            Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
-                        }
-                        btnAuthenticate3.setVisibility(View.INVISIBLE);
+                        Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
                     }
+                    btnAuthenticate3.setVisibility(View.INVISIBLE);
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                }
+            });
 
-            }
         });
 
-        btnAuthenticate4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
-                LocalDateTime now = LocalDateTime.now();
-                String employee = (txtClockInName.getText().toString().trim());
-                String title = (employee + "EndBreak" + dtf.format(now));
-                String in = ("0");
-                String Break = ("0");
-                String EndBreak = (txtEndBreak.getText().toString().trim());
-                String out = ("0");
-                String user = (firebaseUser.getEmail());
+        //Clock in for break
+        btnAuthenticate4.setOnClickListener(v -> {
+            //Setting the value of each variable to whatever value is derived from the system timestamp and the name the employee enters
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+            LocalDateTime now = LocalDateTime.now();
+            String employee = (txtClockInName.getText().toString().trim());
+            String title = (employee + "EndBreak" + dtf.format(now));
+            String in = ("0");
+            String Break = ("0");
+            String EndBreak = (txtEndBreak.getText().toString().trim());
+            String out = ("0");
+            String user = (firebaseUser.getEmail());
 
-                reff.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(title)) {
-                            Toast.makeText(ClockIn_Screen.this, "You have already clocked back in from your break today", Toast.LENGTH_LONG).show();
-                        } else {
+            reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild(title)) {
+                        Toast.makeText(ClockIn_Screen.this, "You have already clocked back in from your break today", Toast.LENGTH_LONG).show();
+                    } else {
 
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("employee", employee);
-                            hashMap.put("in", in);
-                            hashMap.put("break", Break);
-                            hashMap.put("endbreak", EndBreak);
-                            hashMap.put("out", out);
-                            hashMap.put("user", user);
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("employee", employee);
+                        hashMap.put("in", in);
+                        hashMap.put("break", Break);
+                        hashMap.put("endbreak", EndBreak);
+                        hashMap.put("out", out);
+                        hashMap.put("user", user);
 
-                            reff.child(title).setValue(hashMap);
-                            Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
-                        }
-                        btnAuthenticate3.setVisibility(View.INVISIBLE);
+                        reff.child(title).setValue(hashMap);
+                        Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
                     }
+                    btnAuthenticate3.setVisibility(View.INVISIBLE);
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                }
+            });
 
-            }
         });
 
     }
 
 
+    //Navigation bar methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -423,3 +392,5 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
         }
     }
 }
+//End
+//End
