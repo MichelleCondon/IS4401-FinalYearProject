@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.michelle_condon.is4401_finalyearproject.AddPages.AddItems;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
@@ -24,7 +25,9 @@ import com.michelle_condon.is4401_finalyearproject.Models.VList;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+@SuppressWarnings("unchecked")
 public class VirtualList extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on a YouTube Video, by Ben O'Brien, https://www.youtube.com/channel/UCIMduWsoyJxVuDbZ3TPhzew
@@ -78,11 +81,18 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
         //Initialise connection to Firebase
         reff = FirebaseDatabase.getInstance().getReference().child("List");
         btnAddList.setOnClickListener(view -> {
-            //Setting the value of each variable to whatever the user enters on the form
-            list.setProducts(txtListName.getText().toString().trim());
-            reff.push().setValue(list);
-            Toast.makeText(VirtualList.this, "Item Save", Toast.LENGTH_LONG).show();
-            addItem();
+            String product = txtListName.getText().toString();
+
+            if (product.isEmpty()) {
+                txtListName.setError("Please add an item to the text box on screen in order to add it to the list");
+                txtListName.requestFocus();
+            } else {
+                HashMap hashMap = new HashMap();
+                hashMap.put("product", product);
+                reff.child(product).setValue(hashMap);
+                Toast.makeText(VirtualList.this, "Item saved to inventory", Toast.LENGTH_LONG).show();
+            }
+
         });
 
 

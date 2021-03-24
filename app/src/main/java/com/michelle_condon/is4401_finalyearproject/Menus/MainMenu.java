@@ -76,8 +76,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    private void home() {
-    }
+    private void home() { }
 
     private void account() {
         startActivity(new Intent(this, AccountMenu.class));
