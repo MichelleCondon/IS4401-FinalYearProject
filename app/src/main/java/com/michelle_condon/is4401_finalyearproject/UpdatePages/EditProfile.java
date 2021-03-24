@@ -1,18 +1,15 @@
 package com.michelle_condon.is4401_finalyearproject.UpdatePages;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,11 +21,13 @@ import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.HashMap;
+import java.util.Objects;
 
-public class EditProfile extends AppCompatActivity implements View.OnClickListener{
+@SuppressWarnings("unchecked")
+public class EditProfile extends AppCompatActivity implements View.OnClickListener {
 
+    //Declare Variables
     private EditText emailAddress, phoneNumber;
-    private Button btnUpdate, btnAccount, btnDelete;
     public TextView employeeId, fullname, position;
     DatabaseReference reff;
     FirebaseAuth firebaseAuth;
@@ -39,36 +38,32 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_account:
-                        account();
-                        break;
-                    case R.id.action_home:
-                        home();
-                        break;
-                    case R.id.action_signout:
-                        signout();
-                        break;
-                }
-                return true;
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
+        //End
 
+        //Account Button using the logged in email from Firebase
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //Buttons on the menu
-        //Assigning values by resource Id's - Account Button
-        btnAccount = (Button) findViewById(R.id.btnAccount);
-        btnDelete = (Button) findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(this);
-        //Listening for the users button click for clock in/out
+        Button btnAccount = findViewById(R.id.btnAccount);
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
 
+        //Assigning values by resource Id's
+        Button btnDelete = findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(this);
+
+        //Data transfer from the user profile page
         Intent i = getIntent();
         String NAME = i.getStringExtra("email");
         String var1 = i.getStringExtra("employeeId");
@@ -76,50 +71,42 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         String var3 = i.getStringExtra("phoneNumber");
         String var4 = i.getStringExtra("position");
 
-        btnUpdate = (Button) findViewById(R.id.btnUpdateProfile);
-        fullname = (TextView) findViewById(R.id.txtUpdateFullName);
+        //Setting the text on the page
+        Button btnUpdate = findViewById(R.id.btnUpdateProfile);
+        fullname = findViewById(R.id.txtUpdateFullName);
         fullname.setText(var2);
-        emailAddress = (EditText) findViewById(R.id.txtUpdateEmailAddress);
+        emailAddress = findViewById(R.id.txtUpdateEmailAddress);
         emailAddress.setText(NAME);
-        phoneNumber = (EditText) findViewById(R.id.txtUpdatedPhoneNumber);
+        phoneNumber = findViewById(R.id.txtUpdatedPhoneNumber);
         phoneNumber.setText(var3);
-        position = (TextView) findViewById(R.id.txtUpdatedPosition);
+        position = findViewById(R.id.txtUpdatedPosition);
         position.setText(var4);
-        employeeId = (TextView) findViewById(R.id.txtUpdatedEmployeeId);
+        employeeId = findViewById(R.id.txtUpdatedEmployeeId);
         employeeId.setText(var1);
 
-        if(firebaseUser.getEmail().equals("admin@admin.com")) {
+        //Making the delete button visible if it's the admin who is logged in
+        if (Objects.equals(firebaseUser.getEmail(), "admin@gmail.com")) {
             btnDelete.setVisibility(View.VISIBLE);
         } else {
             btnDelete.setVisibility(View.INVISIBLE);
         }
 
+        //Update button actions
         reff = FirebaseDatabase.getInstance().getReference().child("Users");
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @SuppressWarnings("unchecked")
-            @Override
-            public void onClick(View v) {
-                String updatedName = fullname.getText().toString();
-                String updatedEmail = emailAddress.getText().toString();
-                String updatedPhone = phoneNumber.getText().toString();
-                String updatedPosition = position.getText().toString();
-                String updatedEmployeeId = employeeId.getText().toString();
+        btnUpdate.setOnClickListener(v -> {
+            String updatedEmail = emailAddress.getText().toString();
+            String updatedPhone = phoneNumber.getText().toString();
 
-                HashMap hashMap = new HashMap();
-                hashMap.put("email", updatedEmail);
-                hashMap.put("phoneNumber", updatedPhone);
+            HashMap hashMap = new HashMap();
+            hashMap.put("email", updatedEmail);
+            hashMap.put("phoneNumber", updatedPhone);
 
-                reff.child(fullname.getText().toString()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                    @Override
-                    public void onSuccess(Object o) {
-                        Toast.makeText(EditProfile.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+            reff.child(fullname.getText().toString()).updateChildren(hashMap).addOnSuccessListener(o -> Toast.makeText(EditProfile.this, "User Details Updated", Toast.LENGTH_LONG).show());
         });
 
     }
 
+    //Navigation bar methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -134,15 +121,12 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            //Account button
-            case R.id.btnAccount:
-                startActivity(new Intent(this, AccountMenu.class));
-                break;
-            case R.id.btnDelete:
-                String name = fullname.getText().toString();
-                reff.child(name).removeValue();
-                break;
-    }
+        //If statement for when buttons are clicked
+        if (v.getId() == R.id.btnAccount) {
+            startActivity(new Intent(this, AccountMenu.class));
+        } else if (v.getId() == R.id.btnDelete) {
+            String name = fullname.getText().toString();
+            reff.child(name).removeValue();
+        }
     }
 }

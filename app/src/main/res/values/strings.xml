@@ -176,6 +176,9 @@
     <string name="lblUpdateUserProfile">Update User Profile</string>
     <string name="btnDeleteProfile">Delete Profile</string>
     <string name="lblPreferedShift">Preferred Shift:</string>
+    <string name="lblEmployeeId">Employee Id:</string>
+    <string name="lblFullName">Name:</string>
+    <string name="lblPosition">Position:</string>
 
 
 

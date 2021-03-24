@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchData;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
 import com.michelle_condon.is4401_finalyearproject.R;
@@ -24,7 +26,7 @@ public class HelperAdapter extends RecyclerView.Adapter{
 
     //List Item
     List<FetchData> fetchDataList;
-    Items item;
+    Items item;;
 
 
     public HelperAdapter(List<FetchData> fetchDataList) {
@@ -89,6 +91,7 @@ public class HelperAdapter extends RecyclerView.Adapter{
 
                 @Override
                 public void onClick(View v) {
+
                     Context context = v.getContext();
                     Intent intent = new Intent(context, UpdateProducts.class);
                     String a = name.getText().toString();
