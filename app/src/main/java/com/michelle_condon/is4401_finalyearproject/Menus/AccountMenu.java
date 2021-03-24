@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.HoursRequest;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.R;
-import com.michelle_condon.is4401_finalyearproject.TimeOffRequest;
+import com.michelle_condon.is4401_finalyearproject.TimeOffRequest.TimeOffRequest;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 
 public class AccountMenu extends AppCompatActivity implements View.OnClickListener {

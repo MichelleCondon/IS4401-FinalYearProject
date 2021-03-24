@@ -32,7 +32,7 @@
         <activity android:name=".ProductCheck.ProductCheck2" />
         <activity android:name=".Menus.AccountMenu" />
         <activity
-            android:name=".TimeOffRequest"
+            android:name=".TimeOffRequest.TimeOffRequest"
             android:theme="@style/AppTheme2" />
         <activity android:name=".HoursRequest" />
         <activity android:name=".UpdatePages.UpdateProducts" />

@@ -1,23 +1,20 @@
-package com.michelle_condon.is4401_finalyearproject;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Pair;
+package com.michelle_condon.is4401_finalyearproject.TimeOffRequest;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,9 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.HashMap;
 
+@SuppressWarnings("unchecked")
 public class TimeOffRequest extends AppCompatActivity implements View.OnClickListener {
 
     //Declare Variables
@@ -35,6 +34,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
     FirebaseUser firebaseUser;
     private TextView mShowSelectedDateText, txtDates;
     DatabaseReference reff;
+    DatabaseReference reff2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +42,16 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_time_off_request);
 
         //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.action_account) {
-                    account();
-                } else if (item.getItemId() == R.id.action_home) {
-                    home();
-                } else if (item.getItemId() == R.id.action_signout) {
-                    signout();
-                }
-                return true;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
         //End
 
@@ -88,20 +85,16 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
 
         //handle the positive button click from the material design date picker
         materialDatePicker.addOnPositiveButtonClickListener(
-                new MaterialPickerOnPositiveButtonClickListener() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onPositiveButtonClick(Object selection) {
+                selection -> {
 
-                        // if the user clicks on the positive
-                        // button that is ok button update the
-                        // selected date
-                        mShowSelectedDateText.setVisibility(View.VISIBLE);
-                        txtDates.setVisibility(View.VISIBLE);
-                        txtDates.setText(materialDatePicker.getHeaderText());
-                        mShowSelectedDateText.setText("Selected Dates are:");
+                    // if the user clicks on the positive
+                    // button that is ok button update the
+                    // selected date
+                    mShowSelectedDateText.setVisibility(View.VISIBLE);
+                    txtDates.setVisibility(View.VISIBLE);
+                    txtDates.setText(materialDatePicker.getHeaderText());
+                    mShowSelectedDateText.setText("Selected Dates are:");
 
-                    }
                 });
     }
 
@@ -119,10 +112,15 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-
+        //Pushing data to Firebase using a hash map
         reff = FirebaseDatabase.getInstance().getReference().child("TimeOffRequests");
         String employeeEmail = firebaseUser.getEmail();
         String dates = txtDates.getText().toString();
+
+        //Validation
+        if (dates.equals("")) {
+            Toast.makeText(TimeOffRequest.this, "Your must select a series of dates in order to confirm your request", Toast.LENGTH_LONG).show();
+        }
 
         HashMap hashMap = new HashMap();
         hashMap.put("employeeEmail", employeeEmail);
@@ -135,6 +133,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
 
     @SuppressLint("IntentReset")
     protected void sendEmail() {
+        //Automated email to send to confirm time off days
         Log.i("Send email", "");
         String[] TO = {"117320951@umail.ucc.ie"};
         String[] CC = {""};
