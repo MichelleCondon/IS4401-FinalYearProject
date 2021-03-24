@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.michelle_condon.is4401_finalyearproject.BarcodeScanner.BarcodeScanner;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.DisplayItems;
-import com.michelle_condon.is4401_finalyearproject.EmployeeSchedule;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.EmployeeSchedule;
 import com.michelle_condon.is4401_finalyearproject.GoogleMaps.MapsActivity;
 import com.michelle_condon.is4401_finalyearproject.List.VirtualList;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;

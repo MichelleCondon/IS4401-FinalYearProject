@@ -51,7 +51,7 @@
         <activity android:name=".List.VirtualList" />
         <activity android:name=".ProductCheck.ProductCheck" />
         <activity android:name=".LoginScreen.MainActivity" />
-        <activity android:name=".EmployeeSchedule" />
+        <activity android:name=".DisplayPages.EmployeeSchedule" />
 
         <receiver
             android:name=".GoogleMaps.GeofenceBroadcastReceiver"

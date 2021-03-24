@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.DisplayPages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,11 +29,13 @@ import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchEmployees;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+@SuppressWarnings("unchecked")
 public class EmployeeSchedule extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, "https://www.youtube.com/watch?v=g74E5DpUT-Q"
@@ -53,33 +55,24 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_schedule);
 
-        //Navigation Bar
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_account:
-                        account();
-                        break;
-                    case R.id.action_home:
-                        home();
-                        break;
-                    case R.id.action_signout:
-                        signout();
-                        break;
-                }
-                return true;
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
+        //End
 
-
+        //Account button in the toolbar
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //Buttons on the menu
-        //Assigning values by resource Id's - Account Button
-        Button btnAccount = (Button) findViewById(R.id.btnAccount);
-        //Listening for the users button click for clock in/out
+        Button btnAccount = findViewById(R.id.btnAccount);
         btnAccount.setOnClickListener(this);
         btnAccount.setText(firebaseUser.getEmail());
 
@@ -90,7 +83,7 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
         recyclerView = findViewById(R.id.ListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchEmployees = new ArrayList<>();
-        txtSearchEmployee = (AutoCompleteTextView) findViewById(R.id.txtSearchEmployee);
+        txtSearchEmployee = findViewById(R.id.txtSearchEmployee);
 
         ValueEventListener event = new ValueEventListener() {
             @Override
@@ -107,6 +100,7 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
 
     }
 
+    //Methods for the navigation bar
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -130,13 +124,10 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
             //Displaying results in a simple list item format
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, employeeSearch);
             txtSearchEmployee.setAdapter(adapter);
-            txtSearchEmployee.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String search = txtSearchEmployee.getText().toString();
-                    searchEmployee(search);
+            txtSearchEmployee.setOnItemClickListener((parent, view, position, id) -> {
+                String search = txtSearchEmployee.getText().toString();
+                searchEmployee(search);
 
-                }
             });
         } else {
             Log.d("EmployeeRoster", "No data found");
@@ -168,11 +159,9 @@ public class EmployeeSchedule extends AppCompatActivity implements View.OnClickL
         });
     }
 
-
-
     @Override
     public void onClick(View v) {
-        //If the register label is clicked the sign up screen opens
+        //If statement for if a button is clicked
         if (v.getId() == R.id.btnAccount) {
             startActivity(new Intent(this, AccountMenu.class));
         }
