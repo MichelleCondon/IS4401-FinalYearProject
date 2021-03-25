@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchEmployees;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
-import com.michelle_condon.is4401_finalyearproject.ManagementMainMenu;
+import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.HashMap;
@@ -70,7 +70,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
         txtWeekNumber = findViewById(R.id.txtWeekNumber);
         txtEmployeename = findViewById(R.id.txtEmpName);
         //Auto Capitalise the first letter of the employee name - code is from Stackoverflow by JibW which can be found at "https://stackoverflow.com/questions/17042430/android-edittexttextbox-auto-capitalizing-first-letter-of-each-word-while"
-        txtEmployeename.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        txtEmployeename.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         //End
         txtMonday = findViewById(R.id.txtMonday);
         txtTuesday = findViewById(R.id.txtTuesday);
@@ -233,7 +233,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         //Does Nothing
-        }
+    }
 }
 
 

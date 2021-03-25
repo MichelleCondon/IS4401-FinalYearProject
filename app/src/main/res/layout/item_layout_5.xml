@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/item_layout"
     android:orientation="vertical">
 
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="298dp"
-        android:layout_height="72dp"
-        android:divider="@color/colorBlue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <!--Table Row-->
-        <TableRow>
-
-            <TextView
-                android:id="@+id/txtEmployeeEmailReview"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:paddingStart="50dp"
-                android:paddingEnd="0dp"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-
-        </TableRow>
-
-
-        <!--Table Row-->
-        <TableRow
-            android:layout_width="match_parent"
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="278dp"
             android:layout_height="match_parent"
-            android:divider="@color/colorBlue">
+            android:divider="@color/colorBlue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/txtReviewDates"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_gravity="center_horizontal"
-                android:paddingStart="50dp"
-                android:paddingEnd="0dp"
-                android:textColor="#000000"
-                android:textSize="20sp" />
+            <!--Table Row-->
+            <TableRow>
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/txtEmployeeEmailReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
 
-    </TableLayout>
+            </TableRow>
+
+
+            <!--Table Row-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/colorBlue">
+
+                <TextView
+                    android:id="@+id/txtReviewDates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+
+        </TableLayout>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/btnReject"
         android:layout_width="47dp"
         android:layout_height="57dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/ic_baseline_block_24"
         android:onClick="onClick"
@@ -68,11 +76,12 @@
         android:id="@+id/btnApprove"
         android:layout_width="47dp"
         android:layout_height="57dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="7dp"
         android:background="@drawable/ic_baseline_check_24"
         android:onClick="onClick"
-        app:layout_constraintStart_toEndOf="@+id/tableLayout"
+        app:layout_constraintEnd_toStartOf="@+id/btnReject"
         app:layout_constraintTop_toTopOf="parent" />
-
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

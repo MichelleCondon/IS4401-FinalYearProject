@@ -37,7 +37,7 @@
         <activity android:name=".HoursRequest" />
         <activity android:name=".UpdatePages.UpdateProducts" />
         <activity android:name=".AddPages.AddSchedule" />
-        <activity android:name=".ManagementMainMenu" />
+        <activity android:name=".Menus.ManagementMainMenu" />
         <activity android:name=".List.ExistingListItems" /> <!-- Splash Screen used as the launcher activity -->
         <activity
             android:name=".SplashScreen.SplashScreen"

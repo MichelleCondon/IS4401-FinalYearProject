@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,8 +24,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.Adapters.TimeOffAdapter;
+import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.ManagementViewEmployeeSchedule;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
+import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchRequests;
 import com.michelle_condon.is4401_finalyearproject.R;
 
@@ -41,7 +44,7 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
     TimeOffAdapter timeoffAdapter;
     DatabaseReference databaseReference;
     TextView txtEmployeeEmail, txtReviewDates;
-    Button btnAccept, btnReject, btnResult;
+    Button btnAccept, btnReject, btnAccount;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
@@ -51,13 +54,29 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_off_review);
 
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_signout) {
+                signout();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_employeeInfo) {
+                account();
+            }
+            return true;
+        });
+        //End
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        txtEmployeeEmail = (TextView) findViewById(R.id.txtEmployeeEmailReview);
-        txtReviewDates = (TextView) findViewById(R.id.txtReviewDates);
-        btnAccept = (Button) findViewById(R.id.btnApprove);
-        btnReject = (Button) findViewById(R.id.btnReject);
-        //Listening for the users button click for clock in/out
+        Button btnAccount = findViewById(R.id.btnAccount);
+        btnAccount.setOnClickListener(this);
+        btnAccount.setText(firebaseUser.getEmail());
+        txtEmployeeEmail = findViewById(R.id.txtEmployeeEmailReview);
+        txtReviewDates = findViewById(R.id.txtReviewDates);
+        btnAccept =  findViewById(R.id.btnApprove);
+        btnReject = findViewById(R.id.btnReject);
 
         //Assigning the recycler view by resource id
         recyclerViewRequests = findViewById(R.id.recyclerViewReview);
@@ -80,6 +99,7 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
                 //Calls the helper adapter class to manage the layout of the displayed items using a view holder class
                 timeoffAdapter = new TimeOffAdapter(fetchRequests);
                 recyclerViewRequests.setAdapter(timeoffAdapter);
+
             }
 
             @Override
@@ -89,9 +109,19 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private void signout() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    private void home() {startActivity(new Intent(this, ManagementMainMenu.class)); }
+
+    private void account() {
+        startActivity(new Intent(this, UserProfile.class));
+    }
+
     @SuppressLint("IntentReset")
     protected void sendEmailApproval() {
-        txtEmployeeEmail = (TextView) findViewById(R.id.txtEmployeeEmailReview);
+        txtEmployeeEmail = findViewById(R.id.txtEmployeeEmailReview);
         String user = (txtEmployeeEmail.getText().toString());
         Log.i("Send email", "");
         String[] TO = {user};
@@ -103,7 +133,7 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Approved");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your Time Off Request Has Been Approved and Your Roster will now be updated" + "\n" + "Thanks" + "\n" + "Management");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your time off request has been approved and your roster will be updated shortly" + "\n" + "Thanks," + "\n" + "Management");
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
@@ -114,9 +144,10 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @SuppressLint("IntentReset")
     protected void sendEmailDenial() {
-        txtEmployeeEmail = (TextView) findViewById(R.id.txtEmployeeEmailReview);
-        String user = String.valueOf(txtEmployeeEmail.getText().toString());
+        txtEmployeeEmail = findViewById(R.id.txtEmployeeEmailReview);
+        String user = txtEmployeeEmail.getText().toString();
         Log.i("Send email", "");
         String[] TO = {user};
         String[] CC = {""};
@@ -127,7 +158,7 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Rejected");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Unfortunately your Time Off Request Has Been Rejected by Management" + "\n" + "Thanks" + "\n" + "Management");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Unfortunately your time off request could not be approved by management at this time" + "\n" + "Thanks," + "\n" + "Management");
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
@@ -140,21 +171,14 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("TimeOffRequests");
-        switch (v.getId()) {
-            //Account button
-            case R.id.btnAccount:
-                startActivity(new Intent(this, AccountMenu.class));
-                break;
-            case R.id.btnApprove:
-                startActivity(new Intent(this, ManagementViewEmployeeSchedule.class));
-                sendEmailApproval();
-                break;
-            case R.id.btnReject:
-                sendEmailDenial();
-                break;
-
+        //if statements for if a button is clicked
+        if (v.getId() == R.id.btnAccount) {
+            startActivity(new Intent(this, AccountMenu.class));
+        } else if (v.getId() == R.id.btnApprove) {
+            startActivity(new Intent(this, ManagementViewEmployeeSchedule.class));
+            sendEmailApproval();
+        } else if (v.getId() == R.id.btnReject) {;
+            sendEmailDenial();
         }
     }
-
 }

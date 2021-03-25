@@ -22,7 +22,6 @@ public class TimeOffAdapter extends RecyclerView.Adapter {
     List<FetchRequests> fetchRequestsList;
     Items item;
 
-
     public TimeOffAdapter(List<FetchRequests> fetchRequestsList) {
         this.fetchRequestsList = fetchRequestsList;
 

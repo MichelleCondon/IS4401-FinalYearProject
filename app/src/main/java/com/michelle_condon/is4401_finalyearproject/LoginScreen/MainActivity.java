@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
-import com.michelle_condon.is4401_finalyearproject.ManagementMainMenu;
+import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
 import com.michelle_condon.is4401_finalyearproject.R;
 import com.michelle_condon.is4401_finalyearproject.SignupScreen;
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".ManagementMainMenu">
+    tools:context=".Menus.ManagementMainMenu">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -18,8 +18,8 @@
 
     <Button
         android:id="@+id/btnAccount"
-        android:layout_width="207dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="355dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="20dp"

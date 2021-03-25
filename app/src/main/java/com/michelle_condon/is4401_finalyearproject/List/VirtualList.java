@@ -33,12 +33,12 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
     //Code below is based on a YouTube Video, by Ben O'Brien, https://www.youtube.com/channel/UCIMduWsoyJxVuDbZ3TPhzew
 
     //Declare Variables
-    private ArrayList<String> items;
-    private ArrayAdapter<String> itemsAdapter;
+    private ArrayList<String> list;
+    private ArrayAdapter<String> listAdapter;
     private ListView listView;
     private EditText txtListName;
     DatabaseReference reff;
-    VList list;
+    VList vList;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
@@ -77,7 +77,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
         btnViewList.setOnClickListener(this);
 
 
-        list = new VList();
+        vList = new VList();
         //Initialise connection to Firebase
         reff = FirebaseDatabase.getInstance().getReference().child("List");
         btnAddList.setOnClickListener(view -> {
@@ -87,18 +87,20 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
                 txtListName.setError("Please add an item to the text box on screen in order to add it to the list");
                 txtListName.requestFocus();
             } else {
+                addItem();
                 HashMap hashMap = new HashMap();
                 hashMap.put("product", product);
                 reff.child(product).setValue(hashMap);
+                txtListName.setText("");
                 Toast.makeText(VirtualList.this, "Item saved to inventory", Toast.LENGTH_LONG).show();
             }
 
         });
 
 
-        items = new ArrayList<>();
-        itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
-        listView.setAdapter(itemsAdapter);
+        list = new ArrayList<>();
+        listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(listAdapter);
         setUpListViewListener();
 
 
@@ -123,8 +125,8 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
             Context context = getApplicationContext();
             Toast.makeText(context, "Item Removed", Toast.LENGTH_LONG).show();
 
-            items.remove(i);
-            itemsAdapter.notifyDataSetChanged();
+            list.remove(i);
+            listAdapter.notifyDataSetChanged();
             return true;
         });
     }
@@ -137,8 +139,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
         if (txtListName.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Please type an item into the text box to add it to the list", Toast.LENGTH_LONG).show();
         } else if (!(itemText.equals(""))) {
-            itemsAdapter.add(itemText);
-            input.setText("");
+            listAdapter.add(itemText);
         } else {
             Toast.makeText(getApplicationContext(), "Please enter text..", Toast.LENGTH_LONG).show();
         }
