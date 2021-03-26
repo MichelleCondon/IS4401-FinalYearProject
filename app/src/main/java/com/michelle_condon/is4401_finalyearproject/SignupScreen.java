@@ -3,6 +3,7 @@ package com.michelle_condon.is4401_finalyearproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -53,10 +54,12 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
 
         //Assigning Values by resourceId
         txtFullName = findViewById(R.id.txtFullName);
+        txtFullName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         txtEmployeeId = findViewById(R.id.txtEmployeeId);
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
         txtPosition = findViewById(R.id.txtPosition);
+        txtPosition.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         txtPhoneNumber = findViewById(R.id.txtPhone);
 
     }

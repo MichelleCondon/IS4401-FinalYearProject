@@ -12,8 +12,8 @@ import com.michelle_condon.is4401_finalyearproject.R;
 
 public class SplashScreen extends AppCompatActivity {
 
-    //Code below is based on the website "Android Splash Screen With Progress Bar Example" by Codexpedia, "https://www.codexpedia.com/android/android-splash-screen-with-progress-bar-example/"
-    //Logo was generated on https://hatchful.shopify.com/
+    //Code below for the splash screen is based on the website "Android Splash Screen With Progress Bar Example" by Codexpedia, "https://www.codexpedia.com/android/android-splash-screen-with-progress-bar-example/"
+    //Logo and app name was generated at Hatchful, "https://hatchful.shopify.com/"
 
     //Declare progress bar as a variable
     private ProgressBar mProgress;

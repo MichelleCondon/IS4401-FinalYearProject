@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -73,6 +74,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
         listView = findViewById(R.id.listView);
         Button btnAddList = findViewById(R.id.btnAddList);
         txtListName = findViewById(R.id.txtListName);
+        txtListName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         Button btnViewList = findViewById(R.id.btnViewList);
         btnViewList.setOnClickListener(this);
 

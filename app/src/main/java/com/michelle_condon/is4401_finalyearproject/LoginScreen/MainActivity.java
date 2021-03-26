@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
@@ -19,6 +20,8 @@ import com.michelle_condon.is4401_finalyearproject.SignupScreen;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on the Youtube Video Login and Registration Android App Tutorial using Firebase Authentication - Login, CodeWithMazn, https://www.youtube.com/watch?v=KB2BIm_m1Os&t=336s (1)
+
+    //Declare Variables
     private EditText txtEmail, txtPassword;
     private FirebaseAuth mAuth;
 

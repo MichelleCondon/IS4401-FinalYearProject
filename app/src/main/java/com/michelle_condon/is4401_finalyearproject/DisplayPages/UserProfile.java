@@ -70,7 +70,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         btnRefresh.setOnClickListener(this);
 
 
-        //Code below ia based on a YouTube Video "How to retrieve data from Firebase in RecyclerView | Android Tutorial - Quick + Easy" by Learn with Deeksha, "https://www.youtube.com/watch?v=lJaPdBMdPy0"
+        //Code below is based on a YouTube Video "How to retrieve data from Firebase in RecyclerView | Android Tutorial - Quick + Easy" by Learn with Deeksha, "https://www.youtube.com/watch?v=lJaPdBMdPy0"
         //Assigning the recycler view by resource id
         recyclerView = findViewById(R.id.recyclerViewUser);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -101,6 +101,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     }
     //End
 
+    //Navigation Bar Methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }

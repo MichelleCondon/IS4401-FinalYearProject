@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
     FirebaseUser firebaseUser;
     private TextView mShowSelectedDateText, txtDates, txtHolidayName;
     DatabaseReference reff;
+    Button btnConfirm;
+    EditText txtEmp;
 
 
     @Override
@@ -64,6 +68,9 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         mShowSelectedDateText = findViewById(R.id.show_selected_date);
         txtDates = findViewById(R.id.txtDates);
         txtHolidayName = findViewById(R.id.txtEmpNameHoliday);
+        txtHolidayName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+        btnConfirm = findViewById(R.id.btnConfirm);
+
 
         //Creating an instance of the material date picker builder which makes sure to add the "dateRangePicker" which is the material date range picker which is the
         //second type of the date picker in material design date picker which we need to pass the pair of Long values, because the start date and end date is stored as a "Long" type value
@@ -77,12 +84,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
 
         //select date button which opens the material design date picker
         mPickDateButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
-                    }
-                });
+                v -> materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER"));
 
         //handle the positive button click from the material design date picker
         materialDatePicker.addOnPositiveButtonClickListener(
@@ -93,12 +95,15 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
                     // selected date
                     mShowSelectedDateText.setVisibility(View.VISIBLE);
                     txtDates.setVisibility(View.VISIBLE);
+                    txtHolidayName.setVisibility(View.VISIBLE);
+                    btnConfirm.setVisibility(View.VISIBLE);
                     txtDates.setText(materialDatePicker.getHeaderText());
                     mShowSelectedDateText.setText("Selected Dates are:");
 
                 });
     }
 
+    //Navigation bar methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -120,11 +125,14 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         String empHolidayName = txtHolidayName.getText().toString();
         String status = ("Pending");
 
+
         //Validation
         if (dates.equals("TextView")) {
             Toast.makeText(TimeOffRequest.this, "Your must select a series of dates in order to confirm your request", Toast.LENGTH_LONG).show();
         } else if (dates.equals("")) {
             Toast.makeText(TimeOffRequest.this, "Your must select a series of dates in order to confirm your request", Toast.LENGTH_LONG).show();
+        } else if (empHolidayName.equals("")) {
+            Toast.makeText(TimeOffRequest.this, "Your must fill in your name to continue", Toast.LENGTH_LONG).show();
         } else {
             HashMap hashMap = new HashMap();
             hashMap.put("empHolidayName", empHolidayName);
@@ -138,6 +146,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    //Code to send emails is from Tutorials Point which can be found at "https://www.tutorialspoint.com/android/android_sending_email.htm"
     @SuppressLint("IntentReset")
     protected void sendEmail() {
         //Automated email to send to confirm time off days
@@ -162,6 +171,6 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(TimeOffRequest.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //End
 }
 

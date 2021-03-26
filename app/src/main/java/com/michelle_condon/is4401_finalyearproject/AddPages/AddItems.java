@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -67,10 +68,13 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
 
         //Product Name Text Box
         txtName = findViewById(R.id.txtName);
+        txtName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+
         //Price Text Box
         txtPrice = findViewById(R.id.txtPrice);
         //Description Text Box
         txtDescription = findViewById(R.id.txtDescription);
+        txtDescription.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         //Quantity Text Box
         txtQuantity = findViewById(R.id.txtQuantity);
         //Barcode TextView

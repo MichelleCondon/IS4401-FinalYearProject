@@ -64,6 +64,7 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="80dp"
         android:text="@string/txtHiddenTextView"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblReviewRequests" />
@@ -88,6 +89,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="80dp"
         android:text="@string/txtHiddenTextView"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtReviewEmail" />
@@ -114,6 +116,7 @@
         android:drawableStart="@drawable/ic_baseline_check_24"
         android:onClick="onClick"
         android:text="@string/btnApprove"
+        android:textColor="#1EB540"
         app:layout_constraintEnd_toStartOf="@+id/btnDeny"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -126,6 +129,7 @@
         android:drawableStart="@drawable/ic_baseline_block_24"
         android:onClick="onClick"
         android:text="@string/btnDeny"
+        android:textColor="#DF2D2D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtReviewedDates" />
 

@@ -29,7 +29,7 @@
         app:layout_constraintVertical_bias="0.423" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnConfirm"
         android:layout_width="193dp"
         android:layout_height="58dp"
         android:layout_marginStart="124dp"
@@ -39,6 +39,7 @@
         android:onClick="onClick"
         android:text="Confirm Request"
         android:textColor="#FFFFFF"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +97,8 @@
         android:ems="10"
         android:hint="@string/txtEmployeeNameS"
         android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/pick_date_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -1,8 +1,11 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.RequestChange;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,12 +29,14 @@ import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.Hours;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.HashMap;
 
 @SuppressWarnings("unchecked")
 public class HoursRequest extends AppCompatActivity implements View.OnClickListener {
 
+    //Declare Variables
     EditText txtHours;
     EditText txtName;
     DatabaseReference reff;
@@ -193,6 +198,7 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
 
                                 reff.child(name + date + month).setValue(hashMap);
                                 Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
+                                sendEmail();
                             }
                         }
 
@@ -285,6 +291,7 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
 
                                 reff.child(name + date + month).setValue(hashMap);
                                 Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
+                                sendEmail();
                             }
                         }
 
@@ -295,13 +302,15 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
 
                 } else if (!switchEvening.isChecked() && !switchMorning.isChecked()) {
                     Toast.makeText(HoursRequest.this, "You must select a shift preference to continue", Toast.LENGTH_LONG).show();
+                } else if (switchEvening.isChecked() && switchMorning.isChecked()) {
+                    Toast.makeText(HoursRequest.this, "You can only choose one shift preference", Toast.LENGTH_LONG).show();
                 }
             });
             alertDialog.show();
         });
-
     }
 
+    //Navigation Bar methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -313,6 +322,38 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
     private void account() {
         startActivity(new Intent(this, AccountMenu.class));
     }
+
+    //Code to send emails is from Tutorials Point which can be found at "https://www.tutorialspoint.com/android/android_sending_email.htm"
+    @SuppressLint("IntentReset")
+    protected void sendEmail() {
+        //Automated email to send to confirm hour change
+        Log.i("Send email", "");
+        //Using my student email as the 'admin' email address
+        String[] TO = {"117320951@umail.ucc.ie"};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        String user = firebaseUser.getEmail();
+        Spinner spinnerDate = findViewById(R.id.spinnerDate);
+        Spinner spinnerMonth = findViewById(R.id.spinnerMonth);
+        String date = spinnerDate.getSelectedItem().toString();
+        String month = spinnerMonth.getSelectedItem().toString();
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Request");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, user + " has requested a change to their hours on: " + date + (" ") + month);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(HoursRequest.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+//End
 
     @Override
     public void onClick(View v) {
