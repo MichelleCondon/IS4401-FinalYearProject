@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.DisplayPages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,18 +17,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.michelle_condon.is4401_finalyearproject.DisplayPages.TimeOffReview;
-import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
-import com.michelle_condon.is4401_finalyearproject.UpdatePages.UpdateProducts;
-import com.michelle_condon.is4401_finalyearproject.UpdatePages.UpdateSchedule;
+import com.michelle_condon.is4401_finalyearproject.R;
 
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-
-public class Review extends AppCompatActivity implements View.OnClickListener{
+public class Review extends AppCompatActivity implements View.OnClickListener {
 
     //Declare Variables
     Button btnAccept, btnReject;
@@ -64,9 +56,10 @@ public class Review extends AppCompatActivity implements View.OnClickListener{
         btnAccount.setText(firebaseUser.getEmail());
 
         //Assigning values by resource Id's
-        Button btnAccept =  findViewById(R.id.btnApprove);
-        Button btnReject =  findViewById(R.id.btnDeny);
+        Button btnAccept = findViewById(R.id.btnApprove);
+        Button btnReject = findViewById(R.id.btnDeny);
 
+        //Based off documentation of transferring data between activities on the Android Developer website at "//https://developer.android.com/guide/components/intents-filters"
         //Data that was passed from the display item form
         Intent i = getIntent();
         String var1 = i.getStringExtra("dates");
@@ -80,6 +73,7 @@ public class Review extends AppCompatActivity implements View.OnClickListener{
         email.setText(var2);
         empNames = findViewById(R.id.txtEmpNames);
         empNames.setText(var3);
+        //End
 
         reff = FirebaseDatabase.getInstance().getReference().child("TimeOffRequests");
 
@@ -98,6 +92,7 @@ public class Review extends AppCompatActivity implements View.OnClickListener{
         startActivity(new Intent(this, UserProfile.class));
     }
 
+    //Code to send emails is from Tutorials Point which can be found at "https://www.tutorialspoint.com/android/android_sending_email.htm"
     @SuppressLint("IntentReset")
     protected void sendEmailApproval() {
         TextView email = findViewById(R.id.txtReviewEmail);
@@ -148,6 +143,7 @@ public class Review extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(Review.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
+    //End
 
     @Override
     public void onClick(View v) {
@@ -162,6 +158,6 @@ public class Review extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(Review.this, "Request Denied", Toast.LENGTH_LONG).show();
             sendEmailDenial();
         }
-        }
     }
+}
 

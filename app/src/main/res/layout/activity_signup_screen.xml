@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:autofillHints="@string/txtPosition"
     android:background="#FFFFFF"
-    tools:context=".SignupScreen">
+    tools:context=".Register.SignupScreen">
 
 
     <androidx.appcompat.widget.Toolbar

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchRequests;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
 import com.michelle_condon.is4401_finalyearproject.R;
-import com.michelle_condon.is4401_finalyearproject.Review;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.Review;
 
 import java.util.List;
 

@@ -104,6 +104,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
             String vSaturday = txtSaturday.getText().toString();
             String vSunday = txtSunday.getText().toString();
 
+            //Validation
             if (vWeekNumber.isEmpty()) {
                 txtWeekNumber.setError("Week Number is Required");
                 txtWeekNumber.requestFocus();
@@ -168,6 +169,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
                         String saturday = txtSaturday.getText().toString();
                         String sunday = txtSunday.getText().toString();
 
+                        //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                         HashMap hashMap = new HashMap();
                         hashMap.put("weekNumber", weekNumber);
                         hashMap.put("employeeName", employee);
@@ -185,6 +187,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
                         builder.setTitle("Please Confirm");
                         builder.setPositiveButton("Yes", (dialog, which) -> {
                             sendEmail();
+                            //End
                         });
                         builder.setNeutralButton("No", (dialog, which) ->
                                 onResume());
@@ -204,6 +207,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
     }
 
 
+    //Navigation bar Methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }

@@ -56,25 +56,19 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_check);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_account:
-                        account();
-                        break;
-                    case R.id.action_home:
-                        home();
-                        break;
-                    case R.id.action_signout:
-                        signout();
-                        break;
-                }
-                return true;
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.action_account) {
+                account();
+            } else if (item.getItemId() == R.id.action_home) {
+                home();
+            } else if (item.getItemId() == R.id.action_signout) {
+                signout();
             }
+            return true;
         });
+        //End
 
         //Assigning values to the previously declared variables
         firebaseAuth = FirebaseAuth.getInstance();
@@ -152,7 +146,7 @@ public class ProductCheck extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
+    //Navigation Bar Methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }

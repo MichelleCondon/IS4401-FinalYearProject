@@ -32,7 +32,6 @@ import java.util.HashMap;
 public class VirtualList extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on a YouTube Video, by Ben O'Brien, https://www.youtube.com/channel/UCIMduWsoyJxVuDbZ3TPhzew
-
     //Declare Variables
     private ArrayList<String> list;
     private ArrayAdapter<String> listAdapter;
@@ -85,10 +84,12 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
         btnAddList.setOnClickListener(view -> {
             String product = txtListName.getText().toString();
 
+            //Validation
             if (product.isEmpty()) {
                 txtListName.setError("Please add an item to the text box on screen in order to add it to the list");
                 txtListName.requestFocus();
             } else {
+                //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                 addItem();
                 HashMap hashMap = new HashMap();
                 hashMap.put("product", product);
@@ -96,7 +97,7 @@ public class VirtualList extends AppCompatActivity implements View.OnClickListen
                 txtListName.setText("");
                 Toast.makeText(VirtualList.this, "Item saved to inventory", Toast.LENGTH_LONG).show();
             }
-
+//End
         });
 
 

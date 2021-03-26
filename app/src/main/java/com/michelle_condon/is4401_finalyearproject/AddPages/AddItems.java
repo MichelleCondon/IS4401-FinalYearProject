@@ -136,6 +136,7 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
                         String price = txtPrice.getText().toString();
                         String quantity = txtQuantity.getText().toString();
 
+                        //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz which can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                         //Pushing data to Firebase using a Hashmap
                         HashMap hashMap = new HashMap();
                         hashMap.put("barcode", barcode);
@@ -146,6 +147,7 @@ public class AddItems extends AppCompatActivity implements View.OnClickListener 
 
                         reff.child(barcode).setValue(hashMap);
                         Toast.makeText(AddItems.this, "Product Saved to Inventory", Toast.LENGTH_LONG).show();
+                        //End
                     }
                 }
 

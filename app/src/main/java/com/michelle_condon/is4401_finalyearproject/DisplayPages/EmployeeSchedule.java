@@ -1,19 +1,17 @@
 package com.michelle_condon.is4401_finalyearproject.DisplayPages;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +37,6 @@ import java.util.List;
 public class EmployeeSchedule extends AppCompatActivity implements View.OnClickListener {
 
     //Code below is based on the Youtube video "4- Search data in Firebase using Android Application | Firebase+Android Tutorials", Coding Tutorials, "https://www.youtube.com/watch?v=g74E5DpUT-Q"
-
     //Declaring Variables
     private AutoCompleteTextView txtSearchEmployee;
     DatabaseReference mref;

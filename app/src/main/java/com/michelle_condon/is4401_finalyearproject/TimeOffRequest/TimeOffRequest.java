@@ -134,6 +134,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         } else if (empHolidayName.equals("")) {
             Toast.makeText(TimeOffRequest.this, "Your must fill in your name to continue", Toast.LENGTH_LONG).show();
         } else {
+            //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
             HashMap hashMap = new HashMap();
             hashMap.put("empHolidayName", empHolidayName);
             hashMap.put("employeeEmail", employeeEmail);
@@ -143,6 +144,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
             reff.child(empHolidayName).setValue(hashMap);
             Toast.makeText(TimeOffRequest.this, "Your Time Off Request has been sent to Management", Toast.LENGTH_LONG).show();
             sendEmail();
+            //End
         }
     }
 

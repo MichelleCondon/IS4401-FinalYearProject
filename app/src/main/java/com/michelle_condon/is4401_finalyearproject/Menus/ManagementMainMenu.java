@@ -18,7 +18,7 @@ import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.ManagementViewEmployeeSchedule;
 import com.michelle_condon.is4401_finalyearproject.ProductCheck.ProductCheck;
 import com.michelle_condon.is4401_finalyearproject.R;
-import com.michelle_condon.is4401_finalyearproject.SignupScreen;
+import com.michelle_condon.is4401_finalyearproject.Register.SignupScreen;
 
 public class ManagementMainMenu extends AppCompatActivity implements View.OnClickListener {
 
@@ -77,6 +77,7 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         productCheck.setOnClickListener(this);
     }
 
+    //Navigation Bar Methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }

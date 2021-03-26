@@ -29,10 +29,9 @@ import com.michelle_condon.is4401_finalyearproject.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExistingListItems extends AppCompatActivity implements View.OnClickListener{
+public class ExistingListItems extends AppCompatActivity implements View.OnClickListener {
 
     //Code below ia based on a YouTube Video, by Learn with Deeksha, https://www.youtube.com/watch?v=lJaPdBMdPy0
-
     //Declare Variables
     List<VList> vLists;
     RecyclerView recyclerView1;
@@ -99,11 +98,16 @@ public class ExistingListItems extends AppCompatActivity implements View.OnClick
     }
 
     //Navigation Bar methods
-    private void signout() { startActivity(new Intent(this, MainActivity.class));    }
+    private void signout() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
 
-    private void home() { startActivity(new Intent(this, MainMenu.class));}
+    private void home() {
+        startActivity(new Intent(this, MainMenu.class));
+    }
 
-    private void account() { startActivity(new Intent(this, AccountMenu.class));
+    private void account() {
+        startActivity(new Intent(this, AccountMenu.class));
     }
 
     @Override

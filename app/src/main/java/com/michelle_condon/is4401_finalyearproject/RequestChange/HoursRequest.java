@@ -187,6 +187,7 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
                                 String name = txtName.getText().toString();
                                 String preference = ("Morning");
 
+                                //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                                 HashMap hashMap = new HashMap();
                                 hashMap.put("email", email);
                                 hashMap.put("date", date);
@@ -199,6 +200,7 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
                                 reff.child(name + date + month).setValue(hashMap);
                                 Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
                                 sendEmail();
+                                //End
                             }
                         }
 
@@ -272,6 +274,7 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
                             if (snapshot.hasChild(textName + textDate + textMonth)) {
                                 Toast.makeText(HoursRequest.this, "You have already sent a change request for this date, please contact management", Toast.LENGTH_LONG).show();
                             } else {
+                                //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz which can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                                 String email = btnAccount.getText().toString();
                                 String date = spinnerDate.getSelectedItem().toString();
                                 String day = spinnerDay.getSelectedItem().toString();
@@ -292,6 +295,7 @@ public class HoursRequest extends AppCompatActivity implements View.OnClickListe
                                 reff.child(name + date + month).setValue(hashMap);
                                 Toast.makeText(HoursRequest.this, "Change Request has been Submitted", Toast.LENGTH_LONG).show();
                                 sendEmail();
+                                //End
                             }
                         }
 

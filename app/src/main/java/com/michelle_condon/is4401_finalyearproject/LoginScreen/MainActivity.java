@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.michelle_condon.is4401_finalyearproject.Menus.MainMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
 import com.michelle_condon.is4401_finalyearproject.R;
-import com.michelle_condon.is4401_finalyearproject.SignupScreen;
+import com.michelle_condon.is4401_finalyearproject.Register.SignupScreen;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

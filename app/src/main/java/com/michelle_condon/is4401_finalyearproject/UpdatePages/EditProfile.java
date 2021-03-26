@@ -63,6 +63,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         Button btnDelete = findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(this);
 
+        //Based off code from the Android Developers website which can be found at "https://developer.android.com/guide/components/intents-filters"
         //Data transfer from the user profile page
         Intent i = getIntent();
         String NAME = i.getStringExtra("email");
@@ -96,12 +97,13 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         btnUpdate.setOnClickListener(v -> {
             String updatedEmail = emailAddress.getText().toString();
             String updatedPhone = phoneNumber.getText().toString();
-
+            //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
             HashMap hashMap = new HashMap();
             hashMap.put("email", updatedEmail);
             hashMap.put("phoneNumber", updatedPhone);
 
             reff.child(fullname.getText().toString()).updateChildren(hashMap).addOnSuccessListener(o -> Toast.makeText(EditProfile.this, "User Details Updated", Toast.LENGTH_LONG).show());
+            //End
         });
 
     }

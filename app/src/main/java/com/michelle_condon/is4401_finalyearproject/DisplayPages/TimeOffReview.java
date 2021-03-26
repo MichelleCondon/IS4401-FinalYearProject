@@ -67,6 +67,7 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         });
         //End
 
+        //Assigning the recycler view by resource id
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         Button btnAccount = findViewById(R.id.btnAccount);

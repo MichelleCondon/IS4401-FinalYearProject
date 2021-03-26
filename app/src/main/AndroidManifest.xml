@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme1"
         tools:ignore="AllowBackup">
-        <activity android:name=".Review"></activity>
+        <activity android:name=".DisplayPages.Review"></activity>
         <activity android:name=".UpdatePages.UpdateSchedule" />
         <activity android:name=".DisplayPages.ManagementViewEmployeeSchedule" />
         <activity android:name=".UpdatePages.EditProfile" />
@@ -80,7 +80,7 @@
         <activity android:name=".BarcodeScanner.BarcodeScanner2" />
         <activity android:name=".ClockInPages.ClockIn_Screen" />
         <activity android:name=".Menus.MainMenu" />
-        <activity android:name=".SignupScreen" />
+        <activity android:name=".Register.SignupScreen" />
     </application>
 
 </manifest>

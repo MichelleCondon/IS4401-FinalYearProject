@@ -219,6 +219,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                     if (snapshot.hasChild(title)) {
                         Toast.makeText(ClockIn_Screen.this, "You have already clocked in today", Toast.LENGTH_LONG).show();
                     } else {
+                        //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                         HashMap hashMap = new HashMap();
                         hashMap.put("employee", employee);
                         hashMap.put("in", in);
@@ -229,6 +230,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
 
                         reff.child(title).setValue(hashMap);
                         Toast.makeText(ClockIn_Screen.this, "Clock In Completed", Toast.LENGTH_LONG).show();
+                        //End
                     }
                     btnAuthenticate1.setVisibility(View.INVISIBLE);
                 }
@@ -260,6 +262,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                     if (snapshot.hasChild(title)) {
                         Toast.makeText(ClockIn_Screen.this, "You have already clocked out today", Toast.LENGTH_LONG).show();
                     } else {
+                        //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                         HashMap hashMap = new HashMap();
                         hashMap.put("employee", employee);
                         hashMap.put("in", in);
@@ -270,6 +273,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
 
                         reff.child(title).setValue(hashMap);
                         Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
+                        //End
                     }
                     btnAuthenticate2.setVisibility(View.INVISIBLE);
                 }
@@ -301,7 +305,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                     if (snapshot.hasChild(title)) {
                         Toast.makeText(ClockIn_Screen.this, "You have already clocked out for the start of your break today", Toast.LENGTH_LONG).show();
                     } else {
-
+                        //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                         HashMap hashMap = new HashMap();
                         hashMap.put("employee", employee);
                         hashMap.put("in", in);
@@ -313,6 +317,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                         reff.child(title).setValue(hashMap);
 
                         Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
+                        //End
                     }
                     btnAuthenticate3.setVisibility(View.INVISIBLE);
                 }
@@ -344,7 +349,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
                     if (snapshot.hasChild(title)) {
                         Toast.makeText(ClockIn_Screen.this, "You have already clocked back in from your break today", Toast.LENGTH_LONG).show();
                     } else {
-
+                        //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
                         HashMap hashMap = new HashMap();
                         hashMap.put("employee", employee);
                         hashMap.put("in", in);
@@ -355,6 +360,7 @@ public class ClockIn_Screen extends AppCompatActivity implements View.OnClickLis
 
                         reff.child(title).setValue(hashMap);
                         Toast.makeText(ClockIn_Screen.this, "Data saved", Toast.LENGTH_LONG).show();
+                        //End
                     }
                     btnAuthenticate3.setVisibility(View.INVISIBLE);
                 }

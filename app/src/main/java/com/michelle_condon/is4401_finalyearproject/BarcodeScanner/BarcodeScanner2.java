@@ -25,7 +25,7 @@ public class BarcodeScanner2 extends AppCompatActivity implements ZXingScannerVi
     private ZXingScannerView scannerView;
     public static String scanResult;
 
-    //Code below ia based on a YouTube Video, by TechAcademy, youtube.com/watch?v=otkz5Cwdw38
+    //Code below ia based on a YouTube Video "QR and Barcode Scanner | Android Tutorial", by TechAcademy, "youtube.com/watch?v=otkz5Cwdw38"
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -55,9 +55,10 @@ public class UpdateSchedule extends AppCompatActivity implements View.OnClickLis
         btnAccount.setText(firebaseUser.getEmail());
 
         //Assigning values by resource Id's
-        Button btnDelete =  findViewById(R.id.btnDelete);
+        Button btnDelete = findViewById(R.id.btnDelete);
         Button btnEdit = findViewById(R.id.btnUpdateSchedule);
 
+        //Based off documentation of transferring data between activities on the Android Developer website at "//https://developer.android.com/guide/components/intents-filters"
         Intent i = getIntent();
         String NAME = i.getStringExtra("employeeName");
         String var1 = i.getStringExtra("weekNumber");
@@ -87,7 +88,7 @@ public class UpdateSchedule extends AppCompatActivity implements View.OnClickLis
         saturday.setText(var7);
         sunday = findViewById(R.id.txtUpdateSunday);
         sunday.setText(var8);
-
+        //End
         reff = FirebaseDatabase.getInstance().getReference().child("EmployeeRoster");
         btnEdit.setOnClickListener(v -> {
             String updatedName = name.getText().toString();
@@ -100,6 +101,7 @@ public class UpdateSchedule extends AppCompatActivity implements View.OnClickLis
             String updatedSaturday = saturday.getText().toString();
             String updatedSunday = sunday.getText().toString();
 
+            //Code for pushing data to Firebase using a hashmap is fro a Youtube Video by Technical Skillz whihc can be found at "https://www.youtube.com/watch?v=SGiY_AitrN0"
             HashMap hashMap = new HashMap();
             hashMap.put("employeeName", updatedName);
             hashMap.put("weekNumber", updatedWeek);
@@ -112,6 +114,7 @@ public class UpdateSchedule extends AppCompatActivity implements View.OnClickLis
             hashMap.put("sunday", updatedSunday);
 
             reff.child(updatedName + updatedWeek).updateChildren(hashMap).addOnSuccessListener(o -> Toast.makeText(UpdateSchedule.this, "Roster Updated", Toast.LENGTH_LONG).show());
+            //End
         });
 
     }

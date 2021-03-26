@@ -72,11 +72,13 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         productCheck.setOnClickListener(this);
     }
 
+    //Navigation Bar methods
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    private void home() { }
+    private void home() {
+    }
 
     private void account() {
         startActivity(new Intent(this, AccountMenu.class));
