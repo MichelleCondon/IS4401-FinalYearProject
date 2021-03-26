@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/products"
+                android:id="@+id/txtProducts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"

@@ -1,19 +1,15 @@
 package com.michelle_condon.is4401_finalyearproject.List;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,7 +72,7 @@ public class ExistingListItems extends AppCompatActivity implements View.OnClick
 
         //Assigning the recycler view by resource id
         recyclerView1 = findViewById(R.id.recyclerView1);
-        products = findViewById(R.id.products);
+        products = findViewById(R.id.txtProducts);
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
         vLists = new ArrayList<>();
 

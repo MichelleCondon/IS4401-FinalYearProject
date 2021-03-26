@@ -1,11 +1,9 @@
 package com.michelle_condon.is4401_finalyearproject.Adapters;
 
-import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +38,7 @@ public class ListAdapter extends RecyclerView.Adapter {
         ListAdapter.ViewHolderClass viewHolderClass = (ListAdapter.ViewHolderClass) holder;
         //Setting the hours for every day of the week by pulling the data from Firebase using getters
         VList vLists = vDataList.get(position);
-        viewHolderClass.products.setText(vLists.getProducts());
+        viewHolderClass.products.setText(vLists.getProduct());
 
 
     }
@@ -58,7 +56,7 @@ public class ListAdapter extends RecyclerView.Adapter {
         public ViewHolderClass(@NonNull View itemView) {
             super(itemView);
             //Assigning values to the variables by resource Id's
-            products = itemView.findViewById(R.id.products);
+            products = itemView.findViewById(R.id.txtProducts);
 
             itemView.setOnClickListener(new View.OnClickListener() {
 
