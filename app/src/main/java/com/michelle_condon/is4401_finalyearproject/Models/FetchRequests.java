@@ -4,13 +4,17 @@ public class FetchRequests {
 
     String dates;
     String employeeEmail;
+    String empHolidayName;
+    String status;
 
     public FetchRequests() {
     }
 
-    public FetchRequests(String dates, String employeeEmail) {
+    public FetchRequests(String dates, String employeeEmail, String empName, String empHolidayName) {
         this.dates = dates;
         this.employeeEmail = employeeEmail;
+        this.empHolidayName = empHolidayName;
+        this.status = status;
     }
 
     public String getDates() {
@@ -27,5 +31,21 @@ public class FetchRequests {
 
     public void setEmployeeEmail(String employeeEmail) {
         this.employeeEmail = employeeEmail;
+    }
+
+    public String getEmpHolidayName() {
+        return empHolidayName;
+    }
+
+    public void setEmpHolidayName(String empHolidayName) {
+        this.empHolidayName = empHolidayName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

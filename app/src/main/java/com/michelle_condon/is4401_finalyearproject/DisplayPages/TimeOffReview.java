@@ -25,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.Adapters.TimeOffAdapter;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
-import com.michelle_condon.is4401_finalyearproject.ManagementViewEmployeeSchedule;
 import com.michelle_condon.is4401_finalyearproject.Menus.AccountMenu;
 import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchRequests;
@@ -43,8 +42,8 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
     RecyclerView recyclerViewRequests;
     TimeOffAdapter timeoffAdapter;
     DatabaseReference databaseReference;
-    TextView txtEmployeeEmail, txtReviewDates;
-    Button btnAccept, btnReject, btnAccount;
+    TextView txtEmployeeEmail, txtReviewDates, txtReviewName, txtStatus;
+    Button btnAccount, btnRefresh;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
@@ -75,8 +74,9 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         btnAccount.setText(firebaseUser.getEmail());
         txtEmployeeEmail = findViewById(R.id.txtEmployeeEmailReview);
         txtReviewDates = findViewById(R.id.txtReviewDates);
-        btnAccept =  findViewById(R.id.btnApprove);
-        btnReject = findViewById(R.id.btnReject);
+        txtReviewName = findViewById(R.id.txtEmpHolidayName);
+        txtStatus = findViewById(R.id.txtStatus);
+        btnRefresh = findViewById(R.id.btnRefreshRequests);
 
         //Assigning the recycler view by resource id
         recyclerViewRequests = findViewById(R.id.recyclerViewReview);
@@ -84,8 +84,9 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         fetchRequests = new ArrayList<>();
 
 
+
         //Pulling data from Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("TimeOffRequests");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("TimeOffRequests");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -119,66 +120,16 @@ public class TimeOffReview extends AppCompatActivity implements View.OnClickList
         startActivity(new Intent(this, UserProfile.class));
     }
 
-    @SuppressLint("IntentReset")
-    protected void sendEmailApproval() {
-        txtEmployeeEmail = findViewById(R.id.txtEmployeeEmailReview);
-        String user = (txtEmployeeEmail.getText().toString());
-        Log.i("Send email", "");
-        String[] TO = {user};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
 
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Approved");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your time off request has been approved and your roster will be updated shortly" + "\n" + "Thanks," + "\n" + "Management");
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(TimeOffReview.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @SuppressLint("IntentReset")
-    protected void sendEmailDenial() {
-        txtEmployeeEmail = findViewById(R.id.txtEmployeeEmailReview);
-        String user = txtEmployeeEmail.getText().toString();
-        Log.i("Send email", "");
-        String[] TO = {user};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Time Off Rejected");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Unfortunately your time off request could not be approved by management at this time" + "\n" + "Thanks," + "\n" + "Management");
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
-            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(TimeOffReview.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     @Override
     public void onClick(View v) {
         //if statements for if a button is clicked
         if (v.getId() == R.id.btnAccount) {
             startActivity(new Intent(this, AccountMenu.class));
-        } else if (v.getId() == R.id.btnApprove) {
-            startActivity(new Intent(this, ManagementViewEmployeeSchedule.class));
-            sendEmailApproval();
-        } else if (v.getId() == R.id.btnReject) {;
-            sendEmailDenial();
+        } else if (v.getId() == R.id.btnRefreshRequests) {
+            finish();
+            startActivity(getIntent());
         }
     }
 }

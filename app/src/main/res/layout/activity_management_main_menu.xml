@@ -48,7 +48,7 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="115dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/lblMgtMenu"
         android:textColor="#070707"

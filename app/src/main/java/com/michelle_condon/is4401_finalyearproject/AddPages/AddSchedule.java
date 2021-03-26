@@ -1,8 +1,5 @@
 package com.michelle_condon.is4401_finalyearproject.AddPages;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,9 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
-import com.michelle_condon.is4401_finalyearproject.Models.FetchEmployees;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
+import com.michelle_condon.is4401_finalyearproject.Models.FetchEmployees;
 import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.HashMap;
@@ -71,15 +72,22 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
         txtEmployeename = findViewById(R.id.txtEmpName);
         //Auto Capitalise the first letter of the employee name - code is from Stackoverflow by JibW which can be found at "https://stackoverflow.com/questions/17042430/android-edittexttextbox-auto-capitalizing-first-letter-of-each-word-while"
         txtEmployeename.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        //End
         txtMonday = findViewById(R.id.txtMonday);
+        txtMonday.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         txtTuesday = findViewById(R.id.txtTuesday);
+        txtTuesday.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         txtWednesday = findViewById(R.id.txtWednesday);
+        txtWednesday.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         txtThursday = findViewById(R.id.txtThursday);
+        txtThursday.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         txtFriday = findViewById(R.id.txtFriday);
+        txtFriday.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         txtSaturday = findViewById(R.id.txtSaturday);
+        txtSaturday.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         txtSunday = findViewById(R.id.txtSunday);
+        txtSunday.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
         btnAddHours = findViewById(R.id.btnAddToSchedule);
+        //End
 
         fetchEmployees = new FetchEmployees();
         //Accessing data from Firebase Item Employee Roster
@@ -172,8 +180,17 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
                         hashMap.put("sunday", sunday);
 
                         reff.child(employee + weekNumber).setValue(hashMap);
-                        sendEmail();
                         Toast.makeText(AddSchedule.this, ("New Roster has been added for: " + txtEmployeename.getText().toString()), Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(AddSchedule.this);
+                        builder.setTitle("Please Confirm");
+                        builder.setPositiveButton("Yes", (dialog, which) -> {
+                            sendEmail();
+                        });
+                        builder.setNeutralButton("No", (dialog, which) ->
+                                onResume());
+                        builder.setMessage("Have you finished adding this weeks roster for ALL employees?");
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }
                 }
 
@@ -184,9 +201,8 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
             });
 
         });
-
-
     }
+
 
     private void signout() {
         startActivity(new Intent(this, MainActivity.class));
@@ -204,6 +220,7 @@ public class AddSchedule extends AppCompatActivity implements View.OnClickListen
     @SuppressLint("IntentReset")
     protected void sendEmail() {
         Log.i("Send email", "");
+        //In real life use - the management will have a mass email under one name similar to how all 4th year BIS students exists in BIS2017@umail.ucc.ie
         String[] TO = {"117320951@umail.ucc.ie"};
         String[] CC = {""};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);

@@ -32,9 +32,9 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
     //Declare Variables
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
-    private TextView mShowSelectedDateText, txtDates;
+    private TextView mShowSelectedDateText, txtDates, txtHolidayName;
     DatabaseReference reff;
-    DatabaseReference reff2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,7 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         Button mPickDateButton = findViewById(R.id.pick_date_button);
         mShowSelectedDateText = findViewById(R.id.show_selected_date);
         txtDates = findViewById(R.id.txtDates);
+        txtHolidayName = findViewById(R.id.txtEmpNameHoliday);
 
         //Creating an instance of the material date picker builder which makes sure to add the "dateRangePicker" which is the material date range picker which is the
         //second type of the date picker in material design date picker which we need to pass the pair of Long values, because the start date and end date is stored as a "Long" type value
@@ -116,6 +117,8 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
         reff = FirebaseDatabase.getInstance().getReference().child("TimeOffRequests");
         String employeeEmail = firebaseUser.getEmail();
         String dates = txtDates.getText().toString();
+        String empHolidayName = txtHolidayName.getText().toString();
+        String status = ("Pending");
 
         //Validation
         if (dates.equals("TextView")) {
@@ -124,10 +127,12 @@ public class TimeOffRequest extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(TimeOffRequest.this, "Your must select a series of dates in order to confirm your request", Toast.LENGTH_LONG).show();
         } else {
             HashMap hashMap = new HashMap();
+            hashMap.put("empHolidayName", empHolidayName);
             hashMap.put("employeeEmail", employeeEmail);
             hashMap.put("dates", dates);
+            hashMap.put("status", status);
 
-            reff.child(dates).setValue(hashMap);
+            reff.child(empHolidayName).setValue(hashMap);
             Toast.makeText(TimeOffRequest.this, "Your Time Off Request has been sent to Management", Toast.LENGTH_LONG).show();
             sendEmail();
         }

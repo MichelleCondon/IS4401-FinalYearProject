@@ -34,7 +34,7 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/lblReviewTimeOffRequests"
         android:textAlignment="center"
@@ -47,16 +47,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewReview"
-        android:layout_width="410dp"
-        android:layout_height="533dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="411dp"
+        android:layout_height="505dp"
         android:layout_marginBottom="-1dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRefreshRequests" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -70,5 +68,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_management_menu" />
+
+    <Button
+        android:id="@+id/btnRefreshRequests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_corners"
+        android:drawableStart="@drawable/ic_baseline_refresh_24"
+        android:onClick="onClick"
+        android:text="@string/btnRefresh"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

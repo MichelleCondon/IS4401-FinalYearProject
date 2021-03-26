@@ -15,7 +15,7 @@ import com.michelle_condon.is4401_finalyearproject.AddPages.AddSchedule;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.TimeOffReview;
 import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
-import com.michelle_condon.is4401_finalyearproject.ManagementViewEmployeeSchedule;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.ManagementViewEmployeeSchedule;
 import com.michelle_condon.is4401_finalyearproject.ProductCheck.ProductCheck;
 import com.michelle_condon.is4401_finalyearproject.R;
 import com.michelle_condon.is4401_finalyearproject.SignupScreen;
@@ -32,10 +32,11 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_main_menu);
 
+        //Code for the Navigation Bar is Based on a Tutorial "Bottom Navigation Bar in Android" by Geeks For Geeks which can be found at "https://www.geeksforgeeks.org/bottom-navigation-bar-in-android/"
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.action_account) {
-                account();
+            if (item.getItemId() == R.id.action_employeeInfo) {
+                employeeInfo();
             } else if (item.getItemId() == R.id.action_home) {
                 home();
             } else if (item.getItemId() == R.id.action_signout) {
@@ -80,9 +81,12 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    private void home() { }
+    private void home() {
+    }
 
-    private void account(){startActivity(new Intent(this, UserProfile.class)); }
+    private void employeeInfo() {
+        startActivity(new Intent(this, UserProfile.class));
+    }
 
     @Override
     //OnClick method
@@ -94,11 +98,11 @@ public class ManagementMainMenu extends AppCompatActivity implements View.OnClic
             startActivity(new Intent(this, UserProfile.class));
         } else if (v.getId() == R.id.btnAddProduct) {
             startActivity(new Intent(this, SignupScreen.class));
-        }  else if (v.getId() == R.id.btnViewSchedule) {
+        } else if (v.getId() == R.id.btnViewSchedule) {
             startActivity(new Intent(this, ManagementViewEmployeeSchedule.class));
-        }  else if (v.getId() == R.id.btnProductCheck) {
+        } else if (v.getId() == R.id.btnProductCheck) {
             startActivity(new Intent(this, ProductCheck.class));
-        }  else if (v.getId() == R.id.btnCreateList) {
+        } else if (v.getId() == R.id.btnCreateList) {
             startActivity(new Intent(this, TimeOffReview.class));
         }
     }

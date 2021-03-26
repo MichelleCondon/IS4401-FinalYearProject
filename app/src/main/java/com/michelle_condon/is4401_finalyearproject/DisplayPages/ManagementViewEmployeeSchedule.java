@@ -1,4 +1,4 @@
-package com.michelle_condon.is4401_finalyearproject;
+package com.michelle_condon.is4401_finalyearproject.DisplayPages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +28,7 @@ import com.michelle_condon.is4401_finalyearproject.Adapters.MgtEmployeeAdapter;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
 import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchEmployees;
+import com.michelle_condon.is4401_finalyearproject.R;
 
 import java.util.ArrayList;
 import java.util.List;

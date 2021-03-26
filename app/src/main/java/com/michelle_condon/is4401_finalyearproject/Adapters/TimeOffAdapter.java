@@ -1,5 +1,7 @@
 package com.michelle_condon.is4401_finalyearproject.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.michelle_condon.is4401_finalyearproject.Models.FetchRequests;
 import com.michelle_condon.is4401_finalyearproject.Models.Items;
 import com.michelle_condon.is4401_finalyearproject.R;
+import com.michelle_condon.is4401_finalyearproject.Review;
 
 import java.util.List;
 
@@ -24,9 +27,9 @@ public class TimeOffAdapter extends RecyclerView.Adapter {
 
     public TimeOffAdapter(List<FetchRequests> fetchRequestsList) {
         this.fetchRequestsList = fetchRequestsList;
-
-
     }
+
+
 
     @NonNull
     @Override
@@ -44,7 +47,8 @@ public class TimeOffAdapter extends RecyclerView.Adapter {
         FetchRequests fetchRequests = fetchRequestsList.get(position);
         viewHolderClass.dates.setText(fetchRequests.getDates());
         viewHolderClass.employeeEmail.setText(fetchRequests.getEmployeeEmail());
-
+        viewHolderClass.empHolidayName.setText(fetchRequests.getEmpHolidayName());
+        viewHolderClass.status.setText(fetchRequests.getStatus());
     }
 
     @Override
@@ -53,10 +57,10 @@ public class TimeOffAdapter extends RecyclerView.Adapter {
         return fetchRequestsList.size();
     }
 
-
     public static class ViewHolderClass extends RecyclerView.ViewHolder {
         //Declaring variables
-        TextView dates, employeeEmail;
+        TextView dates, employeeEmail, empHolidayName, status;
+
 
         public ViewHolderClass(@NonNull View itemView) {
             super(itemView);
@@ -64,11 +68,34 @@ public class TimeOffAdapter extends RecyclerView.Adapter {
             //Assigning values to the variables by resource Id's
             dates = itemView.findViewById(R.id.txtReviewDates);
             employeeEmail = itemView.findViewById(R.id.txtEmployeeEmailReview);
+            empHolidayName = itemView.findViewById(R.id.txtEmpHolidayName);
+            status = itemView.findViewById(R.id.txtStatus);
+
+            //Code to transfer data to the next form was found on Stackoverflow at
+            // "https://stackoverflow.com/questions/37186805/start-new-activity-with-onclick-in-recyclerview/44898559"
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, Review.class);
+                    String a = dates.getText().toString();
+                    String b = employeeEmail.getText().toString();
+                    String c = empHolidayName.getText().toString();
+                    String d = status.getText().toString();
+
+                    intent.putExtra("dates", a);
+                    intent.putExtra("email", b);
+                    intent.putExtra("empHolidayName", c);
+                    intent.putExtra("status", c);
+                    context.startActivity(intent);
+                }
+            });
 
 
         }
 
+    }}
 
-    }
-
-}

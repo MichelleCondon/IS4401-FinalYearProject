@@ -4,17 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/item_layout"
+    android:background="@color/colorBlue"
     android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableLayout
             android:id="@+id/tableLayout"
-            android:layout_width="278dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@color/colorBlue"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -22,6 +30,44 @@
 
             <!--Table Row-->
             <TableRow>
+
+                <TextView
+                    android:id="@+id/lblEmployeeHolidayName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/lblEmployeeHolidayName"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtEmpHolidayName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+
+            </TableRow>
+
+            <!--Table Row-->
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/lblEmployeeEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/lblEmployeeEmail"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtEmployeeEmailReview"
@@ -44,7 +90,47 @@
                 android:divider="@color/colorBlue">
 
                 <TextView
+                    android:id="@+id/lblDates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/lblDates"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
                     android:id="@+id/txtReviewDates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <!--Table Row-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/colorBlue">
+
+                <TextView
+                    android:id="@+id/lblStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/lblStatus"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -57,31 +143,9 @@
 
 
         </TableLayout>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnReject"
-        android:layout_width="47dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/ic_baseline_block_24"
-        android:onClick="onClick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnApprove"
-        android:layout_width="47dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="7dp"
-        android:background="@drawable/ic_baseline_check_24"
-        android:onClick="onClick"
-        app:layout_constraintEnd_toStartOf="@+id/btnReject"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

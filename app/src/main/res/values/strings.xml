@@ -179,20 +179,25 @@
     <string name="lblEmployeeId">Employee Id:</string>
     <string name="lblFullName">Name:</string>
     <string name="lblPosition">Position:</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="lblMonday">Monday:</string>
+    <string name="lblTuesday">Tuesday:</string>
+    <string name="lblWednesday">Wednesday:</string>
+    <string name="lblThursday">Thursday:</string>
+    <string name="lblFriday">Friday:</string>
+    <string name="lblSaturday">Saturday:</string>
+    <string name="lblSunday">Sunday:</string>
+    <string name="lblWeekNumber">Week Number:</string>
+    <string name="lblEmployeeName">Name:</string>
+    <string name="btnUpdateRoster">Update Roster</string>
+    <string name="lblEmployeeEmail">Email:</string>
+    <string name="lblDates">Dates:</string>
+    <string name="lblReviewRequests">Review Requests</string>
+    <string name="lblUser">User:</string>
+    <string name="lblTimeOffList">Dates/Days:</string>
+    <string name="btnApprove">Approve</string>
+    <string name="btnDeny">Reject</string>
+    <string name="lblEmployeeHolidayName">Name:</string>
+    <string name="lblStatus">Status:</string>
 
 
     <string name="title_activity_register">RegisterActivity</string>

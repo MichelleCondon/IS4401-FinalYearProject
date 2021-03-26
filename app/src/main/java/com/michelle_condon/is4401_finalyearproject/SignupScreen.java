@@ -1,10 +1,6 @@
 package com.michelle_condon.is4401_finalyearproject;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -13,25 +9,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.michelle_condon.is4401_finalyearproject.DisplayPages.UserProfile;
 import com.michelle_condon.is4401_finalyearproject.LoginScreen.MainActivity;
+import com.michelle_condon.is4401_finalyearproject.Menus.ManagementMainMenu;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 
+@SuppressWarnings("unchecked")
 public class SignupScreen extends AppCompatActivity implements View.OnClickListener {
     //Code below is based on the Youtube video "Login and Registration Android App Tutorial Using Firebase Authentication - Create User", CodeWithMazn,	https://www.youtube.com/watch?v=Z-RE1QuUWPg (1)
 
     //Declaring Variables
     private FirebaseAuth mAuth;
-    private Button registerUser;
     private EditText txtFullName, txtEmployeeId, txtEmail, txtPassword, txtPhoneNumber, txtPosition;
     DatabaseReference reff;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
 
     @Override
@@ -39,41 +41,31 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_screen);
 
-        //Removed any wording in the action bar
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("");
-        }
-
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
         //End (2)
 
         //Assigning values to variables with resource Id's - Register button
-        registerUser = (Button) findViewById(R.id.btnRegister);
+        Button registerUser = findViewById(R.id.btnRegister);
         //Listening for the button click for register
         registerUser.setOnClickListener(this);
 
         //Assigning Values by resourceId
-        txtFullName = (EditText) findViewById(R.id.txtFullName);
-        txtEmployeeId = (EditText) findViewById(R.id.txtEmployeeId);
-        txtEmail = (EditText) findViewById(R.id.txtEmail);
-        txtPassword = (EditText) findViewById(R.id.txtPassword);
-        txtPosition = (EditText) findViewById(R.id.txtPosition);
-        txtPhoneNumber = (EditText) findViewById(R.id.txtPhone);
+        txtFullName = findViewById(R.id.txtFullName);
+        txtEmployeeId = findViewById(R.id.txtEmployeeId);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPassword = findViewById(R.id.txtPassword);
+        txtPosition = findViewById(R.id.txtPosition);
+        txtPhoneNumber = findViewById(R.id.txtPhone);
 
     }
 
-    //OnClick Method
     @Override
     public void onClick(View v) {
-        //Switch case statement
-        switch (v.getId()) {
-            //Calls the registerUser method whe the register button is clicked
-            case R.id.btnRegister:
-                registerUser();
-                break;
+        //Calls the registerUser method whe the register button is clicked
+        if (v.getId() == R.id.btnRegister) {
+            registerUser();
         }
     }
 
@@ -92,6 +84,16 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         if (fullName.isEmpty()) {
             txtFullName.setError("Full name is required");
             txtFullName.requestFocus();
+            return;
+        }
+        if (position.isEmpty()) {
+            txtPosition.setError("Position is required");
+            txtPosition.requestFocus();
+            return;
+        }
+        if (phoneNumber.isEmpty()) {
+            txtPhoneNumber.setError("Phone Number is required");
+            txtPhoneNumber.requestFocus();
             return;
         }
         //Ensuring the employee id is filled
@@ -129,49 +131,43 @@ public class SignupScreen extends AppCompatActivity implements View.OnClickListe
         //Code below is based on the website Firebase Documentation, Google Firebase, https://firebase.google.com/docs/auth/android/password-auth (2)
         //Create user with email and password in Firebase
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //If registration is successful a new user is created
-                        if (task.isSuccessful()) {
-                            String email = txtEmail.getText().toString();
-                            String employeeId = txtEmployeeId.getText().toString();
-                            String fullName = txtFullName.getText().toString();
-                            String password = txtPassword.getText().toString();
-                            String position = txtPosition.getText().toString();
-                            String phoneNumber = txtPhoneNumber.getText().toString();
+                .addOnCompleteListener(task -> {
+                    //If registration is successful a new user is created
+                    if (task.isSuccessful()) {
+                        String email1 = txtEmail.getText().toString();
+                        String employeeId1 = txtEmployeeId.getText().toString();
+                        String fullName1 = txtFullName.getText().toString();
+                        String password1 = txtPassword.getText().toString();
+                        String position1 = txtPosition.getText().toString();
+                        String phoneNumber1 = txtPhoneNumber.getText().toString();
 
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("email", email);
-                            hashMap.put("employeeId", employeeId);
-                            hashMap.put("fullName", fullName);
-                            hashMap.put("password", password);
-                            hashMap.put("position", position);
-                            hashMap.put("phoneNumber", phoneNumber);
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("email", email1);
+                        hashMap.put("employeeId", employeeId1);
+                        hashMap.put("fullName", fullName1);
+                        hashMap.put("password", password1);
+                        hashMap.put("position", position1);
+                        hashMap.put("phoneNumber", phoneNumber1);
 
-                            reff.child(fullName).setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    //If registration is successful a new user is created
-                                    if (task.isSuccessful()) {
-                                        //Success Toast appears and the login activity opens
-                                        Toast.makeText(SignupScreen.this, "Successfully Registered", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(SignupScreen.this, MainActivity.class));
+                        reff.child(fullName1).setValue(hashMap).addOnCompleteListener(task1 -> {
+                            //If registration is successful a new user is created
+                            if (task1.isSuccessful()) {
+                                //Success Toast appears and the login activity opens
+                                Toast.makeText(SignupScreen.this, "Successfully Registered", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(SignupScreen.this, MainActivity.class));
 
-                                    } else {
-                                        //Failure toast appears
-                                        Toast.makeText(SignupScreen.this, "Failed to Register", Toast.LENGTH_LONG).show();
+                            } else {
+                                //Failure toast appears
+                                Toast.makeText(SignupScreen.this, "Failed to Register", Toast.LENGTH_LONG).show();
 
-                                    }
-                                }
-                            });
-                        } else {
-                            //Failure toast appears
-                            Toast.makeText(SignupScreen.this, "Failed to Register", Toast.LENGTH_LONG).show();
-
-                        }
+                            }
+                        });
+                    } else {
+                        //Failure toast appears
+                        Toast.makeText(SignupScreen.this, "Failed to Register", Toast.LENGTH_LONG).show();
 
                     }
+
                 });
     }
 }

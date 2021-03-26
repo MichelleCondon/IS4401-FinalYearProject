@@ -24,8 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme1"
         tools:ignore="AllowBackup">
-        <activity android:name=".UpdatePages.UpdateSchedule"/>
-        <activity android:name=".ManagementViewEmployeeSchedule" />
+        <activity android:name=".Review"></activity>
+        <activity android:name=".UpdatePages.UpdateSchedule" />
+        <activity android:name=".DisplayPages.ManagementViewEmployeeSchedule" />
         <activity android:name=".UpdatePages.EditProfile" />
         <activity android:name=".DisplayPages.TimeOffReview" />
         <activity android:name=".DisplayPages.UserProfile" />
