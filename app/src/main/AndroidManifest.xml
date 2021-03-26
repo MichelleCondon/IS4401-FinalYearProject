@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme1"
         tools:ignore="AllowBackup">
-        <activity android:name=".DisplayPages.Review"></activity>
+
+        <activity android:name=".DisplayPages.Review" />
         <activity android:name=".UpdatePages.UpdateSchedule" />
         <activity android:name=".DisplayPages.ManagementViewEmployeeSchedule" />
         <activity android:name=".UpdatePages.EditProfile" />
@@ -32,14 +33,18 @@
         <activity android:name=".DisplayPages.UserProfile" />
         <activity android:name=".ProductCheck.ProductCheck2" />
         <activity android:name=".Menus.AccountMenu" />
+
         <activity
             android:name=".TimeOffRequest.TimeOffRequest"
             android:theme="@style/AppTheme2" />
+
         <activity android:name=".RequestChange.HoursRequest" />
         <activity android:name=".UpdatePages.UpdateProducts" />
         <activity android:name=".AddPages.AddSchedule" />
         <activity android:name=".Menus.ManagementMainMenu" />
-        <activity android:name=".List.ExistingListItems" /> <!-- Splash Screen used as the launcher activity -->
+        <activity android:name=".List.ExistingListItems" />
+
+        <!-- Splash Screen used as the launcher activity -->
         <activity
             android:name=".SplashScreen.SplashScreen"
             android:theme="@style/AppTheme1">
@@ -49,6 +54,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".List.VirtualList" />
         <activity android:name=".ProductCheck.ProductCheck" />
         <activity android:name=".LoginScreen.MainActivity" />

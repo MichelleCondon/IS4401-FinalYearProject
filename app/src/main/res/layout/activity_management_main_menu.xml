@@ -35,20 +35,105 @@
         android:id="@+id/btnViewSchedule"
         android:layout_width="140dp"
         android:layout_height="85dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_table_view_24"
         android:text="@string/btnViewEdit"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnViewInventory"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu" />
+
+    <Button
+        android:id="@+id/btnAddSchedule"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="45dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_add_24"
+        android:text="@string/btnAddSchedule"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/btnViewSchedule"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu" />
+
+    <Button
+        android:id="@+id/btnAddProduct"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="51dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_add_24"
+        android:text="@string/btnAddEmployee"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/btnViewInventory"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddSchedule" />
+
+    <Button
+        android:id="@+id/btnViewInventory"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_edit_24"
+        android:text="@string/btnEditEmployee"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewSchedule" />
+
+    <Button
+        android:id="@+id/btnProductCheck"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="51dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:text="@string/btnProductCheck"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/btnCreateList"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddProduct" />
+
+    <Button
+        android:id="@+id/btnCreateList"
+        android:layout_width="140dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_edit_24"
+        android:text="@string/btnReviewTimeOffRequest"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewInventory" />
+
+    <ImageView
+        android:id="@+id/companyLogoRegister"
+        android:layout_width="369dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="68dp"
+        android:contentDescription="@string/companyLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_logo_foreground" />
 
     <TextView
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="192dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/lblMgtMenu"
         android:textColor="#070707"
@@ -56,79 +141,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnViewInventory"
-        android:layout_width="140dp"
-        android:layout_height="85dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="46dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_edit_24"
-        android:text="@string/btnEditEmployee"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreateList"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btnAddProduct"
-        android:layout_width="140dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginBottom="45dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_add_24"
-        android:text="@string/btnAddEmployee"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnProductCheck"
-        app:layout_constraintEnd_toStartOf="@+id/btnViewInventory"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnAddSchedule"
-        android:layout_width="140dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="48dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_add_24"
-        android:text="@string/btnAddSchedule"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddProduct"
-        app:layout_constraintEnd_toStartOf="@+id/btnViewSchedule"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnProductCheck"
-        android:layout_width="140dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginBottom="209dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:text="@string/btnProductCheck"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCreateList"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnCreateList"
-        android:layout_width="140dp"
-        android:layout_height="85dp"
-        android:layout_marginBottom="208dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_edit_24"
-        android:text="@string/btnReviewTimeOffRequest"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.852"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

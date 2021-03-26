@@ -31,24 +31,101 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/companyLogoRegister"
+        android:layout_width="369dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="68dp"
+        android:contentDescription="@string/companyLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_logo_foreground" />
+
     <Button
         android:id="@+id/btnViewSchedule"
         android:layout_width="150dp"
         android:layout_height="90dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
         android:background="#3A82C9"
         android:drawableStart="@drawable/ic_baseline_table_view_24"
         android:text="@string/btnView"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnViewInventory"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu" />
+
+    <Button
+        android:id="@+id/btnViewInventory"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_article_24"
+        android:text="@string/btnInventory"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewSchedule" />
+
+    <Button
+        android:id="@+id/btnClockIn"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="35dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_fingerprint_24"
+        android:text="@string/btnClock"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu" />
+
+    <Button
+        android:id="@+id/btnAddProduct"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_add_24"
+        android:text="@string/btnAdd"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClockIn" />
+
+    <Button
+        android:id="@+id/btnCreateList"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_edit_24"
+        android:text="@string/btnCreateList"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewInventory" />
+
+    <Button
+        android:id="@+id/btnProductCheck"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:background="#3A82C9"
+        android:drawableStart="@drawable/ic_baseline_search_24"
+        android:text="@string/btnProductCheck"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddProduct" />
+
 
     <TextView
         android:id="@+id/menu"
         android:layout_width="131dp"
         android:layout_height="55dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="192dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/lblMenu"
         android:textAlignment="center"
@@ -57,72 +134,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnViewInventory"
-        android:layout_width="150dp"
-        android:layout_height="90dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_article_24"
-        android:text="@string/btnInventory"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreateList"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btnAddProduct"
-        android:layout_width="150dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_add_24"
-        android:text="@string/btnAdd"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnProductCheck"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnClockIn"
-        android:layout_width="150dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="40dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_fingerprint_24"
-        android:text="@string/btnClock"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddProduct"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <Button
-        android:id="@+id/btnProductCheck"
-        android:layout_width="150dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="140dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:text="@string/btnProductCheck"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnCreateList"
-        android:layout_width="150dp"
-        android:layout_height="90dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="140dp"
-        android:background="#3A82C9"
-        android:drawableStart="@drawable/ic_baseline_edit_24"
-        android:text="@string/btnCreateList"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
